@@ -1,0 +1,502 @@
+/* InsurancePrinciples.module.css */
+.root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --background-light: aqua;
+    --white: #ffffff;
+    --text-dark: black;
+}
+
+.enterpriseDashboard {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: var(--background-light);
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-dark);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    min-height: 100vh;
+}
+
+.questionNavigationContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.questionNavigationControls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.groupNavigationButton {
+    background-color: aqua;
+    border: none;
+    border-radius: 40px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: black;
+}
+
+.groupNavigationButton:hover:not(:disabled) {
+    background-color: aqua;
+}
+
+.groupNavigationButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.groupLabel {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.questionNavigation {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: center;
+    max-width: 100%;
+}
+
+.examHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: aqua;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(208, 172, 255, 0.3),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(3px); 
+}
+
+.headerLeft h1 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: black;
+    font-size: 1.0rem;
+    font-weight: 700;
+    margin-top: 15px;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.headerRight {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.timer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.0rem;
+    font-weight: bold;
+    color: blue;
+}
+
+.endExamButton {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(208, 172, 255, 0.3),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(3px); 
+    font-size: 14px;
+}
+
+.endExamButton:hover {
+    background-color: white;
+    color: black;
+}
+
+.examDashboardContainer {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 2rem;
+}
+
+.questionSection {
+    background-color: var(--white);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.questionNavigation {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.questionNavButton {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ddd;
+    background-color: var(--white);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 40px;
+    color: black;
+}
+
+.questionNavButton:hover {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ddd;
+    background-color: aqua;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 40px;
+    color: black;
+}
+
+.questionNavButton.answered {
+    background-color: blue;
+    color: white;
+}
+
+.questionNavButton.current {
+    background-color: aqua;
+    color: black;
+}
+
+.questionContainer {
+    background-color: aqua;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(208, 172, 255, 0.3),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(3px); 
+}
+
+.questionHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    color: rgba(0, 0, 0, 0.515);
+}
+
+.optionButton {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    margin: 0.75rem 0;
+    border: none;
+    border-radius: 40px;
+    background-color: white;
+    color: black;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.optionButton:hover {
+    background-color: blue;
+    color: white;
+}
+
+.optionButton.correctAnswer {
+    background-color: blue;
+    color: white;
+}
+
+.optionButton.wrongAnswer {
+    background-color: orange;
+    color: black;
+}
+
+.explanation {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: #f1f8ff;
+    border-left: 4px solid var(--secondary-color);
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+}
+
+.navigationButtons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+}
+
+.navigationButtons button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    box-shadow: 0 10px 30px rgba(208, 172, 255, 0.8),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(3px); 
+}
+
+.navigationButtons button:hover {
+    background-color: orange;
+    color: white;
+    border-radius: 40px;
+    box-shadow: 0 10px 30px rgba(208, 172, 255, 0.4),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(3px); 
+}
+
+.navigationButtonss button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    box-shadow: 0 10px 30px rgba(208, 172, 255, 0.8),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(3px); 
+}
+
+.navigationButtonss button:hover {
+    background-color: blue;
+    color: white;
+    border-radius: 40px;
+    box-shadow: 0 10px 30px rgba(208, 172, 255, 0.4),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(3px); 
+}
+
+.examStatistics {
+    background-color: rgb(255, 255, 255);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 10px 30px rgba(208, 172, 255, 0.4),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(3px); 
+}
+
+.correctAnswer {
+    background-color: blue;
+    color: white;
+    box-shadow: 0 10px 30px rgba(208, 172, 255, 0.4),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(3px); 
+}
+
+.wrongAnswer {
+    background-color: orange;
+    color: white;
+    box-shadow: 0 10px 30px rgba(208, 172, 255, 0.4),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(3px); 
+}
+
+.examStatisticss {
+    background-color: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 10px 30px rgba(208, 172, 255, 0.4),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(3px); 
+}
+
+.statsCard h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+    font-size: 20px;
+}
+
+.statItem {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    padding: 0.5rem;
+    background-color: var(--background-light);
+    border-radius: 6px;
+}
+
+.correctStat {
+    color: blue;
+}
+
+.wrongStat {
+    color: orange;
+}
+
+.researchAssistant {
+    background-color: aqua;
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 10px 30px rgba(208, 172, 255, 0.4),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(3px); 
+}
+
+.researchAssistant textarea {
+    width: 100%;
+    min-height: 150px;
+    padding: 1rem;
+    border: none;
+    background-color: white;
+    border-radius: 16px;
+    margin-bottom: 1rem;
+    resize: vertical;
+}
+
+.researchAssistant button {
+    display: block;
+    padding: 0.65rem;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 40px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(208, 172, 255, 0.8),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(3px); 
+}
+
+
+.researchAssistant button:hover {
+    display: block;
+
+    padding: 0.75rem;
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 40px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.researchAssistant button:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+}
+
+.researchResponse {
+    margin-top: 1.5rem;
+    padding: 1.0rem;
+    background-color: white;
+    border-radius: 16px;
+    text-align: justify;
+    font-size: 15px;
+    box-shadow: 0 10px 30px rgba(228, 208, 255, 0.4),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(3px); 
+}
+
+.accessContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    background-color: var(--background-light);
+}
+
+.accessCodeContainer {
+    background-color: aqua;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(208, 172, 255, 0.4),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(3px); 
+    text-align: center;
+    width: 500px;
+}
+
+.accessCodePanel {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.accessCodeInput {
+    padding: 1rem;
+    border: none  !important;
+    background-color: white !important;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.accessCodeButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.accessCodeButton:hover {
+    background-color: white;
+    color: black;
+}
+
+@media (max-width: 1200px) {
+    .examDashboardContainer {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .enterpriseDashboard {
+        padding: 1rem;
+    }
+
+    .examHeader {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .headerRight {
+        width: 100%;
+        justify-content: space-between;
+    }
+}

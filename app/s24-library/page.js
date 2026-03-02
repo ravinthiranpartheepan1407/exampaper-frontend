@@ -1,0 +1,27 @@
+import React from 'react'
+import Layout from '@/layouts/layout'
+import ExamMarket from '@/components/ExamMarket';
+import KnowbleIC88 from '@/components/knowble/Ic88/page';
+import KnowbleMarket from '@/components/KnowbleMarket';
+// import ChatPage from '@/components/ChatBot/ChatPage'
+
+export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
+
+export const metadata = {
+    title:'Studypoints24 - Knowble Research',
+    content:'text/html',
+    openGraph: {
+      title:'Studypoints24 - Knowble Research',
+      content:'text/html',
+    },
+  }
+
+export default function page() {
+    return (
+        <Layout>
+            <KnowbleMarket />
+            {/* <ChatPage/> */}
+        </Layout>
+    )
+}

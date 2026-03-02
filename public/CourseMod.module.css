@@ -1,0 +1,602 @@
+/* styles/CourseMod.module.css */
+
+/* Main container */
+.courseContainer {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f5f7fa;
+  }
+
+  /* Styles for the artifact title to make it look clickable */
+.artifactTitle {
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.artifactTitle:hover {
+  color: #4dabf7;
+}
+
+/* Artifact Popup Styles */
+.artifactPopupOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 30px rgba(221, 196, 254, 0.5),
+  inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(3px);   
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.artifactPopupContent {
+  background-color: white;
+  width: 80%;
+  max-width: 700px;
+  max-height: 80vh;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.artifactPopupHeader {
+  padding: 16px 20px;
+  border-bottom: 1px solid #e9ecef;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f1f5f9;
+}
+
+.artifactPopupTitle {
+  display: flex;
+  align-items: center;
+}
+
+.artifactPopupIcon {
+  font-size: 24px;
+  margin-right: 12px;
+}
+
+.artifactPopupTitle h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: black;
+}
+
+.artifactPopupClose {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: black;
+  padding: 5px;
+}
+
+.artifactPopupClose:hover {
+  color: #343a40;
+}
+
+.artifactPopupBody {
+  padding: 20px;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.markdownContent h1 {
+  font-size: 1.8rem;
+  margin-bottom: 16px;
+  margin-top: 24px;
+  color: #212529;
+  border-bottom: 1px solid #dee2e6;
+  padding-bottom: 8px;
+}
+
+.markdownContent h2 {
+  font-size: 1.0rem;
+  margin-bottom: 14px;
+  line-height: 1.6;
+  margin-top: 20px;
+  color: black;
+}
+
+.markdownContent p {
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+.markdownContent ul, .markdownContent ol {
+  margin-bottom: 16px;
+  padding-left: 24px;
+}
+
+.markdownContent li {
+  margin-bottom: 6px;
+}
+
+.markdownContent code {
+  background-color: #f1f3f5;
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.9em;
+}
+
+.noContent {
+  text-align: center;
+  padding: 40px 20px;
+  color: #6c757d;
+}
+
+.artifactPopupFooter {
+  padding: 12px 20px;
+  border-top: 1px solid #e9ecef;
+  display: flex;
+  justify-content: flex-end;
+  background-color: #f1f5f9;
+}
+
+.artifactDownloadBtn {
+  background-color: lightBlue;
+  color: black;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 40px;
+  cursor: pointer;
+  font-weight: normal;
+  transition: background-color 0.2s;
+  box-shadow: 0 10px 30px rgba(221, 196, 254, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(3px);   
+}
+
+.artifactDownloadBtn:hover {
+  background-color: white;
+}
+  
+  .courseMain {
+    display: flex;
+    flex: 1;
+    position: relative;
+  }
+  
+  /* Video section (left side) */
+  .videoSection {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #ffffff;
+    border-right: 1px solid #e3e8ef;
+  }
+  
+  .videoPlayer {
+    width: 100%;
+    position: relative;
+    background-color: #000;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+  
+  .video {
+    width: 100%;
+    display: block;
+    max-height: 375px;
+  }
+  
+  .videoInfo {
+    padding: 20px 0;
+    border-bottom: 1px solid #e3e8ef;
+  }
+  
+  .videoInfo h1 {
+    font-size: 24px;
+    color: #334155;
+    margin-bottom: 8px;
+  }
+  
+  .instructorName {
+    color: #64748b;
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+  
+  .videoActions {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+  }
+  
+  .actionButton {
+    display: flex;
+    align-items: center;
+    padding: 8px 14px;
+    background-color: #f1f5f9;
+    border: none;
+    border-radius: 4px;
+    color: #475569;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .actionButton:hover {
+    background-color: #e2e8f0;
+  }
+  
+  .icon {
+    margin-right: 6px;
+  }
+  
+  .videoDescription {
+    padding: 20px 0;
+  }
+  
+  .videoDescription h2 {
+    font-size: 18px;
+    color: #334155;
+    margin-bottom: 12px;
+  }
+  
+  .videoDescription p {
+    color: #64748b;
+    line-height: 1.6;
+  }
+  
+  /* Course sidebar (right side) */
+  .courseSidebar {
+    width: 360px;
+    background-color: #f8fafc;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .courseProgress {
+    padding: 20px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e3e8ef;
+  }
+  
+  .progressBar {
+    height: 8px;
+    background-color: #e2e8f0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+  
+  .progressFill {
+    height: 100%;
+    background-color: #3b82f6;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+  }
+  
+  .progressText {
+    font-size: 14px;
+    color: #64748b;
+    text-align: right;
+  }
+  
+  .modulesList {
+    flex: 1;
+  }
+  
+  .moduleItem {
+    border-bottom: 1px dotted lightBlue;
+  }
+  
+  .moduleHeader {
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background-color: #ffffff;
+    transition: background-color 0.2s ease;
+  }
+  
+  .moduleHeader:hover {
+    background-color: #f1f5f9;
+  }
+  
+  .moduleHeader h3 {
+    font-size: 16px;
+    color: #a6264c;
+    font-weight: 600;
+  }
+  
+  .expandIcon {
+    color: #64748b;
+    font-size: 12px;
+  }
+  
+  .moduleContent {
+    background-color: #f8fafc;
+    padding: 0 8px;
+  }
+  
+  .lessonsList {
+    padding: 8px 0;
+  }
+  
+  .lessonItem {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-bottom: 4px;
+  }
+  
+  .lessonItem:hover {
+    background-color: #e2e8f0;
+  }
+  
+  .activeLesson {
+    background-color: #dbeafe;
+  }
+  
+  .activeLesson:hover {
+    background-color: #bfdbfe;
+  }
+  
+  .completedLesson {
+    opacity: 0.8;
+  }
+  
+  .lessonIcon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+    font-size: 14px;
+    color: #64748b;
+  }
+  
+  .checkmark {
+    color: #10b981;
+    font-weight: bold;
+  }
+  
+  .playingIcon {
+    color: #3b82f6;
+  }
+  
+  .lessonInfo {
+    flex: 1;
+  }
+  
+  .lessonTitle {
+    font-size: 14px;
+    color: #334155;
+    margin-bottom: 4px;
+  }
+  
+  .lessonDuration {
+    font-size: 12px;
+    color: #94a3b8;
+  }
+  
+  .artifactsList {
+    padding: 12px;
+    border-top: 1px dashed #e3e8ef;
+  }
+  
+  .artifactsList h4 {
+    font-size: 14px;
+    color: #64748b;
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+  
+  .artifactItem {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #ffffff;
+    margin-bottom: 8px;
+    border: 1px solid #e3e8ef;
+  }
+  
+  .artifactIcon {
+    margin-right: 12px;
+    font-size: 16px;
+    color: #94a3b8;
+  }
+  
+  .artifactTitle {
+    flex: 1;
+    font-size: 13px;
+    color: #475569;
+  }
+  
+  .downloadButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Responsive adjustments */
+  @media screen and (max-width: 1024px) {
+    .courseMain {
+      flex-direction: column;
+    }
+    
+    .videoSection, .courseSidebar {
+      width: 100%;
+    }
+    
+    .courseSidebar {
+      border-right: none;
+      border-top: 1px solid #e3e8ef;
+    }
+  }
+
+  .toggleContainer {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+  }
+  
+  .toggleLabel {
+    margin-right: 8px;
+    font-size: 14px;
+  }
+  
+  .toggleSwitch {
+    position: relative;
+    display: inline-block;
+    width: 46px;
+    height: 24px;
+  }
+  
+  .toggleSwitch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .toggleSlider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 24px;
+  }
+  
+  .toggleSlider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+  }
+  
+  input:checked + .toggleSlider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .toggleSlider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .toggleSlider:before {
+    transform: translateX(22px);
+  }
+  
+  .chatContainer {
+    border: 1px dotted lightBlue;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #f1f5f9;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .chatMessages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .emptyChat {
+    text-align: center;
+    color: #888;
+    margin-top: 100px;
+    font-style: italic;
+  }
+  
+  .chatMessage {
+    padding: 10px 15px;
+    border-radius: 7px;
+    max-width: 70%;
+    position: relative;
+  }
+  
+  .userMessage {
+    align-self: flex-end;
+    background-color: #fbfbfb;
+    color: black;
+    font-size: 15px;
+  }
+  
+  .botMessage {
+    align-self: flex-start;
+    background-color: white;
+    color: #212529;
+    font-size: 15px;
+  }
+  
+  .messageTime {
+    font-size: 0.7rem;
+    color: black;
+    text-align: right;
+    margin-top: 5px;
+  }
+  
+  .botMessage .messageTime {
+    color: #6c757d;
+  }
+  
+  .chatInputForm {
+    display: flex;
+    padding: 10px;
+    background-color: white;
+    border-top: 1px solid #e0e0e0;
+  }
+  
+  .chatInputField {
+    flex: 1;
+    padding: 10px 15px;
+    border: 0px solid #ced4da !important; 
+    border-radius: 20px;
+    margin-right: 10px;
+    outline: none;
+  }
+  
+  .chatSubmitButton {
+    background-color: aqua;
+    color: black;
+    border: none;
+    border-radius: 20px;
+    padding: 0 20px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 14px;
+  }
+  
+  .chatSubmitButton:hover {
+    background-color: #f0f8ff;
+  }

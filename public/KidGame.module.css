@@ -1,0 +1,385 @@
+.gameContainer {
+    max-width: 1230px;
+    padding: 20px;
+    background-color: #f0f8ff;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    color: white;
+    border-radius: 12px;
+  }
+  
+  .header h1 {
+    font-size: 20px;
+    color: black;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  .scoreBoard {
+    background-color: white;
+    color: black;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 14px;
+    box-shadow: 0 10px 30px rgba(221, 196, 254, 0.5),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(3px);   
+  }
+  
+  .levelInfo {
+    margin-bottom: 20px;
+    background-color: white;
+    padding: 15px;
+    border-radius: 15px;
+    border: 0.2px dotted lightBlue;
+  }
+  
+  .levelInfo h2 {
+    color: black;
+    margin-top: 0;
+    font-size: 24px;
+    text-align: center;
+  }
+  
+  .storyControls {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .storyContainer {
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    border-left: 20px solid aqua;
+
+  }
+  
+  .story {
+    font-size: 16px;
+    line-height: 1.5;
+    color: black;
+    margin: 0;
+  }
+  
+  .gameInstructions {
+    margin-bottom: 20px;
+    text-align: center;
+    color: black;
+  }
+  
+  .gameInstructions p {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .hintButton {
+    background-color: #f0f8ff;
+    color: black;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 10px 0;
+    transition: all 0.3s ease;
+  }
+  
+  .hintButton:hover {
+    background-color: white;
+    transform: scale(1.05);
+  }
+
+  .hintButtons {
+    background-color: aqua;
+    color: black;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 10px 0;
+    transition: all 0.3s ease;
+  }
+  
+  .hintButton:hover {
+    background-color: white;
+    transform: scale(1.05);
+  }
+  
+  .cluesContainer {
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 15px 0;
+    text-align: left;
+  }
+  
+  .cluesContainer h3 {
+    color: #8b008b;
+    margin-top: 0;
+    font-size: 18px;
+  }
+  
+  .cluesList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .clueItem {
+    background-color: #f0f8ff;
+    padding: 8px 12px;
+    border-radius: 40px;
+    font-size: 14px;
+    color: black;
+  }
+  
+  .foundClue {
+    background-color: aqua;
+    text-decoration: line-through;
+    opacity: 0.8;
+  }
+  
+  .messageBar {
+    background-color: aqua;
+    color: black;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: bold;
+    animation: fadeInOut 2s ease;
+  }
+  
+  @keyframes fadeInOut {
+    0% { opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  
+  .gameBoard {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .gridContainer {
+    display: inline-block;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(221, 196, 254, 0.5),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(3px);   
+  }
+  
+  .gridRow {
+    display: flex;
+  }
+  
+  .gridCell {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+    border: 2px dotted lightBlue;
+    margin: 7px;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #a6264c;
+    background-color: white;
+  }
+
+  .gridCell {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+    border: 2px dotted lightBlue;
+    margin: 7px;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #a6264c;
+    background-color: white;
+  }
+  
+  /* Media queries for responsive design */
+  @media screen and (max-width: 768px) {
+    .gridCell {
+      width: 35px;
+      height: 35px;
+      font-size: 14px;
+      margin: 5px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .gridCell {
+      width: 30px;
+      height: 30px;
+      font-size: 12px;
+      margin: 3px;
+      border-width: 1px;
+    }
+  }
+  
+  /* For very small screens */
+  @media screen and (max-width: 320px) {
+    .gridCell {
+      width: 25px;
+      height: 25px;
+      font-size: 10px;
+      margin: 2px;
+    }
+  }
+  
+  .gridCell:hover:not(.emptyCell):not(.foundCell) {
+    background-color: #d1e6ff;
+    transform: scale(1.05);
+  }
+  
+  .emptyCell {
+    background-color: transparent;
+    border: none;
+    cursor: default;
+  }
+  
+  .selectedCell {
+    background-color: lightBlue;
+    color: black;
+    transform: scale(1.05);
+    border-color: lightBlue;
+  }
+  
+  .foundCell {
+    background-color: lightBlue;
+    color: black;
+    border-color: lightBlue;
+    cursor: pointer;
+  }
+  
+  .wordsFoundContainer {
+    margin-bottom: 20px;
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+  }
+  
+  .wordsFoundContainer h3 {
+    color: #a6264c;
+    margin-top: 0;
+    font-size: 18px;
+  }
+  
+  .foundWordsList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  .foundWord {
+    background-color: #f0f8ff;
+    box-shadow: 0 10px 30px rgba(221, 196, 254, 0.1),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(3px);   
+    color: black;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 14px;
+    font-weight: normal;
+  }
+  
+  .solutionContainer {
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+    border: 0.2px dotted lightBlue;
+    animation: fadeIn 0.5s ease-in;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .solutionContainer h3 {
+    color: black;
+    margin-top: 0;
+    font-size: 22px;
+  }
+  
+  .solution {
+    font-size: 16px;
+    line-height: 1.4;
+    color: black;
+  }
+  
+  .nextButton {
+    background-color: aqua;
+    color: black;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 0px;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(221, 196, 254, 0.2),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(3px);   
+  }
+  
+  .nextButton:hover {
+    background-color: #f0f8ff;
+    transform: scale(1.05);
+  }
+  
+  .toggleButton {
+    background-color: aqua;
+    color: black;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+  }
+  
+  .toggleButton:hover {
+    background-color: lightBlue;
+    transform: scale(1.05);
+  }
+  
+  .footer {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: white;
+    color: black;
+    border-radius: 40px;
+    font-size: 14px;
+  }

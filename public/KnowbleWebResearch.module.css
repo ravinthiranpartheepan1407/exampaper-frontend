@@ -1,0 +1,392 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #a6264c;
+}
+
+.contentLayout {
+  display: flex;
+  height: calc(100vh - 6rem);
+}
+
+.sidebar {
+  width: 300px;
+  padding: 1rem;
+  background-color: #fbfbfb;
+  border-right: 1px solid #ccc !important;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  padding: 1rem;
+}
+
+.urlInputContainer {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.urlInput {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  border: 1px solid #a6264c !important;
+  background-color: white !important;
+  border-radius: 4px 0px 0px 4px !important;
+  font-size: 1rem;
+}
+
+.loadButtons {
+  padding: 0.5rem 1rem;
+  background-color: #a6264c;
+  color: white;
+  border: none;
+  border-radius: 4px 4px 4px 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.loadButtons:hover {
+  background-color: #b11f4b;
+}
+
+.loadButton {
+  padding: 0.5rem 1rem;
+  background-color: #a6264c;
+  color: white;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.loadButton:hover {
+  background-color: #b11f4b;
+}
+
+.loadButton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.previewContainer {
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  max-height: 200px;
+  overflow-y: auto;
+  transition: max-height 0.3s ease;
+}
+
+.previewContainer.expanded {
+  max-height: 500px;
+}
+
+.previewTitle {
+  padding: 0.5rem 1rem;
+  background-color: #f0f0f0;
+  margin: 0;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border-bottom: 1px solid #a6264c;
+}
+
+.preview {
+  padding: 0.5rem;
+  max-height: 200px;
+}
+
+.previewText {
+  width: 100%;
+  height: 150px;
+  resize: none;
+  border: 1px solid #a6264c;
+  padding: 0.5rem;
+  font-family: monospace;
+  font-size: 0.875rem;
+}
+
+.chatSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  min-height: 300px; /* Ensure minimum height */
+}
+
+.chatSection h2 {
+  padding: 0.75rem 1rem;
+  margin: 0;
+  background-color: #fbfbfb;
+  border-bottom: 1px solid #ddd;
+  font-size: 1.25rem;
+}
+
+.chatContainer {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: #fafafa;
+  min-height: 200px; /* Ensure content area has minimum height */
+}
+
+.message {
+  max-width: 80%;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  overflow-wrap: break-word;
+}
+
+.userMessage {
+  align-self: flex-end;
+  background-color: #a6264c;
+  color: white;
+}
+
+.assistantMessage {
+  align-self: flex-start;
+  background-color: #e9e9eb;
+  color: #333;
+}
+
+.systemMessage {
+  align-self: center;
+  background-color: #ffecb3;
+  color: #333;
+}
+
+.emptyChatMessage {
+  text-align: center;
+  color: #888;
+  margin: auto;
+}
+
+.inputForm {
+  display: flex;
+  padding: 0.75rem;
+  background-color: white;
+  border-top: 1px solid #ddd;
+}
+
+.chatInput {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 1px solid #a6264c !important;
+  background-color: white !important;
+  border-radius: 4px 0px 0px 4px !important;
+  font-size: 1rem;
+}
+
+.sendButton {
+  padding: 0.5rem 1rem;
+  background-color: #a6264c;
+  color: white;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.sendButton:hover {
+  background-color: #b11f4b;
+}
+
+.sendButton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.error {
+  color: #d32f2f;
+  background-color: #ffebee;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.divider {
+  border: 0;
+  height: 1px;
+  background-color: #ddd;
+  margin: 1rem 0;
+}
+
+.instructions {
+  padding-left: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.checkboxContainer {
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.typingIndicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.25rem 0;
+  gap: 0.25rem;
+}
+
+.typingIndicator span {
+  width: 8px;
+  height: 8px;
+  background-color: #666;
+  border-radius: 50%;
+  display: inline-block;
+  animation: bounce 1.5s infinite ease-in-out;
+}
+
+.typingIndicator span:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.typingIndicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typingIndicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  0%, 80%, 100% {
+      transform: translateY(0);
+  }
+  40% {
+      transform: translateY(-6px);
+  }
+}
+
+.sidebarToggle {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #a6264c;
+  color: white;
+  border-radius: 0 4px 4px 0;
+  padding: 0.75rem 0.5rem;
+  cursor: pointer;
+  z-index: 100;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 768px) {
+  .contentLayout {
+      flex-direction: column;
+      height: auto;
+      min-height: 100vh;
+      position: relative;
+  }
+  
+  .sidebarToggle {
+      display: flex;
+  }
+  
+  .sidebar {
+      position: fixed;  
+      height: 100vh;
+      width: 85%;
+      max-width: 350px;
+      z-index: 99;
+      box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+      transform: translateX(0);
+      left: 0;
+      top: 0;
+  }
+  
+  .sidebar.hidden {
+      transform: translateX(-100%);
+  }
+  
+  .content {
+      width: 100%;
+      height: auto;
+      min-height: calc(100vh - 4rem);
+      padding: 1rem;
+      overflow-y: visible;
+  }
+  
+  .chatSection {
+      height: auto !important;
+      min-height: 60vh;
+      margin-bottom: 4rem;
+      display: flex;
+      flex-direction: column;
+  }
+  
+  .chatContainer {
+      flex: 1;
+      height: auto;
+      min-height: 30vh;
+  }
+  
+  .previewContainer {
+      max-height: none;
+      height: auto;
+  }
+  
+  .previewContainer.expanded {
+      max-height: none;
+  }
+  
+  .urlInputContainer {
+      flex-direction: column;
+  }
+  
+  .urlInput {
+      width: 100%;
+      border-radius: 4px 4px 0 0 !important;
+      margin-bottom: 0;
+  }
+  
+  .loadButton {
+      width: 100%;
+      border-radius: 0 0 4px 4px;
+  }
+  
+  .inputForm {
+      flex-direction: column;
+  }
+  
+  .chatInput {
+      width: 100%;
+      border-radius: 4px 4px 0 0 !important;
+      margin-bottom: 0.5rem;
+  }
+  
+  .sendButton {
+      width: 100%;
+      border-radius: 0 0 4px 4px;
+  }
+}
