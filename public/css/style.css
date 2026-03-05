@@ -83,6 +83,8 @@
 /*------------------------------------------------------------------*/
 /*	01) ROOT
 /*------------------------------------------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Lustria&family=DM+Sans:ital,opsz,wght@0,9..40,100..900;1,9..40,100..900&display=swap');
+
 :root{
 	color-scheme: dark;
 	--techwave-site-bg-color: white;
@@ -97,8 +99,8 @@
 	--techwave-border-color: #ddd;
 	--techwave-button-bg-color: #F5F7F8;
 	--techwave-hover-color: black;
-	--techwave-heading-font-family: "DM Sans", sans-serif;
-	--techwave-body-font-family: "DM Sans", sans-serif;
+	--techwave-heading-font-family: "Lustria", serif;
+	--techwave-body-font-family: "Lustria", sans-serif;
 	--techwave-left-panel-width: 300px;
 	--techwave-header-height: 100px;
 }
@@ -6716,7 +6718,7 @@ a.fn__like.no_border .fn__svg{
 	font-size: calc(50px + 5.211vw);
 	font-weight: 700;
 	text-transform: uppercase;
-	font-family: sans-serif;
+	font-family: var(--techwave-heading-font-family);
 }
 .techwave_fn_intro .or h1 span{
 	color: var(--techwave-site-bg-color);
@@ -6854,7 +6856,7 @@ a.fn__like.no_border .fn__svg{
 	font-size: 150px;
 	font-size: calc(50px + 5.211vw);
 	font-weight: 900;
-	font-family: sans-serif;
+	font-family: var(--techwave-heading-font-family);
 	text-transform: uppercase;
 }
 .techwave_fn_intro .templates{

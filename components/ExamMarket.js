@@ -94,18 +94,18 @@ const ExamMarket = () => {
     <div style={{backgroundColor: 'white'}} className={styles.container}>
       <div className="hero-section">
           <div className="hero-content">
-              <h1 className="hs-title-8">Knowble - Mock Exam Engine</h1>
-              <p style={{color: 'white'}} className='hs-title'>Mock Tests Search: Prepare for your exams with our Knowble mock tests.</p>
+              <h1 className="hs-title-8">Test Your Learnings</h1>
+              <p style={{color: 'white'}} className='hs-title'>Prepare for your exams with our Knowble mock tests.</p>
               <div className="upload-sections">
                   <div className="file-upload">
                       <label className="upload-btn">
                           <StepForward style={{width: 15, color: 'black'}} />
-                          <span>Partner Program</span>
+                          <span>Apply for</span>
                           <button 
                               onClick={() => router.push("https://calendly.com/inspolix/30min")} 
                               className="evaluate-btn"
                           >
-                              <Rocket size={16} style={{marginTop: -3}} /> Academy Stories
+                              Business English Programme
                           </button>
                       </label>
                   </div>
@@ -116,7 +116,7 @@ const ExamMarket = () => {
       {showModal && (
         <div className="modal-overlay">
           <div className="modal-content">
-            <div style={{backgroundColor: 'aqua', padding: 15, borderRadius: 16}}>
+            <div style={{backgroundColor: '#bff2f7', padding: 15, borderRadius: 16}}>
             <h2 style={{fontSize: 20, fontWeight: 600, marginTop: 12}}><Airplay style={{marginTop: -2}} /> Important Information</h2>
             </div>
             <div style={{textAlign: 'left', marginTop: 15}}>
@@ -244,6 +244,7 @@ const ExamMarket = () => {
         )}
       </div>
       <style jsx>{`
+        @import url('https://fonts.googleapis.com/css2?family=Lustria&family=DM+Sans:ital,opsz,wght@0,9..40,100..900;1,9..40,100..900&display=swap');
         .hero-section {
             text-align: center;
             margin-bottom: 40px;
@@ -257,7 +258,7 @@ const ExamMarket = () => {
             position: relative;
             box-shadow: 0 10px 30px rgba(227, 207, 250, 0.5),
               inset 0 1px 0 rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(3px);   
+            backdrop-filter: blur(1px);   
         }
 
         .hero-section::before {
@@ -272,7 +273,7 @@ const ExamMarket = () => {
             border: 1px solid rgba(255, 255, 255, 0.05);     
             box-shadow: 0 10px 30px rgba(208, 172, 255, 0.3),
               inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(3px);       
+            backdrop-filter: blur(2px);       
             z-index: 1;
         }
 
@@ -287,6 +288,7 @@ const ExamMarket = () => {
             color: #FFFFFF;
             font-weight: 700;
             letter-spacing: -0.5px;
+            font-family: "Lustria", serif;
         }
 
         .upload-sections {
@@ -431,7 +433,7 @@ const ExamMarket = () => {
         }
 
         .modal-confirm:disabled {
-          background-color: aqua;
+          background-color: #bff2f7;
           cursor: not-allowed;
            border-radius: 40px;
           font-size: 13px;
@@ -657,7 +659,7 @@ const ExamMarket = () => {
         }
 
         .card-tag {
-          background-color: aqua;
+          background-color: #bff2f7;
           color: black;
           font-size: 0.75rem;
           padding: 0.25rem 0.75rem;
@@ -677,7 +679,7 @@ const ExamMarket = () => {
 
         .view-details-button {
           margin-top: auto;
-          background-color: aqua;
+          background-color: #bff2f7;
           color: black;
           border: none;
           border-radius: 40px;
