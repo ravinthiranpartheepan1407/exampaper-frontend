@@ -26,6 +26,7 @@ const ExamMarket = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedProductLink, setSelectedProductLink] = useState('');
   const [isAcknowledged, setIsAcknowledged] = useState(false);
+  const [userEmail, setUserEmail] = useState('');
 
   // Extract all unique tags from products
   useEffect(() => {
@@ -34,6 +35,17 @@ const ExamMarket = () => {
       product.tags.forEach(tag => tagsSet.add(tag));
     });
     setAllTags(Array.from(tagsSet).sort());
+  }, []);
+
+  useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    if (!token) return;
+    try {
+      const tokenData = JSON.parse(atob(token.split('.')[1]));
+      setUserEmail(tokenData.email);
+    } catch (err) {
+      console.error('Error decoding token:', err);
+    }
   }, []);
 
   // Function to handle product start button click
@@ -117,7 +129,7 @@ const ExamMarket = () => {
         <div className="modal-overlay">
           <div className="modal-content">
             <div style={{backgroundColor: '#bff2f7', padding: 15, borderRadius: 16}}>
-            <h2 style={{fontSize: 20, fontWeight: 600, marginTop: 12}}><Airplay style={{marginTop: -2}} /> Important Information</h2>
+            <h2 style={{fontSize: 18, fontWeight: 600, marginTop: 12}}><Airplay size={20} style={{marginTop: -2}} /> Important Information</h2>
             </div>
             <div style={{textAlign: 'left', marginTop: 15}}>
               <p><Disc size={15} style={{marginTop: -4}} /> The access code to the test is valid only for 72 hours.</p>
@@ -146,19 +158,16 @@ const ExamMarket = () => {
               </div>
             </div>
 
-            <div style={{marginTop: 10}} className="modal-actions">
-              <button 
-                onClick={() => setShowModal(false)}
-                className="modal-cancel"
-              >
-                <X size={15} style={{marginTop: -3}} /> Cancel
+            <div style={{ marginTop: 10 }} className="modal-actions">
+              <button onClick={() => setShowModal(false)} className="modal-cancel">
+                <X size={15} style={{ marginTop: -3 }} /> Cancel
               </button>
-              <button 
-                onClick={confirmAndNavigate}
+              <button
+                onClick={userEmail ? confirmAndNavigate : () => router.push('/get-started')}
                 className="modal-confirm"
                 disabled={!isAcknowledged}
               >
-                <Send size={15} style={{marginTop: -3}} /> Get Started
+                <Send size={15} style={{ marginTop: -3 }} /> {userEmail ? 'Get Started' : 'Login / Register'}
               </button>
             </div>
           </div>

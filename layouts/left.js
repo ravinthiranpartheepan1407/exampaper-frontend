@@ -137,15 +137,6 @@ export default function Left({ activeTrueFalse, activeMobileMenu }) {
             // Get the authentication token from localStorage
             const token = localStorage.getItem('authToken');
 
-            // // Logout API call with authorization header
-            // await axios.post("http://localhost:8000/logout/", {}, {
-            //     headers: {
-            //         'Authorization': `Bearer ${token}`,
-            //         'Content-Type': 'application/json'
-            //     },
-            //     withCredentials: true
-            // });
-
             // Remove token from localStorage
             localStorage.removeItem('authToken');
 

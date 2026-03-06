@@ -4,7 +4,7 @@ import Nav from "./components/Nav";
 import Image from "next/image";
 import LanguageSelect from "./components/LanguageSelect";
 import Link from "next/link";
-import { CalendarPlus } from "lucide-react";
+import { CalendarPlus, GraduationCap } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 export default function Header10({ links }) {
@@ -105,17 +105,17 @@ export default function Header10({ links }) {
             <li>
               <a href="https://calendly.com/ravinthiran1407/evalentum-product-demo" className="input-section opacity-1 no-hover">
                 <span style={{backgroundColor: 'transparent'}} className="link-hover-anim" data-link-animate="y">
-                  <CalendarPlus size={18} style={{marginTop: -3}} /> Schedule a Meeting
+                  <GraduationCap size={18} style={{marginTop: -3}} /> Business English Graduate
                 </span>
               </a>
             </li>
-            <li>
+            {/* <li>
               <a href="https://forms.gle/BRZ6FHYqAKUJJNGYA" className="opacity-1 no-hover">
                 <span className="link-hover-anim" data-link-animate="y">
                   <span className="icon-ellipse me-1" /> Feedback
                 </span>
               </a>
-            </li>
+            </li> */}
             </>
           )}
         </ul>

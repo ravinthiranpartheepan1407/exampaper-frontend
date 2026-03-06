@@ -118,8 +118,8 @@ export default function ResetPassword() {
                   <div className="col-md-6 offset-md-3">
                     <div className="form contact-form">
                       <div className="text-center mb-40">
-                        <h5 style={{color: '#a6264c'}} className="hs-title">
-                          {email && `Check for an email from evalentumapp@gmail.com sent to your ${email} account`}
+                        <h5 style={{color: 'white'}}>
+                          {email && `Check for an email from instructor@exampaper.academy sent to your ${email} account`}
                         </h5>
                       </div>
                       
