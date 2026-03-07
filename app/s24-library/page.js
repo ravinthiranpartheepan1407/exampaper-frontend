@@ -21,7 +21,6 @@ export default function page() {
     return (
         <Layout>
             <KnowbleMarket />
-            {/* <ChatPage/> */}
         </Layout>
     )
 }

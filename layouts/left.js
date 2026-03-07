@@ -38,7 +38,7 @@ const data = [
 
     {
         title: "S24 Library Catalogs",
-        pathname: "#",
+        pathname: "/s24-library",
         img: "/svg/lock.svg",
         
     },
@@ -126,7 +126,7 @@ export default function Left({ activeTrueFalse, activeMobileMenu }) {
 
         // If no token and not on public routes, redirect to login
         if (!token && !publicRoutes.includes(pathname)) {
-            router.push('/s24-tests');
+            router.push("/")
         }
     }, [pathname, router]);
 

@@ -38,7 +38,7 @@ const KnowbleMarket = () => {
   useEffect(() => {
     const token = localStorage.getItem('authToken');
     if (!token) {
-      router.push('/');
+      router.push("/s24-library")
       return;
     }
     
@@ -48,7 +48,6 @@ const KnowbleMarket = () => {
       setUserEmail(decodedEmail);
     } catch (err) {
       console.error('Error decoding token:', err);
-      router.push('/');
     }
   }, [router]);
 
@@ -231,20 +230,17 @@ const KnowbleMarket = () => {
               </div>
             </div>
 
-            <div style={{marginTop: 10}} className="modal-actions">
-              <button 
-                onClick={() => setShowModal(false)}
-                className="modal-cancel"
-              >
-                <X size={15} style={{marginTop: -3}} /> Cancel
-              </button>
-              <button 
-                onClick={confirmAndNavigate}
-                className="modal-confirm"
-                disabled={!isAcknowledged}
-              >
-                <Send size={15} style={{marginTop: -3}} /> Get Started
-              </button>
+            <div style={{ marginTop: 10 }} className="modal-actions">
+                          <button onClick={() => setShowModal(false)} className="modal-cancel">
+                            <X size={15} style={{ marginTop: -3 }} /> Cancel
+                          </button>
+                          <button
+                            onClick={userEmail ? confirmAndNavigate : () => router.push('/get-started')}
+                            className="modal-confirm"
+                            disabled={!isAcknowledged}
+                          >
+                            <Send size={15} style={{ marginTop: -3 }} /> {userEmail ? 'Get Started' : 'Login / Register'}
+                          </button>
             </div>
           </div>
         </div>
