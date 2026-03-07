@@ -48,7 +48,7 @@ export default function Account() {
       if (response.data.token) {
         // Store the token in local storage
         localStorage.setItem('authToken', response.data.token);
-        router.push('/s24-tests');
+        router.push('/mock-exams');
       }
     } catch (error) {
       const errorMessage = error.response?.data?.detail 
