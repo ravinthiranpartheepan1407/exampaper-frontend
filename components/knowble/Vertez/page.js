@@ -13,7 +13,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = `https://cdn.jsdelivr.net/npm/pdfjs-dist@$
 
 export default function KnowbleVertez() {
   const [showPdf, setShowPdf] = useState(false);
-  const [pdfUrl, setPdfUrl] = useState('https://zdmueezfheensjrefapy.supabase.co/storage/v1/object/sign/rust-timers/Vertez.pdf?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJydXN0LXRpbWVycy9WZXJ0ZXoucGRmIiwiaWF0IjoxNzQzNjcxNDc5LCJleHAiOjMzMjA0NzE0Nzl9._cX3OucMZPyGnqlX93BTaz-K6bXaTUBTcunHqDOIIM0');
+  const [pdfUrl, setPdfUrl] = useState('https://fdryfwxmkllviwqmynme.supabase.co/storage/v1/object/public/books/Bilberrydb%20-%20Vector%20Math.pdf');
   
     // New PDF viewer states
     const [numPages, setNumPages] = useState(null);
@@ -41,7 +41,7 @@ export default function KnowbleVertez() {
   const [selectedHeading, setSelectedHeading] = useState(null);
   const [showHeadingPopup, setShowHeadingPopup] = useState(false);
   
-  const API_BASE_URL = 'https://edevalentum.com'; // Change this to your FastAPI server URL
+  const API_BASE_URL = 'http://localhost:8000'; // Change this to your FastAPI server URL
 
   // Process PDF automatically on page load
   useEffect(() => {
@@ -278,7 +278,7 @@ export default function KnowbleVertez() {
   };
 
   return (
-    <div className={styles.container}>
+    <div style={{marginTop: -73}}  className={styles.container}>
       <main className={styles.main}>
         <div className={styles.chatContainer}>
           <div className={styles.chatHeader}>
@@ -421,6 +421,8 @@ export default function KnowbleVertez() {
               </div>
             </div>
             <style jsx>{`
+              @import url('https://fonts.googleapis.com/css2?family=Lustria&family=DM+Sans:ital,opsz,wght@0,9..40,100..900;1,9..40,100..900&display=swap');
+
               .title {
                 margin: 0;
                 line-height: 1.15;
@@ -589,11 +591,11 @@ export default function KnowbleVertez() {
                 </h2>
                 
                 {activeTab === 'context' && (
-                  <p style={{color: 'grey'}}><Disc2 size={13} style={{marginTop: -1}} /> Showing {retrievedDocs.length} relevant segments according to your prompt from the analysed sources.</p>
+                  <p style={{color: 'grey', fontSize: 12}}><Disc2 size={13} style={{marginTop: -1}} /> Showing {retrievedDocs.length} relevant segments according to your prompt from the analysed sources.</p>
                 )}
                 
                 {activeTab === 'headings' && (
-                  <p style={{color: 'grey'}}><Bookmark size={13} style={{marginTop: -1}} /> Showing {bookHeadings.length} headings extracted from the document.</p>
+                  <p style={{color: 'grey', fontSize: 12}}><Bookmark size={13} style={{marginTop: -1}} /> Showing {bookHeadings.length} headings extracted from the document.</p>
                 )}
               </div>
               

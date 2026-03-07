@@ -39,7 +39,7 @@ export default function KnowblePsychologyOfSelling() {
   const [selectedHeading, setSelectedHeading] = useState(null);
   const [showHeadingPopup, setShowHeadingPopup] = useState(false);
   
-  const API_BASE_URL = 'https://edevalentum.com';
+  const API_BASE_URL = 'http://localhost:8000';
 
   // Process PDF automatically on page load
   useEffect(() => {

@@ -180,25 +180,25 @@ const KnowbleMarket = () => {
   return (
     <div style={{backgroundColor: 'white'}} className={styles.container}>
       <div className="hero-section">
-          <div className="hero-content">
-              <h1 className="hs-title-8">Knowble - Research Engine</h1>
-              <p style={{color: 'white'}} className='hs-title'>The Smart Research Engine That Finds What Matters</p>
-              <div className="upload-sections">
-                  <div className="file-upload">
-                      <label className="upload-btn">
-                          <StepForward style={{width: 15, color: '#a6264c'}} />
-                          <span>Partner Program</span>
-                          <button 
-                              onClick={() => router.push("https://calendly.com/inspolix/30min")} 
-                              className="evaluate-btn"
-                          >
-                              <Rocket size={16} style={{marginTop: -3}} /> Academy Stories
-                          </button>
-                      </label>
-                  </div>
-              </div>
-          </div>
-      </div>
+                <div className="hero-content">
+                    <h1 className="hs-title-8">Test Your Learnings</h1>
+                    <p style={{color: 'white'}} className='hs-title'>Prepare for your exams with our Knowble mock tests.</p>
+                    <div className="upload-sections">
+                        <div className="file-upload">
+                            <label className="upload-btn">
+                                <StepForward style={{width: 15, color: 'black'}} />
+                                <span>Apply for</span>
+                                <button 
+                                    onClick={() => router.push("https://calendly.com/inspolix/30min")} 
+                                    className="evaluate-btn"
+                                >
+                                    Business English Programme
+                                </button>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+        </div>
 
       {showModal && (
         <div className="modal-overlay">
@@ -338,9 +338,11 @@ const KnowbleMarket = () => {
         )}
       </div>
       <style jsx>{`
+        @import url('https://fonts.googleapis.com/css2?family=Lustria&family=DM+Sans:ital,opsz,wght@0,9..40,100..900;1,9..40,100..900&display=swap');
         .hero-section {
             text-align: center;
             margin-bottom: 40px;
+            margin-top: -100px;
             background-image: url('./texture/audio.jpg');
             background-size: cover;
             background-position: center;
@@ -348,9 +350,9 @@ const KnowbleMarket = () => {
             padding: 40px;
             border-radius: 10px;
             position: relative;
-            box-shadow: 0 10px 30px rgba(144, 255, 227, 0.5),
+            box-shadow: 0 10px 30px rgba(227, 207, 250, 0.5),
               inset 0 1px 0 rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(6px);   
+            backdrop-filter: blur(1px);   
         }
 
         .hero-section::before {
@@ -361,11 +363,11 @@ const KnowbleMarket = () => {
             width: 100%;
             height: 100%;
             border-radius: 10px;
-            background-color: rgba(191, 151, 255, 0.16); /* Darkens the background image */
+            background-color: rgba(147, 81, 255, 0.16); /* Darkens the background image */
             border: 1px solid rgba(255, 255, 255, 0.05);     
             box-shadow: 0 10px 30px rgba(208, 172, 255, 0.3),
               inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(6px);       
+            backdrop-filter: blur(2px);       
             z-index: 1;
         }
 
@@ -380,6 +382,7 @@ const KnowbleMarket = () => {
             color: #FFFFFF;
             font-weight: 700;
             letter-spacing: -0.5px;
+            font-family: "Lustria", serif;
         }
 
         .upload-sections {
