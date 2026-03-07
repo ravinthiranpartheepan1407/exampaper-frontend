@@ -8,18 +8,9 @@ import { createClient } from '@supabase/supabase-js';
 const KnowbleMarket = () => {
   // Sample insurance products data
   const initialProducts = [
-    { id: 1, name: 'Essentials of Marketing Management', image: 'https://zdmueezfheensjrefapy.supabase.co/storage/v1/object/sign/rust-timers/Marketing.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJydXN0LXRpbWVycy9NYXJrZXRpbmcucG5nIiwiaWF0IjoxNzQzODI5NDgwLCJleHAiOjMzMjA2Mjk0ODB9.DSz7Q3GTcYmfunsPbuLJ2kJpiPTrb83yZ-FU-y1qbr8', tags: ['Marketing', 'Management', "Sales"], price: 'Company Calculator', link: '/s24-library/marketing-management'},
-    { id: 2, name: '10th - Mathematics', image: 'https://zdmueezfheensjrefapy.supabase.co/storage/v1/object/sign/rust-timers/Mathematics.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJydXN0LXRpbWVycy9NYXRoZW1hdGljcy5wbmciLCJpYXQiOjE3NDM3MDIyOTMsImV4cCI6MzMyMDUwMjI5M30.6bBDXAlHj--j-Sv8FweYKip_EOjl6cFga3HDniV3fH4', tags: ['School Premium', 'Math', "10th Grade"], price: 'Company Calculator', link: '/s24-library/10th-mathematics', subscription: 'premium'  },
-    { id: 3, name: '12th - Physics Volume 2', image: 'https://zdmueezfheensjrefapy.supabase.co/storage/v1/object/sign/rust-timers/Physics-Vol2.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJydXN0LXRpbWVycy9QaHlzaWNzLVZvbDIucG5nIiwiaWF0IjoxNzQzNjgyMzkzLCJleHAiOjMzMjA0ODIzOTN9.Q3H7LiaU8l6rFwr0e9Jmyf5Owr72rJcwu1EMnj5nBVY', tags: ['School Premium', 'Physics', "12th Grade"], price: 'Company Calculator', link: '/s24-library/12th-physics-vol2', subscription: 'premium'  },
-    { id: 4, name: 'Vertez - Math For ML and Data Science', image: 'https://zdmueezfheensjrefapy.supabase.co/storage/v1/object/sign/rust-timers/Vertez.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJydXN0LXRpbWVycy9WZXJ0ZXoucG5nIiwiaWF0IjoxNzQzNjcyNTEzLCJleHAiOjMzMjA0NzI1MTN9.cScmchOKXZNAIuuPu3EHH_Mh7iqSG8XFp2NoKMtMbMs', tags: ['Data Science', 'Math', "ML"], price: 'Company Calculator', link: '/s24-library/vertez' },
-    { id: 5, name: 'The Psychology of Selling', image: 'https://zdmueezfheensjrefapy.supabase.co/storage/v1/object/sign/rust-timers/PsychologyOfSelling%20(1).png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJydXN0LXRpbWVycy9Qc3ljaG9sb2d5T2ZTZWxsaW5nICgxKS5wbmciLCJpYXQiOjE3NDM4MzA5NTEsImV4cCI6MzMyMDYzMDk1MX0.FrhLI_V-MzZngSc_-SAEzEuYY1oXaBJdWGpSik70N6c', tags: ['Strategy', 'Psychology', "Sales"], price: 'Company Calculator', link: '/s24-library/psychology-of-selling' },
-    { id: 6, name: 'IC 88 - Marketing and Public Relations', image: 'https://zdmueezfheensjrefapy.supabase.co/storage/v1/object/sign/rust-timers/IC88.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJydXN0LXRpbWVycy9JQzg4LnBuZyIsImlhdCI6MTc0MzUzMjE1NCwiZXhwIjozMzIwMzMyMTU0fQ.0t-qFIjUf5XFUjEB6kL4USd8PPMOpudcI1BWuwGJN68', tags: ['III', 'Licentiate', "Premium"], price: 'Company Calculator', link: '/s24-library/ic-88', subscription: 'premium'  },
-    { id: 7, name: 'Data Science and Machine Learning', image: 'https://zdmueezfheensjrefapy.supabase.co/storage/v1/object/sign/rust-timers/DataScience.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJydXN0LXRpbWVycy9EYXRhU2NpZW5jZS5wbmciLCJpYXQiOjE3NDM4Mjg5NzcsImV4cCI6MzMyMDYyODk3N30.cx8UDL9q9eXM0p98-a879D5z9EB6Rks_hI73gUHMBoU', tags: ['Data Science', 'Math', "ML"], price: 'Company Calculator', link: '/s24-library/data-science' },
-    { id: 8, name: 'IC 02 - Practices of Life Insurance', image: 'https://zdmueezfheensjrefapy.supabase.co/storage/v1/object/sign/rust-timers/14.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5XzQxN2Q4ZTU4LTNkN2QtNDA2YS04YzM0LWViNzc3ZWIyYjM1MyJ9.eyJ1cmwiOiJydXN0LXRpbWVycy8xNC5wbmciLCJpYXQiOjE3NDYzNTgyMzgsImV4cCI6MzMyMzE1ODIzOH0.DfxCBnpzK4nEZRDJAxC2CINDdOSqstUjcebzoqeM1-o', tags: ['III', 'Licentiate', "Premium"], price: 'Company Calculator', link: '/s24-library/ic-02', subscription: 'premium' },
-    { id: 9, name: 'IC 01 - Principles of Insurance', image: 'https://zdmueezfheensjrefapy.supabase.co/storage/v1/object/sign/rust-timers/13.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5XzQxN2Q4ZTU4LTNkN2QtNDA2YS04YzM0LWViNzc3ZWIyYjM1MyJ9.eyJ1cmwiOiJydXN0LXRpbWVycy8xMy5wbmciLCJpYXQiOjE3NDYzNTgyMTEsImV4cCI6MzMyMzE1ODIxMX0.DUCM_mtbQAaZ_AbIulpruAtNHVtR1IF69_EgLr7Ohsc', tags: ['III', 'Licentiate', "Premium"], price: 'Company Calculator', link: '/s24-library/ic-01', subscription: 'premium' },
-
-    // { id: 2, name: 'IC 02 - Life Insurance Practices', image: 'https://zdmueezfheensjrefapy.supabase.co/storage/v1/object/sign/rust-timers/IC%2002.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJydXN0LXRpbWVycy9JQyAwMi5wbmciLCJpYXQiOjE3NDMyMzEwMjYsImV4cCI6MzMyMDAzMTAyNn0.XjSLofgCWTK2zrFPtHi1pj1HJVLwPpzip1ZNEtDKjAQ', tags: ['Licentiate', "Life Insurance"], price: 'Company Calculator', link: '/knowble-tests/ic-02' },
-    // { id: 3, name: 'IC 11 - Practice of General Insurance', image: 'https://zdmueezfheensjrefapy.supabase.co/storage/v1/object/sign/rust-timers/IC%2011.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJydXN0LXRpbWVycy9JQyAxMS5wbmciLCJpYXQiOjE3NDMzMjAxNDgsImV4cCI6MzMyMDEyMDE0OH0.mfCaRYQfhz9S72ua7qATCEN_3_kI2aNlUjHsiMD3WH0', tags: ['Licentiate', "General Insurance"], price: 'Company Calculator', link: '/knowble-tests/ic-11' },
+    { id: 1, name: '10th - Mathematics', image: 'https://fdryfwxmkllviwqmynme.supabase.co/storage/v1/object/public/exampaper/math-1.png', tags: ['School Premium', 'Math', "10th Grade"], price: 'Company Calculator', link: '/e-notes/10th-mathematics', subscription: 'premium'  },
+    { id: 2, name: '12th - Physics Volume 2', image: 'https://fdryfwxmkllviwqmynme.supabase.co/storage/v1/object/public/exampaper/math-1.png', tags: ['School Premium', 'Physics', "12th Grade"], price: 'Company Calculator', link: '/e-notes/12th-physics-vol2', subscription: 'premium'  },
+    { id: 3, name: 'Vertez - Math For ML and Data Science', image: 'https://fdryfwxmkllviwqmynme.supabase.co/storage/v1/object/public/exampaper/math-1.png', tags: ['Data Science', 'Math', "ML"], price: 'Company Calculator', link: '/e-notes/vertez' },
 
   ];
 
@@ -38,7 +29,7 @@ const KnowbleMarket = () => {
   useEffect(() => {
     const token = localStorage.getItem('authToken');
     if (!token) {
-      router.push("/s24-library")
+      router.push("/e-notes")
       return;
     }
     
@@ -171,7 +162,7 @@ const KnowbleMarket = () => {
 
   // Function to handle upgrade click
   const handleUpgradeClick = () => {
-    router.push('/pricing'); // Replace with your upgrade page path
+    router.push('/'); // Replace with your upgrade page path
     toast.info('Upgrade to premium to access all content!');
   };
 
@@ -180,8 +171,8 @@ const KnowbleMarket = () => {
     <div style={{backgroundColor: 'white'}} className={styles.container}>
       <div className="hero-section">
                 <div className="hero-content">
-                    <h1 className="hs-title-8">Test Your Learnings</h1>
-                    <p style={{color: 'white'}} className='hs-title'>Prepare for your exams with our Knowble mock tests.</p>
+                    <h1 className="hs-title-8">Learn with E-Notes</h1>
+                    <p style={{color: 'white'}} className='hs-title'>Learn and Prepare For Your Exams With E-Notes.</p>
                     <div className="upload-sections">
                         <div className="file-upload">
                             <label className="upload-btn">
@@ -203,13 +194,13 @@ const KnowbleMarket = () => {
         <div className="modal-overlay">
           <div className="modal-content">
             <div style={{backgroundColor: '#eaf3ff', padding: 15, borderRadius: 16}}>
-            <h2 style={{fontSize: 20, fontWeight: 600, marginTop: 12}}><Airplay style={{marginTop: -2}} /> Important Information</h2>
+            <h2 style={{fontSize: 20, fontWeight: 600, marginTop: 12}}><Airplay style={{marginTop: -2}} /> Instructor Information</h2>
             </div>
             <div style={{textAlign: 'left', marginTop: 15}}>
-              <p><Disc size={15} style={{marginTop: -4}} /> Ask questions in your own words - Don't worry about fancy wording. Just ask what you want to know.</p>
+              <p><Disc size={15} style={{marginTop: -4}} /> Ask questions in your own words - Just ask what you want to know.</p>
               <p><Disc size={15} style={{marginTop: -4}} /> Learn step-by-step - For complex topics, you'll get explanations broken down into simple steps.</p>
               <p><Disc size={15} style={{marginTop: -4}} /> No interruptions - The system won't cut you off or stop you from asking follow-up questions.</p>
-              <p><Disc size={15} style={{marginTop: -4}} /> This module uses artificial intelligence to help you learn. While it's designed to be accurate and helpful, AI can sometimes make mistakes.</p>
+              <p><Disc size={15} style={{marginTop: -4}} /> This module uses LLM to help you learn. While it's designed to be accurate and helpful, AI can sometimes make mistakes.</p>
               <p><Disc size={15} style={{marginTop: -4}} /> Double-check important information. Use your critical thinking skills. Compare answers with your course materials when in doubt</p>
             </div>
 

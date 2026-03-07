@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Lock, Zap } from 'lucide-react';
+import { GraduationCap, Lock, StepForward, Zap } from 'lucide-react';
 
 
 const data = [
@@ -22,23 +22,24 @@ const data = [
     },
 
     {
-        title: "S24 Test Engine",
-        pathname: "/s24-tests",
+        title: "Mock Exams",
+        pathname: "/mock-exams",
         img: "/svg/smallscreen.svg",
         
     },
 
+    
     {
-        title: "S24 Micro Courses",
-        pathname: "#",
-        // img: "/svg/video.svg",
-        img: "/svg/lock.svg",
+        title: "E-Notes Resources",
+        pathname: "/e-notes",
+        img: "/svg/cube.svg",
         
     },
 
     {
-        title: "S24 Library Catalogs",
-        pathname: "/s24-library",
+        title: "Micro Courses",
+        pathname: "#",
+        // img: "/svg/video.svg",
         img: "/svg/lock.svg",
         
     },
@@ -115,8 +116,21 @@ const data = [
 export default function Left({ activeTrueFalse, activeMobileMenu }) {
     const pathname = usePathname()
 
+    const [userEmail, setUserEmail] = useState('');
+
     const [isToggle, setToggle] = useState(false)
     const toggleHandle = () => setToggle(!isToggle);
+
+    useEffect(() => {
+        const token = localStorage.getItem('authToken');
+        if (!token) return;
+        try {
+          const tokenData = JSON.parse(atob(token.split('.')[1]));
+          setUserEmail(tokenData.email);
+        } catch (err) {
+          console.error('Error decoding token:', err);
+        }
+      }, []);
 
     const router = useRouter();
 
@@ -176,7 +190,7 @@ export default function Left({ activeTrueFalse, activeMobileMenu }) {
                 <div className="leftpanel_content">
 
                     <div className="nav_group">
-                        <h2 className="group__title">Studypoints24 Engine</h2>
+                        <h2 className="group__title">Exam Paper Modules</h2>
                         <ul className="group__list">
                             {data.slice(2, 5).map((item, i) => (
                                 <li key={i}>
@@ -248,6 +262,7 @@ export default function Left({ activeTrueFalse, activeMobileMenu }) {
                     {/* #2 navigation group */}
                     {/* !#2 navigation group */}
                     {/* #3 navigation group */}
+                    {userEmail ? (
                     <div className="nav_group">
                         <h2 className="group__title">Support</h2>
                         <ul className="group__list">
@@ -310,6 +325,25 @@ export default function Left({ activeTrueFalse, activeMobileMenu }) {
 
                         </ul>
                     </div>
+                    ):(
+                        <>
+                            <button className="evaluate-btn" title="Apply for Business English Graduate">
+                                <GraduationCap style={{width: 15, color: 'black', marginTop: -1}} />&nbsp;<span>Apply for Business English Graduate</span>
+                            </button>
+                            <style jsx>{`
+                            .evaluate-btn {
+                                background-color: #bff2f7;
+                                color: black;
+                                border: none;
+                                border-radius: 40px;
+                                padding: 0.5rem 1rem;
+                                font-size: 0.75rem;
+                                cursor: pointer;
+                                margin-left: 0rem;
+                            }
+                        `}</style>
+                        </>
+                    )}
                     {/* !#3 navigation group */}
                 </div>
                 {/* !content (left panel) */}

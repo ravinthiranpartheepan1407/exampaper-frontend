@@ -24,9 +24,9 @@ import ExamMarket from "@/components/ExamMarket";
 
 export const metadata = {
   title:
-    "Studypoints24",
+    "Exam Paper Academy",
   description:
-    "Studypoints24 - Learning made easy and accessible!",
+    "Exam Paper Academy - Learning made easy and accessible!",
 };
 export default function Home() {
   return (

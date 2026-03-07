@@ -8,12 +8,12 @@ export default function Footer() {
             <footer className="techwave_fn_footer">
                 <div className="techwave_fn_footer_content">
                     <div className="copyright">
-                        <p>2025© Studypoints24</p>
+                        <p>2026© Exam Paper Academy</p>
                     </div>
                     <div className="menu_items">
                         <ul>
-                            <li><Mail size={20} />: hello@studypoints24.com </li> 
-                            <li><Link href="https://www.linkedin.com/company/studypoints24/"><Linkedin style={{marginTop: -8}} size={20}/> LinkedIn</Link></li>
+                            <li><Mail size={20} />: instructor@exampaper.academy </li> 
+                            <li><Link href="https://www.linkedin.com/company/exam-paper-academy/"><Linkedin style={{marginTop: -8}} size={20}/> LinkedIn</Link></li>
                             <li><Link href="/privacy"><GlobeLock size={20} style={{marginTop: -5}} />: Privacy Policy</Link></li>
                         </ul>
                     </div>

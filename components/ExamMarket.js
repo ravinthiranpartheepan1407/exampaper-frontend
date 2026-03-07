@@ -7,12 +7,12 @@ import { useRouter } from 'next/navigation';
 const ExamMarket = () => {
   // Sample insurance products data
   const initialProducts = [
-    { id: 1, name: 'NEET Vol.1 - Biology | Chemistry', image: 'https://fdryfwxmkllviwqmynme.supabase.co/storage/v1/object/public/exampaper/math-1.png', tags: ['NEET', "Physics", "Biology", "Chemistry"], price: 'Company Calculator', link: '/s24-tests/neet-vol-1' },
-    { id: 2, name: 'JEE Main Mock Exam - Vol.1', image: 'https://fdryfwxmkllviwqmynme.supabase.co/storage/v1/object/public/exampaper/math-1.png', tags: ['JEE Main', "Math", "Physics", "Chemistry"], price: 'Company Calculator', link: '/s24-tests/jee-main-vol-1' },
-    { id: 3, name: 'UPSC Preliminary Vol.1', image: 'https://fdryfwxmkllviwqmynme.supabase.co/storage/v1/object/public/exampaper/math-1.png', tags: ['UPSC', "History", "Geography", "Economy", "International Relations"], price: 'Company Calculator', link: '/s24-tests/upsc-preliminary-vol-1' },
-    { id: 4, name: 'IC 01 - Insurance Principles', image: 'https://zdmueezfheensjrefapy.supabase.co/storage/v1/object/sign/rust-timers/IC%2001.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJydXN0LXRpbWVycy9JQyAwMS5wbmciLCJpYXQiOjE3NDMxNDA4MTcsImV4cCI6MzMxOTk0MDgxN30.rzV7WmOdIgR_Sjw8zIHaY-49QeqiTL11K7fcAN89wLM', tags: ['Licentiate', "III", "IRDAI", "General Insurance"], price: 'Company Calculator', link: '/s24-tests/insurance-principles' },
-    { id: 5, name: 'IC 02 - Life Insurance Practices', image: 'https://zdmueezfheensjrefapy.supabase.co/storage/v1/object/sign/rust-timers/IC%2002.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJydXN0LXRpbWVycy9JQyAwMi5wbmciLCJpYXQiOjE3NDMyMzEwMjYsImV4cCI6MzMyMDAzMTAyNn0.XjSLofgCWTK2zrFPtHi1pj1HJVLwPpzip1ZNEtDKjAQ', tags: ['Licentiate', "III", "IRDAI", "Life Insurance"], price: 'Company Calculator', link: '/s24-tests/ic-02' },
-    { id: 6, name: 'IC 11 - Practice of General Insurance', image: 'https://zdmueezfheensjrefapy.supabase.co/storage/v1/object/sign/rust-timers/IC%2011.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJydXN0LXRpbWVycy9JQyAxMS5wbmciLCJpYXQiOjE3NDMzMjAxNDgsImV4cCI6MzMyMDEyMDE0OH0.mfCaRYQfhz9S72ua7qATCEN_3_kI2aNlUjHsiMD3WH0', tags: ['Licentiate', "III", "IRDAI", "General Insurance"], price: 'Company Calculator', link: '/s24-tests/ic-11' },
+    { id: 1, name: 'NEET Vol.1 - Biology | Chemistry', image: 'https://fdryfwxmkllviwqmynme.supabase.co/storage/v1/object/public/exampaper/math-1.png', tags: ['NEET', "Physics", "Biology", "Chemistry"], price: 'Company Calculator', link: '/mock-exams/neet-vol-1' },
+    { id: 2, name: 'JEE Main Mock Exam - Vol.1', image: 'https://fdryfwxmkllviwqmynme.supabase.co/storage/v1/object/public/exampaper/math-1.png', tags: ['JEE Main', "Math", "Physics", "Chemistry"], price: 'Company Calculator', link: '/mock-exams/jee-main-vol-1' },
+    { id: 3, name: 'UPSC Preliminary Vol.1', image: 'https://fdryfwxmkllviwqmynme.supabase.co/storage/v1/object/public/exampaper/math-1.png', tags: ['UPSC', "History", "Geography", "Economy", "International Relations"], price: 'Company Calculator', link: '/mock-exams/upsc-preliminary-vol-1' },
+    // { id: 4, name: 'IC 01 - Insurance Principles', image: 'https://zdmueezfheensjrefapy.supabase.co/storage/v1/object/sign/rust-timers/IC%2001.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJydXN0LXRpbWVycy9JQyAwMS5wbmciLCJpYXQiOjE3NDMxNDA4MTcsImV4cCI6MzMxOTk0MDgxN30.rzV7WmOdIgR_Sjw8zIHaY-49QeqiTL11K7fcAN89wLM', tags: ['Licentiate', "III", "IRDAI", "General Insurance"], price: 'Company Calculator', link: '/mock-exams/insurance-principles' },
+    // { id: 5, name: 'IC 02 - Life Insurance Practices', image: 'https://zdmueezfheensjrefapy.supabase.co/storage/v1/object/sign/rust-timers/IC%2002.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJydXN0LXRpbWVycy9JQyAwMi5wbmciLCJpYXQiOjE3NDMyMzEwMjYsImV4cCI6MzMyMDAzMTAyNn0.XjSLofgCWTK2zrFPtHi1pj1HJVLwPpzip1ZNEtDKjAQ', tags: ['Licentiate', "III", "IRDAI", "Life Insurance"], price: 'Company Calculator', link: '/mock-exams/ic-02' },
+    // { id: 6, name: 'IC 11 - Practice of General Insurance', image: 'https://zdmueezfheensjrefapy.supabase.co/storage/v1/object/sign/rust-timers/IC%2011.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJydXN0LXRpbWVycy9JQyAxMS5wbmciLCJpYXQiOjE3NDMzMjAxNDgsImV4cCI6MzMyMDEyMDE0OH0.mfCaRYQfhz9S72ua7qATCEN_3_kI2aNlUjHsiMD3WH0', tags: ['Licentiate', "III", "IRDAI", "General Insurance"], price: 'Company Calculator', link: '/mock-exams/ic-11' },
 
   ];
 
@@ -129,14 +129,14 @@ const ExamMarket = () => {
         <div className="modal-overlay">
           <div className="modal-content">
             <div style={{backgroundColor: '#bff2f7', padding: 15, borderRadius: 16}}>
-            <h2 style={{fontSize: 18, fontWeight: 600, marginTop: 12}}><Airplay size={20} style={{marginTop: -2}} /> Important Information</h2>
+            <h2 style={{fontSize: 18, fontWeight: 600, marginTop: 12}}><Airplay size={20} style={{marginTop: -2}} /> Instructor Information</h2>
             </div>
             <div style={{textAlign: 'left', marginTop: 15}}>
-              <p><Disc size={15} style={{marginTop: -4}} /> The access code to the test is valid only for 72 hours.</p>
+              {/* <p><Disc size={15} style={{marginTop: -4}} /> The access code to the test is valid only for 72 hours.</p>
               <p><Disc size={15} style={{marginTop: -4}} /> Keep the access code safely. If you lose it, you'll have to buy a new one.</p>
-              <p><Disc size={15} style={{marginTop: -4}} /> Make sure to save progress of test. There is no auto-save feature.</p>
-              <p><Disc size={15} style={{marginTop: -4}} /> You can view saved answers to questions in the dashboard by clicking the "View Saved Answers" button.</p>
-              <p><Disc size={15} style={{marginTop: -4}} /> You can use our AI Research assistant built for III exams unlimited times.</p>
+              <p><Disc size={15} style={{marginTop: -4}} /> Make sure to save progress of test. There is no auto-save feature.</p> */}
+              {/* <p><Disc size={15} style={{marginTop: -4}} /> You can view saved answers to questions in the dashboard by clicking the "View Saved Answers" button.</p> */}
+              <p><Disc size={15} style={{marginTop: -4}} /> You can use our AI Research assistant built for this exam module unlimited times.</p>
               <p><Disc size={15} style={{marginTop: -4}} /> Mock test engine to help you learn. Questions may vary.</p>
 
             </div>
