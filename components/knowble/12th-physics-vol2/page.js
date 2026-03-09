@@ -4,25 +4,27 @@ import Head from 'next/head';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from '../../../public/KnowbleIC88.module.css';
 import { Disc, Disc2, Dot, Info, Layers, Book, Bookmark, X, GitGraph, Notebook, ScanSearch } from 'lucide-react';
-import axios from 'axios';
+import axios from 'axios'; // Import axios
 // Import the react-pdf components
 import { pdfjs, Document, Page } from 'react-pdf';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `https://cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`
 
-export default function KnowblePsychologyOfSelling() {
-  const [showPdf, setShowPdf] = useState(false);
-  const [pdfUrl, setPdfUrl] = useState('https://zdmueezfheensjrefapy.supabase.co/storage/v1/object/sign/rust-timers/12th_Physics_Vol-2_English%20Medium_Text_www.tntextbooks.in.pdf?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJydXN0LXRpbWVycy8xMnRoX1BoeXNpY3NfVm9sLTJfRW5nbGlzaCBNZWRpdW1fVGV4dF93d3cudG50ZXh0Ym9va3MuaW4ucGRmIiwiaWF0IjoxNzQzNjgxNzU2LCJleHAiOjMzMjA0ODE3NTZ9.BTjWEWUenkU4D4Pyums6IiCsla_Q9a5iRXX6QSvpo-0');
-  
-  // New PDF viewer states
-  const [numPages, setNumPages] = useState(null);
-  const [pageNumber, setPageNumber] = useState(1);
-  const [scale, setScale] = useState(1.0);
-  const pdfContainerRef = useRef(null);
 
-  const togglePdf = () => {
-    setShowPdf(!showPdf);
-  };
+export default function Knowble12ThMathematics() {
+  const [showPdf, setShowPdf] = useState(false);
+  const [pdfUrl, setPdfUrl] = useState('https://fdryfwxmkllviwqmynme.supabase.co/storage/v1/object/public/books/12th_Maths_Vol-1_English%20Meduim_Text_www.tntextbooks.in.pdf');
+  
+    // New PDF viewer states
+    const [numPages, setNumPages] = useState(null);
+    const [pageNumber, setPageNumber] = useState(1);
+    const [scale, setScale] = useState(1.0);
+    const pdfContainerRef = useRef(null);
+  
+    const togglePdf = () => {
+      setShowPdf(!showPdf);
+    };
+    
   
   const [question, setQuestion] = useState('');
   const [kValue, setKValue] = useState(3);
@@ -39,7 +41,7 @@ export default function KnowblePsychologyOfSelling() {
   const [selectedHeading, setSelectedHeading] = useState(null);
   const [showHeadingPopup, setShowHeadingPopup] = useState(false);
   
-  const API_BASE_URL = 'https://edevalentum.com';
+  const API_BASE_URL = 'http://localhost:8000'; // Change this to your FastAPI server URL
 
   // Process PDF automatically on page load
   useEffect(() => {
@@ -276,11 +278,11 @@ export default function KnowblePsychologyOfSelling() {
   };
 
   return (
-    <div className={styles.container}>
+    <div style={{marginTop: -73}}  className={styles.container}>
       <main className={styles.main}>
         <div className={styles.chatContainer}>
           <div className={styles.chatHeader}>
-            <h1 style={{color: 'Black', fontSize: 16, fontWeight: 500}}><Disc size={16} style={{marginTop: -5}} /> Psychology of Selling</h1>
+            <h1 style={{color: 'Black', fontSize: 16, fontWeight: 500}}><Disc size={16} style={{marginTop: -5}} /> SSLC: Mathematics</h1>
             {processedInfo && (
               <div className={styles.pdfInfo}>
                 <span><Layers size={14} style={{marginTop: -2}} /> Sources Ingested • {processedInfo.chunk_count} sources analyzed</span>
@@ -419,6 +421,8 @@ export default function KnowblePsychologyOfSelling() {
               </div>
             </div>
             <style jsx>{`
+              @import url('https://fonts.googleapis.com/css2?family=Lustria&family=DM+Sans:ital,opsz,wght@0,9..40,100..900;1,9..40,100..900&display=swap');
+
               .title {
                 margin: 0;
                 line-height: 1.15;
@@ -587,11 +591,11 @@ export default function KnowblePsychologyOfSelling() {
                 </h2>
                 
                 {activeTab === 'context' && (
-                  <p style={{color: 'grey'}}><Disc2 size={13} style={{marginTop: -1}} /> Showing {retrievedDocs.length} relevant segments according to your prompt from the analysed sources.</p>
+                  <p style={{color: 'grey', fontSize: 12}}><Disc2 size={13} style={{marginTop: -1}} /> Showing {retrievedDocs.length} relevant segments according to your prompt from the analysed sources.</p>
                 )}
                 
                 {activeTab === 'headings' && (
-                  <p style={{color: 'grey'}}><Bookmark size={13} style={{marginTop: -1}} /> Showing {bookHeadings.length} headings extracted from the document.</p>
+                  <p style={{color: 'grey', fontSize: 12}}><Bookmark size={13} style={{marginTop: -1}} /> Showing {bookHeadings.length} headings extracted from the document.</p>
                 )}
               </div>
               

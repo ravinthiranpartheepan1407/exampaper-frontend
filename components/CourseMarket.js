@@ -15,19 +15,19 @@ const CourseMarket = () => {
     { 
       id: 1, 
       name: 'Learn Time Series Analysis using Rust', 
-      image: 'https://fdryfwxmkllviwqmynme.supabase.co/storage/v1/object/public/Courses/timers.png', 
+      image: 'https://fdryfwxmkllviwqmynme.supabase.co/storage/v1/object/public/exampaper/math-1.png', 
       tags: ["Time Series", "ML", "Rust"], 
       price: 'Company Calculator', 
-      link: '/s24-courses/time-series-analysis-using-rust',
+      link: '/micro-courses/time-series-analysis-using-rust',
       courseId: 'rust_time_series_001'  // Added course ID
     },
     { 
       id: 2, 
-      name: 'Deep Learning: Transformer from Scratch', 
-      image: 'https://fdryfwxmkllviwqmynme.supabase.co/storage/v1/object/public/Courses/S24-Poster.png', 
-      tags: ["Deep Learning", "Python", "Generative AI"], 
+      name: 'Transformer Architecture from Scratch', 
+      image: 'https://fdryfwxmkllviwqmynme.supabase.co/storage/v1/object/public/exampaper/math-1.png', 
+      tags: ["Deep Learning", "Python"], 
       price: 'Company Calculator', 
-      link: '/s24-courses/transformers-from-scratch-core-of-gpt-google-translate',
+      link: '/micro-courses/transformers-from-scratch-core-of-gpt-google-translate',
       courseId: 'transformers_from_scratch_002'  // Added course ID
     }
   ];
@@ -1123,18 +1123,18 @@ useEffect(() => {
     <div style={{backgroundColor: 'white'}} className={styles.container}>
       <div className="hero-section">
           <div className="hero-content">
-              <h1 style={{color: '#0097b2'}} className="hs-title-8">Explore S24 Courses</h1>
-              <p style={{color: '#0097b2'}} className='hs-title'>Gain knowledge through our self-paced courses</p>
+              <h1 className="hs-title-8">Micro Learning Modules</h1>
+              <p style={{color: 'white'}} className='hs-title'>Self-Paced Video Lectures with Q&A Engine</p>
               <div className="upload-sections">
                   <div className="file-upload">
                       <label className="upload-btn">
                           <StepForward style={{width: 15, color: 'black'}} />
-                          <span>Partner Program</span>
+                          <span>Apply for</span>
                           <button 
                               onClick={() => router.push("https://calendly.com/inspolix/30min")} 
                               className="evaluate-btn"
                           >
-                              <Rocket size={16} style={{marginTop: -3}} /> Academy Stories
+                              Business English Programme
                           </button>
                       </label>
                   </div>
@@ -1467,34 +1467,36 @@ useEffect(() => {
         )}
       </div>
       <style jsx>{`
+        @import url('https://fonts.googleapis.com/css2?family=Lustria&family=DM+Sans:ital,opsz,wght@0,9..40,100..900;1,9..40,100..900&display=swap');
         .hero-section {
             text-align: center;
             margin-bottom: 40px;
-            background-image: url('../texture/lang-bg.png');
+            margin-top: -100px;
+            background-image: url('./texture/audio.jpg');
             background-size: cover;
             background-position: center;
             background-blend-mode: overlay;
             padding: 40px;
             border-radius: 10px;
             position: relative;
-            box-shadow: 0 10px 30px rgba(184, 128, 252, 0.2),
+            box-shadow: 0 10px 30px rgba(227, 207, 250, 0.5),
               inset 0 1px 0 rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(4px);   
+            backdrop-filter: blur(1px);   
         }
 
         .hero-section::before {
-             content: '';
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             border-radius: 10px;
-            background-color: rgba(164, 132, 202, 0.15); /* Darkens the background image */
+            background-color: rgba(147, 81, 255, 0.16); /* Darkens the background image */
             border: 1px solid rgba(255, 255, 255, 0.05);     
             box-shadow: 0 10px 30px rgba(208, 172, 255, 0.3),
               inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(1px);       
+            backdrop-filter: blur(2px);       
             z-index: 1;
         }
 
@@ -1509,6 +1511,7 @@ useEffect(() => {
             color: #FFFFFF;
             font-weight: 700;
             letter-spacing: -0.5px;
+            font-family: "Lustria", serif;
         }
 
         .upload-sections {
@@ -1547,7 +1550,7 @@ useEffect(() => {
         }
         
         .evaluate-btn {
-          background-color: #0097b2;
+          background-color: black;
           color: white;
           border: none;
           border-radius: 40px;
@@ -2124,7 +2127,7 @@ useEffect(() => {
         }
 
         .card-tag {
-          background-color: aqua;
+          background-color: #bff2f7;
           color: black;
           font-size: 0.75rem;
           padding: 0.25rem 0.75rem;
@@ -2144,7 +2147,7 @@ useEffect(() => {
 
         .view-details-button {
           margin-top: auto;
-          background-color: aqua;
+          background-color: #bff2f7;
           color: black;
           border: none;
           border-radius: 40px;

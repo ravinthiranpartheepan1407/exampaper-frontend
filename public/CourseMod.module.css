@@ -1,4 +1,5 @@
 /* styles/CourseMod.module.css */
+@import url('https://fonts.googleapis.com/css2?family=Lustria&family=DM+Sans:ital,opsz,wght@0,9..40,100..900;1,9..40,100..900&display=swap');
 
 /* Main container */
 .courseContainer {
@@ -6,6 +7,7 @@
     flex-direction: column;
     min-height: 100vh;
     background-color: #f5f7fa;
+    margin-top: -95px;
   }
 
   /* Styles for the artifact title to make it look clickable */

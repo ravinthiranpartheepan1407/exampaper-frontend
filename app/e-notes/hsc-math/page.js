@@ -21,11 +21,11 @@ export const metadata = {
 
 export default function page() {
     return (
-      <PremiumProtection>
+      // <PremiumProtection>
         <Layout>
             <Knowble10ThMathematics />
             {/* <ChatPage/> */}
         </Layout>
-      </PremiumProtection>
+      // </PremiumProtection>
     )
 }

@@ -20,11 +20,11 @@ export const metadata = {
 
 export default function page() {
     return (
-      <PremiumProtection>
+      // <PremiumProtection>
         <Layout>
             <KnowblePhsyics12thVol2 />
             {/* <ChatPage/> */}
         </Layout>
-      </PremiumProtection>
+      // </PremiumProtection>
     )
 }

@@ -933,7 +933,7 @@ const closeArtifactPopup = () => {
                 userSelect: 'none'
               }}
             >
-              Studypoints24
+              Exam Paper Academy
             </div>
           </div>
           

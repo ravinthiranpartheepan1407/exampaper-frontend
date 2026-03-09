@@ -8,9 +8,9 @@ import { createClient } from '@supabase/supabase-js';
 const KnowbleMarket = () => {
   // Sample insurance products data
   const initialProducts = [
-    { id: 1, name: '10th - Mathematics', image: 'https://fdryfwxmkllviwqmynme.supabase.co/storage/v1/object/public/exampaper/math-1.png', tags: ['School Premium', 'Math', "10th Grade"], price: 'Company Calculator', link: '/e-notes/10th-mathematics', subscription: 'premium'  },
-    { id: 2, name: '12th - Physics Volume 2', image: 'https://fdryfwxmkllviwqmynme.supabase.co/storage/v1/object/public/exampaper/math-1.png', tags: ['School Premium', 'Physics', "12th Grade"], price: 'Company Calculator', link: '/e-notes/12th-physics-vol2', subscription: 'premium'  },
-    { id: 3, name: 'Vertez - Math For ML and Data Science', image: 'https://fdryfwxmkllviwqmynme.supabase.co/storage/v1/object/public/exampaper/math-1.png', tags: ['Data Science', 'Math', "ML"], price: 'Company Calculator', link: '/e-notes/vertez' },
+    { id: 2, name: '10th - Mathematics', image: 'https://fdryfwxmkllviwqmynme.supabase.co/storage/v1/object/public/exampaper/math-1.png', tags: ['School', 'Mathematics', "10th Grade"], price: 'Company Calculator', link: '/e-notes/hsc-math'  },
+    { id: 3, name: '12th - Mathematics', image: 'https://fdryfwxmkllviwqmynme.supabase.co/storage/v1/object/public/exampaper/math-1.png', tags: ['School', 'Mathematics', "12th Grade"], price: 'Company Calculator', link: '/e-notes/sslc-math'  },
+    { id: 4, name: 'Vertez - Math For ML and Data Science', image: 'https://fdryfwxmkllviwqmynme.supabase.co/storage/v1/object/public/exampaper/math-1.png', tags: ['Data Science', 'Math', "ML"], price: 'Company Calculator', link: '/e-notes/vertez' },
 
   ];
 
@@ -197,9 +197,6 @@ const KnowbleMarket = () => {
             <h2 style={{fontSize: 20, fontWeight: 600, marginTop: 12}}><Airplay style={{marginTop: -2}} /> Instructor Information</h2>
             </div>
             <div style={{textAlign: 'left', marginTop: 15}}>
-              <p><Disc size={15} style={{marginTop: -4}} /> Ask questions in your own words - Just ask what you want to know.</p>
-              <p><Disc size={15} style={{marginTop: -4}} /> Learn step-by-step - For complex topics, you'll get explanations broken down into simple steps.</p>
-              <p><Disc size={15} style={{marginTop: -4}} /> No interruptions - The system won't cut you off or stop you from asking follow-up questions.</p>
               <p><Disc size={15} style={{marginTop: -4}} /> This module uses LLM to help you learn. While it's designed to be accurate and helpful, AI can sometimes make mistakes.</p>
               <p><Disc size={15} style={{marginTop: -4}} /> Double-check important information. Use your critical thinking skills. Compare answers with your course materials when in doubt</p>
             </div>
