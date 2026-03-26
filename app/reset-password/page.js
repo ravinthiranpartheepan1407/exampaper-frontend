@@ -32,7 +32,7 @@ export default function OTPVerification() {
       if (!email) return;
       setIsRequestingCode(true);
       try {
-        await axios.post('https://appbilberry.com/request-reset/', { email });
+        await axios.post('http://localhost:8001/request-reset/', { email });
         toast.success('Password reset token sent to your email');
         setCodeRequested(true);
       } catch (error) {
@@ -46,7 +46,7 @@ export default function OTPVerification() {
       if (!resetToken || !newPassword) return;
       setIsResettingPassword(true);
       try {
-        await axios.post('https://appbilberry.com/reset-password/', { 
+        await axios.post('http://localhost:8001/reset-password/', { 
           email, 
           reset_token: resetToken, 
           new_password: newPassword 

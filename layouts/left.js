@@ -28,18 +28,18 @@ const data = [
         
     },
 
-    
+
     {
-        title: "E-Notes Resources",
-        pathname: "/e-notes",
+        title: "Micro Courses",
+        pathname: "/micro-courses",
+        // img: "/svg/video.svg",
         img: "/svg/cube.svg",
         
     },
 
     {
-        title: "Micro Courses",
+        title: "E-Notes Resources",
         pathname: "#",
-        // img: "/svg/video.svg",
         img: "/svg/lock.svg",
         
     },

@@ -1,23 +1,19 @@
 /* InsurancePrinciples.module.css */
-.root {
-    --primary-color: #2c3e50;
-    --secondary-color: #3498db;
-    --background-light: aqua;
-    --white: #ffffff;
-    --text-dark: black;
-}
+
+@import url('https://fonts.googleapis.com/css2?family=Lustria&family=DM+Sans:ital,opsz,wght@0,9..40,100..900;1,9..40,100..900&display=swap');
+
 
 .enterpriseDashboard {
     max-width: 1400px;
     margin: 0 auto;
     padding: 2rem;
     background-color: var(--background-light);
-    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: var(--text-dark);
     display: flex;
     flex-direction: column;
     gap: 2rem;
     min-height: 100vh;
+    margin-top: -100px !important;
 }
 
 .questionNavigationContainer {
@@ -35,7 +31,7 @@
 }
 
 .groupNavigationButton {
-    background-color: aqua;
+    background-color: #bff2f7;
     border: none;
     border-radius: 40px;
     padding: 5px;
@@ -48,7 +44,7 @@
 }
 
 .groupNavigationButton:hover:not(:disabled) {
-    background-color: aqua;
+    background-color: #bff2f7;
 }
 
 .groupNavigationButton:disabled {
@@ -74,12 +70,12 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    background-color: aqua;
+    background-color: #bff2f7;
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     box-shadow: 0 10px 30px rgba(208, 172, 255, 0.3),
               inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(3px); 
+            backdrop-filter: blur(1px); 
 }
 
 .headerLeft h1 {
@@ -90,7 +86,6 @@
     font-size: 1.0rem;
     font-weight: 700;
     margin-top: 15px;
-    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .headerRight {
@@ -105,7 +100,7 @@
     gap: 0.5rem;
     font-size: 1.0rem;
     font-weight: bold;
-    color: blue;
+    color: black;
 }
 
 .endExamButton {
@@ -165,7 +160,7 @@
     width: 40px;
     height: 40px;
     border: 1px solid #ddd;
-    background-color: aqua;
+    background-color: #bff2f7;
     cursor: pointer;
     transition: all 0.3s ease;
     border-radius: 40px;
@@ -173,17 +168,17 @@
 }
 
 .questionNavButton.answered {
-    background-color: blue;
+    background-color: black;
     color: white;
 }
 
 .questionNavButton.current {
-    background-color: aqua;
+    background-color: #bff2f7;
     color: black;
 }
 
 .questionContainer {
-    background-color: aqua;
+    background-color: #bff2f7;
     border-radius: 12px;
     padding: 2rem;
     box-shadow: 0 10px 30px rgba(208, 172, 255, 0.3),
@@ -218,12 +213,12 @@
 }
 
 .optionButton:hover {
-    background-color: blue;
+    background-color: black;
     color: white;
 }
 
 .optionButton.correctAnswer {
-    background-color: blue;
+    background-color: black;
     color: white;
 }
 
@@ -252,7 +247,7 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem 1rem;
-    background-color: blue;
+    background-color: black;
     color: white;
     border: none;
     border-radius: 40px;
@@ -291,7 +286,7 @@
 }
 
 .navigationButtonss button:hover {
-    background-color: blue;
+    background-color: black;
     color: white;
     border-radius: 40px;
     box-shadow: 0 10px 30px rgba(208, 172, 255, 0.4),
@@ -309,7 +304,7 @@
 }
 
 .correctAnswer {
-    background-color: blue;
+    background-color: black;
     color: white;
     box-shadow: 0 10px 30px rgba(208, 172, 255, 0.4),
               inset 0 1px 0 rgba(255, 255, 255, 0.1);
@@ -352,7 +347,7 @@
 }
 
 .correctStat {
-    color: blue;
+    color: black;
 }
 
 .wrongStat {
@@ -360,7 +355,7 @@
 }
 
 .researchAssistant {
-    background-color: aqua;
+    background-color: #bff2f7;
     border-radius: 20px;
     padding: 1.5rem;
     box-shadow: 0 10px 30px rgba(208, 172, 255, 0.4),
@@ -382,7 +377,7 @@
 .researchAssistant button {
     display: block;
     padding: 0.65rem;
-    background-color: blue;
+    background-color: black;
     color: white;
     border: none;
     border-radius: 40px;
@@ -434,7 +429,7 @@
 }
 
 .accessCodeContainer {
-    background-color: aqua;
+    background-color: #bff2f7;
     padding: 3rem;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(208, 172, 255, 0.4),
@@ -466,7 +461,7 @@
     align-items: center;
     gap: 0.75rem;
     padding: 0.5rem;
-    background-color: blue;
+    background-color: black;
     color: white;
     border: none;
     border-radius: 40px;

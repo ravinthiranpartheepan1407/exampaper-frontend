@@ -57,7 +57,7 @@ export default function KnowbleWebResearch() {
     setError('');
 
     try {
-      const response = await fetch('https://edevalentum.com/api/load-website', {
+      const response = await fetch('http://localhost:8002/api/load-website', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -104,7 +104,7 @@ export default function KnowbleWebResearch() {
     setError('');
 
     try {
-      const response = await fetch('https://edevalentum.com/api/chat', {
+      const response = await fetch('http://localhost:8002/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

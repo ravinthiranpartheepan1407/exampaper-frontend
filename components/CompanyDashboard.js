@@ -131,7 +131,7 @@ const CompanyDashboard = () => {
 
   const fetchJobs = async () => {
     try {
-      const response = await axios.get('https://evalentumapi.com/get-jobs');
+      const response = await axios.get('http://localhost:8000/get-jobs');
       setJobs(response.data);
     } catch (error) {
       console.error('Error fetching jobs:', error);
@@ -140,7 +140,7 @@ const CompanyDashboard = () => {
 
   // const fetchJobss = async (email) => {
   //   try {
-  //     const response = await axios.get(`https://evalentumapi.com/creator-jobs/${email}`);
+  //     const response = await axios.get(`http://localhost:8000/creator-jobs/${email}`);
   //     setJobss(response.data);
   //   } catch (error) {
   //     console.error('Error fetching jobs:', error);
@@ -150,7 +150,7 @@ const CompanyDashboard = () => {
   const fetchJobss = async (email) => {
     try {
       // Get only jobs created by this user's email
-      const response = await axios.get(`https://evalentumapi.com/matching-creator-jobs/${email}`);
+      const response = await axios.get(`http://localhost:8000/matching-creator-jobs/${email}`);
       setJobss(response.data || []);
     } catch (error) {
       console.error('Error fetching jobs:', error);
@@ -160,7 +160,7 @@ const CompanyDashboard = () => {
 
   const fetchApplications = async (jobId) => {
     try {
-      const response = await axios.get(`https://evalentumapi.com/job-applications/${jobId}`, {
+      const response = await axios.get(`http://localhost:8000/job-applications/${jobId}`, {
         params: { creator_email: userEmail }
       });
       setApplications(response.data);
@@ -171,7 +171,7 @@ const CompanyDashboard = () => {
 
   // const fetchApplications = async () => {
   //   try {
-  //     const response = await axios.get('https://evalentumapi.com/applications');
+  //     const response = await axios.get('http://localhost:8000/applications');
   //     setApplications(response.data || []);
   //   } catch (error) {
   //     console.error('Error fetching applications:', error);
@@ -191,9 +191,9 @@ const CompanyDashboard = () => {
       };
 
       if (selectedJob) {
-        await axios.put(`https://evalentumapi.com/jobs/${selectedJob.id}`, jobData);
+        await axios.put(`http://localhost:8000/jobs/${selectedJob.id}`, jobData);
       } else {
-        await axios.post('https://evalentumapi.com/create-job', jobData);
+        await axios.post('http://localhost:8000/create-job', jobData);
         toast.success('Job Posted successfully!', {
                 onClose: () => {
                   // Wait for the toast to be visible before refreshing
@@ -243,7 +243,7 @@ const CompanyDashboard = () => {
       const tokenData = JSON.parse(atob(token.split('.')[1]));
       const creatorEmail = tokenData.email;
 
-      const response = await fetch(`https://evalentumapi.com/applications/${applicationId}?creator_email=${creatorEmail}`, {
+      const response = await fetch(`http://localhost:8000/applications/${applicationId}?creator_email=${creatorEmail}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -280,9 +280,9 @@ const CompanyDashboard = () => {
   //     };
 
   //     if (selectedJob) {
-  //       await axios.put(`https://evalentumapi.com/jobs/${selectedJob.id}`, jobData);
+  //       await axios.put(`http://localhost:8000/jobs/${selectedJob.id}`, jobData);
   //     } else {
-  //       await axios.post('https://evalentumapi.com/create-job', jobData);
+  //       await axios.post('http://localhost:8000/create-job', jobData);
   //     }
       
   //     setShowJobForm(false);
@@ -299,7 +299,7 @@ const CompanyDashboard = () => {
     try {
       const token = localStorage.getItem('authToken');
       const tokenData = JSON.parse(atob(token.split('.')[1]));
-      await axios.delete(`https://evalentumapi.com/jobs/${jobId}`, {
+      await axios.delete(`http://localhost:8000/jobs/${jobId}`, {
         params: { creator_email: tokenData.email }
       });
       fetchJobs(tokenData.email);
@@ -311,7 +311,7 @@ const CompanyDashboard = () => {
 
   const deleteApplication = async (applicationId) => {
     try {
-      await axios.delete(`https://evalentumapi.com/applications/${applicationId}`, {
+      await axios.delete(`http://localhost:8000/applications/${applicationId}`, {
         params: { creator_email: userEmail }
       });
       if (selectedJob) {
@@ -459,21 +459,22 @@ const CompanyDashboard = () => {
 
             <div className="profile-section">
               <div className="profile-header">
-                <h2 className='hs-title-8' style={{color: 'black'}}>
-                  <ScanText size={55} /> Manage Jobs
+                <h2 className='hs-title-11' style={{color: 'black'}}>
+                  <ScanText size={18} style={{marginTop: -3}} /> Manage Jobs
                 </h2>
                 <button 
                   className="edit-button"
                   style={{marginTop: -25}}
                   onClick={() => setShowJobForm(true)}
                 >
-                  <PlusCircle /> Create New Job
+                  <PlusCircle size={14} style={{marginTop: -2}} /> Create New Job
                 </button>
               </div>
+              <p style={{marginTop: 0, fontSize: 14, color: 'black'}}>Take a moment to review your profile and make any necessary changes. If you spot any mistakes or outdated information, you can easily edit the details in the form to make sure everything is correct and reflects your current information. Keeping your profile up to date helps you to present the best version of yourself.</p>
+
             </div>
             
-            <div style={{borderRadius: 0}} className="profile-section">
-            <p style={{marginTop: -55, fontSize: 14, color: 'black'}}>Take a moment to review your profile and make any necessary changes. If you spot any mistakes or outdated information, you can easily edit the details in the form to make sure everything is correct and reflects your current information. Keeping your profile up to date helps you to present the best version of yourself.</p>
+            <div style={{borderRadius: 0}}>
             <div className="profile-content">
             {showJobForm && (
               <div className="edit-form">
@@ -484,6 +485,7 @@ const CompanyDashboard = () => {
                       type="text"
                       placeholder="Job Title"
                       value={formData.title}
+                      style={{color: 'black'}}
                       onChange={(e) => setFormData({...formData, title: e.target.value})}
                       required
                     />
@@ -494,6 +496,7 @@ const CompanyDashboard = () => {
                       type="text"
                       placeholder="Company Name"
                       value={formData.company_name}
+                      style={{color: 'black'}}
                       onChange={(e) => setFormData({...formData, company_name: e.target.value})}
                       required
                     />
@@ -504,6 +507,7 @@ const CompanyDashboard = () => {
                       type="text"
                       placeholder="Company Logo URL"
                       value={formData.company_logo_url}
+                      style={{color: 'black'}}
                       onChange={(e) => setFormData({...formData, company_logo_url: e.target.value})}
                       required
                     />
@@ -514,6 +518,7 @@ const CompanyDashboard = () => {
                       type="email"
                       placeholder="Company Email"
                       value={formData.company_email}
+                      style={{color: 'black'}}
                       onChange={handleEmailChange}
                       required
                     />
@@ -524,6 +529,7 @@ const CompanyDashboard = () => {
                       type="text"
                       placeholder="Location"
                       value={formData.location}
+                      style={{color: 'black'}}
                       onChange={(e) => setFormData({...formData, location: e.target.value})}
                       required
                     />
@@ -533,6 +539,7 @@ const CompanyDashboard = () => {
                     <textarea
                       placeholder="Company Description"
                       value={formData.company_description}
+                      style={{color: 'black'}}
                       onChange={(e) => setFormData({...formData, company_description: e.target.value})}
                       required
                     />
@@ -543,6 +550,7 @@ const CompanyDashboard = () => {
                       type="text"
                       placeholder="Required Skills (comma-separated)"
                       onChange={(e) => setFormData({...formData, required_skills: e.target.value.split(',').map(skill => skill.trim())})}
+                      style={{color: 'black'}}
                       required
                     />
                   </div>
@@ -552,6 +560,7 @@ const CompanyDashboard = () => {
                       type="number"
                       placeholder="Experience Required (years)"
                       value={formData.experience_required}
+                      style={{color: 'black'}}
                       onChange={(e) => setFormData({...formData, experience_required: parseInt(e.target.value)})}
                       required
                     />
@@ -607,7 +616,7 @@ const CompanyDashboard = () => {
                                   height: '18px',
                                   borderRadius: '4px',
                                   border: '2px solid #e2e8f0',
-                                  backgroundColor: isSelected ? '#0284c7' : 'transparent',
+                                  backgroundColor: isSelected ? 'black' : 'transparent',
                                   display: 'flex',
                                   alignItems: 'center',
                                   justifyContent: 'center',
@@ -640,7 +649,7 @@ const CompanyDashboard = () => {
                             fontWeight: 600,
                             color: 'black'
                           }}>
-                            Rate Selected Traits
+                            Set Score For Selected Traits
                           </div>
                           {selectedTraits.map((trait) => {
                             const percentage = ((trait.score - 0) / (5 - 0)) * 100;
@@ -663,7 +672,7 @@ const CompanyDashboard = () => {
                                   }}
                                   className="slider"
                                   style={{
-                                    background: `linear-gradient(90deg, black ${percentage}%, #00f2fe ${percentage}%)`
+                                    background: `linear-gradient(90deg, black ${percentage}%, white ${percentage}%)`
                                   }}
                                 />
                               </div>
@@ -680,6 +689,7 @@ const CompanyDashboard = () => {
                       required
                       placeholder="Business LinkedIn URL"
                       value={formData.linkedin_url}
+                      style={{color: 'black'}}
                       onChange={(e) => setFormData({...formData, linkedin_url: e.target.value})}
                     />
                   </div>
@@ -690,6 +700,7 @@ const CompanyDashboard = () => {
                       required
                       placeholder="Business Website URL"
                       value={formData.website_url}
+                      style={{color: 'black'}}
                       onChange={(e) => setFormData({...formData, website_url: e.target.value})}
                     />
                   </div>
@@ -739,35 +750,35 @@ const CompanyDashboard = () => {
                                 <MapPin size={16} /> {job.location} | 
                                 <Timer size={16} /> {job.experience_required}+ yrs
                               </p>                          
-                              {/* <div style={{marginTop: 15}} className="company-links">
+                              <div style={{marginTop: 15}} className="company-links">
                                 {job.linkedin_url && (
                                   <a style={{color: 'black'}} href={job.linkedin_url} target="_blank" rel="noopener noreferrer">
-                                    <Linkedin style={{marginTop: -5}} size={16} /> LinkedIn
+                                    <Linkedin style={{marginTop: -5}} size={16} />
                                   </a>
                                 )} &nbsp;
                                 {job.website_url && (
                                   <a style={{color: 'black'}} href={job.website_url} target="_blank" rel="noopener noreferrer">
-                                    <Globe2 style={{marginTop: -5}} size={16} /> Website
+                                    <Globe2 style={{marginTop: -5}} size={16} />
                                   </a>
                                 )}
-                              </div> */}
+                              </div>
                             </div>
                           </div>
                           <br />
                           <div className="skills">
                             {job.required_skills.slice(0, 4).map((skill, i) => (
                               <span key={i} className="skill-tag">
-                                <Star size={16} /> {skill}
+                                <Star size={14} /> {skill}
                               </span>
                             ))}
                           </div>
                           <br />
                           <div className="button-group">
                             <button className="edit-button" onClick={() => editJob(job)}>
-                              <Edit2 size={16} /> Edit
+                              <Edit2 size={14} style={{marginTop: -3}} /> &nbsp;Edit
                             </button> &nbsp;
                             <button className="logout-buttons" onClick={() => deleteJob(job.id)}>
-                              <Trash2 size={16} /> Delete
+                              <Trash2 size={14} style={{marginTop: -3}} /> Delete
                             </button>
                             {/* <button className="apply-buttonss" onClick={() => fetchApplications(job.id)}>
                               <FileText size={16} /> View Applications
@@ -792,8 +803,8 @@ const CompanyDashboard = () => {
                        </div>
                        
                        <div className="match-detailss">
-                         <h4 style={{color: 'black'}} className='hs-title-6'>
-                           <ScanSearch size={20} style={{marginTop: -3}} /> Personal Traits Requirement
+                         <h4 style={{color: 'black'}} className='hs-title-11'>
+                           <ScanSearch size={18} style={{marginTop: -3}} /> Personal Traits Requirement
                          </h4>
                          <div className="progress-sectionss">
                            {selectedJob.desired_traits && selectedJob.desired_traits.map((trait, index) => (
@@ -806,22 +817,22 @@ const CompanyDashboard = () => {
                                    className="progressss"
                                    style={{ width: `${(trait.score / 5) * 100}%` }}
                                  ></div>
-                                 <span style={{fontSize: 13}} className="progress-valuess">
+                                 {/* <span style={{fontSize: 13}} className="progress-valuess">
                                    {((trait.score / 5) * 100).toFixed(1)}%
-                                 </span>
+                                 </span> */}
                                </div>
                              </div>
                            ))}
                          </div>
                  
                          <div className="required-skillsss">
-                           <h4 style={{marginBottom: 15, color: 'black'}} className='hs-title-6'>
-                             <Trophy size={20} style={{marginTop: -3}} /> Required Skills
+                           <h4 style={{marginBottom: 15, color: 'black'}} className='hs-title-11'>
+                             <Trophy size={16} style={{marginTop: -3}} /> Required Skills
                            </h4>
                            <div className="skills-gridss">
                              {selectedJob.required_skills.map((skill, index) => (
                                <span key={index} className="skill-tagss">
-                                 <Star size={16} style={{marginTop: -3}} /> {skill}
+                                 <Star color='white' size={1} style={{marginTop: -3}} /> {skill}
                                </span>
                              ))}
                            </div>
@@ -850,18 +861,20 @@ const CompanyDashboard = () => {
                       padding: '10px',
                       scrollbarWidth: 'thin',
                       scrollbarColor: '#CBD5E0 #F1F5F9',
+                      marginTop: '70px',
+                      borderRadius: '40px'
                     }} className="matches-lists">
                       {applications.map((application, index) => (
                         <div key={index} className="job-cards" onClick={() => toggleExpand(index)}>
-                          <div style={{borderRadius: 20, marginTop: -20, backgroundColor: '#F8FAFC'}} className="job-items">
+                          <div className="job-items">
                             <div style={{marginTop: -15}} className="job-details">
                               <div className="job-header">
-                                <h3>
+                                <h3 style={{fontSize: 17}}>
                                   <img
                                     src={selectedJob.company_logo_url}
                                     alt="Applicant"
                                     className="profile-picture"
-                                  />
+                                  /><span>{selectedJob.title}</span>|&nbsp;
                                   {application.resume_details.name} | <Zap size={16} color='black' /> Overall Match: {' '}
                                     {application.personality_scores.overall >= 70 ? (
                                       <span style={{ 
@@ -877,14 +890,14 @@ const CompanyDashboard = () => {
                                         color: 'white', 
                                         padding: '2px 8px', 
                                         borderRadius: '12px', 
-                                        fontSize: '0.9em' 
+                                        fontSize: '0.7em' 
                                       }}>Good Fit</span>
                                     ) : null} | <Timer size={16} color='black' /> Years of working experience: {application.resume_details.experience_years}+ years | <ChevronDownSquare />
                                   </h3>
                               </div>
                               
                               <div className={`content ${expandedItems[index] ? 'expanded' : ''}`}>
-                                <p style={{backgroundColor: '#E6EFF2', padding: 10, borderRadius: 40, color: 'black'}} className="company">
+                                <p style={{backgroundColor: 'white', padding: 10, borderRadius: 40, color: 'black'}} className="company">
                                   <Mail size={16} /> {application.applicant_email} | 
                                   <Zap size={16} color='black' />Overall Psychometric Score: {application.personality_scores.overall.toFixed(2)}% |
                                   <Zap size={16} color='black' /> Cultural Fit: {application.personality_scores?.cultural_fit.toFixed(2)}% |
@@ -897,22 +910,22 @@ const CompanyDashboard = () => {
                                 <a 
                                   onClick={(e) => e.stopPropagation()} 
                                   href={`mailto:${application.applicant_email}?subject=Next Steps: Machine Learning Engineer Position at Evalentum AI&body=Hi%20${application.resume_details?.name},%0D%0A%0D%0AWe reviewed your application through Evalentum Job search for Machine Learning Engineer position at Evalentum AI, Finland and would love to connect to discuss next steps. Could you please suggest some date and time for an introductory call?%0D%0A%0D%0ABest regards,%0D%0AEvalentum AI Team`}
-                                  style={{backgroundColor: '#bcf2f6', color: 'black', padding: 15, borderRadius: 40}}
+                                  style={{backgroundColor: 'black', color: 'white', padding: 10, borderRadius: 40, fontSize: 14}}
                                 >
-                                  <Zap size={16} style={{marginTop: -3}} /> Let's Connect!
+                                  <Zap size={12} style={{marginTop: -2}} /> Let's Connect!
                                 </a> &nbsp;
 
-                                <button onClick={(e) => { e.stopPropagation(); handleRejectApplication(application.id);}} style={{backgroundColor: '#E6EFF2', color: 'black', padding: 12, borderRadius: 40}}><X size={16} style={{marginTop: -3}} /> Different Direction </button>
-
+                                <button onClick={(e) => { e.stopPropagation(); handleRejectApplication(application.id);}} style={{backgroundColor: 'red', color: 'white', padding: 10, borderRadius: 40, fontSize: 14}}><X size={16} style={{marginTop: -3}} /> Different Direction </button>
+                                    
                                 {expandedItems[index] && (
                                   <>
-                                    <div style={{marginTop: 20}} className="skills">
+                                    <div style={{marginTop: 50}} className="skills">
                                       <h4 style={{
                                         color: '#1a202c',
-                                        fontSize: '18px',
+                                        fontSize: '17px',
                                         fontWeight: '600',
                                         width: '100%',
-                                      }}><Rocket /> Skills:</h4>
+                                      }}><Rocket size={16} style={{marginTop:-2}} /> Skills:</h4>
                                       {application.resume_details.skills.map((skill, i) => (
                                         <span style={{backgroundColor: 'white'}} key={i} className="skill-tag">
                                           <Star size={16} /> {skill}
@@ -927,10 +940,10 @@ const CompanyDashboard = () => {
                                     }} className="experience">
                                       <h4 style={{
                                         color: '#1a202c',
-                                        fontSize: '18px',
+                                        fontSize: '17px',
                                         fontWeight: '600',
                                         width: '100%',
-                                      }}><Zap /> Work Experience:</h4>
+                                      }}><Zap size={16} style={{marginTop:-2}} /> Work Experience:</h4>
                                       
                                       {application.resume_details.work_experience.map((exp, i) => (
                                         <div key={i} style={{
@@ -982,10 +995,10 @@ const CompanyDashboard = () => {
                                     }} className="experience">
                                       <h4 style={{
                                         color: '#1a202c',
-                                        fontSize: '18px',
+                                        fontSize: '17px',
                                         fontWeight: '600',
                                         width: '100%',
-                                      }}><Trophy /> Projects / Achievements:</h4>
+                                      }}><Trophy size={16} style={{marginTop:-3}} /> Projects / Achievements:</h4>
                                       
                                       {application.resume_details.projects.map((exp, i) => (
                                         <div key={i} style={{
@@ -1043,14 +1056,19 @@ const CompanyDashboard = () => {
         </main>
       </div>
       <style jsx>{`
+        @import url('https://fonts.googleapis.com/css2?family=Lustria&family=DM+Sans:ital,opsz,wght@0,9..40,100..900;1,9..40,100..900&display=swap');
+
+
         .dashboard {
-          min-height: 170vh;
+          min-height: 190vh;
+          margin-top: -100px;
         }
 
         .navbar {
-          background-color: #fbfbfb;
-          padding: 1rem 2rem;
-          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+          background-color: white;
+          padding: 1.85rem 1.9rem;
+          border-bottom: 0.6px solid;
+          border-color: #dfdfdf;
           display: flex;
           justify-content: space-between;
           align-items: center;
@@ -1058,8 +1076,8 @@ const CompanyDashboard = () => {
 
         .nav-brand {
           font-size: 1.5rem;
-          font-weight: bold;
-          color: #333;
+          font-weight: normal;
+          color: black;
         }
 
         .nav-user {
@@ -1071,23 +1089,11 @@ const CompanyDashboard = () => {
 
         .logout-button {
           padding: 0.5rem 1rem;
-          background-color: #a6264c;
-          color: white;
+          background-color: transparent;
+          color: black;
           border: none;
           border-radius: 40px;
           cursor: pointer;
-        }
-
-        .logout-buttons {
-          background-color: #FF2929;
-          color: white;
-          padding: 0.75rem 1.5rem;
-          border-radius: 40px;
-          border: none;
-          font-weight: 500;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
 
         .dashboard-main {
@@ -1104,10 +1110,10 @@ const CompanyDashboard = () => {
         }
 
         .stat-card {
-          background: #E6EFF2;
-          padding: 1.5rem;
-          border-radius: 8px;
-          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+          background: #bff2f7;
+          padding: 1rem;
+          border-radius: 40px;
+          box-shadow: 0 2px 4px rgba(187, 205, 255, 0.1);
         }
 
         .stat-card-content {
@@ -1118,15 +1124,15 @@ const CompanyDashboard = () => {
 
         .stat-card h3 {
           margin: 0;
-          font-size: 0.875rem;
-          color: #666;
+          font-size: 0.85rem;
+          color: black;
         }
 
         .stat-card p {
           margin: 0.5rem 0 0;
-          font-size: 1.5rem;
+          font-size: 1rem;
           font-weight: bold;
-          color: #333;
+          color: black;
         }
 
         .tabs {
@@ -1134,70 +1140,77 @@ const CompanyDashboard = () => {
         }
 
         .tab {
-          padding: 0.75rem 1.5rem;
-          background: #ECF8F9;
-          border: none;
+          padding: 0.5rem 1rem;
+          background: #F8FAFC;
           border-radius: 40px;
-          border-bottom: 2px solid transparent;
+          border: 0.6px solid black;
+          border-style: dotted;
           cursor: pointer;
-          color: #666;
+          color: black;
           font-weight: 500;
+          margin-right: 0.7rem !important;
+          font-size: 0.84rem;
+          box-shadow: 0 8px 4px rgba(187, 205, 255, 0.1);
+
         }
 
         .tab.active {
-          color: black;
+          color: white;
           border-radius: 40px;
-           background: #DDE6ED
+          background: black;
+          border: 8px solid #F8FAFC;
+          box-shadow: 0 8px 4px rgba(187, 205, 255, 0.44);
+
+        }
+
+        .job-items{
+          border: 14px solid #F8FAFC;
+          box-shadow: 0 8px 4px rgba(187, 205, 255, 0.44);
+          borderRadius: 30px !important; 
+          padding: 30px !important;
+          marginTop: 0px; 
+          backgroundColor: '#bff2f7';
         }
 
         .matches-container {
           display: grid;
           grid-template-columns: 500px 2fr;
           gap: 2rem;
-          background: #F5F7F8;
           padding: 1.5rem;
-          border-radius: 0px;
-          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+          border-radius: 0px 0px 40px 40px;
+          margin-top: 30px;
         }
-
-        // .matches-list {
-        // border-right: 1px solid #eee;
-        // padding-right: 1.75rem;
-        // max-height: 700px;
-        // }
 
         .matches-list {
-            height: 900px; /* or whatever height you prefer */
-            overflow-y: auto;
-            padding-right: 10px;
-            border-right: 1px solid #eee;
+        border-right: 1px solid #eee;
+        padding-right: 1rem;
+        overflow-y: auto;
+        max-height: 700px;
         }
-        
-        /* For webkit browsers (Chrome, Safari) */
+
         .matches-list::-webkit-scrollbar {
-            width: 8px;
+        width: 8px; /* Set the width of the scrollbar */
         }
 
         .matches-list::-webkit-scrollbar-track {
-            background: #EDDFE0;
-            border-radius: 4px;
+        background: #f0f0f0; /* Background of the scrollbar track */
+        border-radius: 8px; /* Optional: rounded corners */
         }
 
         .matches-list::-webkit-scrollbar-thumb {
-            background: #000;
-            border-radius: 4px;
+        background-color: #2196f3; /* Scrollbar color */
+        border-radius: 8px; /* Optional: rounded corners */
+        border: 2px solid #f0f0f0; /* Adds padding around the thumb */
         }
 
         .matches-list::-webkit-scrollbar-thumb:hover {
-            background: #555;
+        background-color: #1976d2; /* Color when hovering over the scrollbar */
         }
 
-        .matches-lists {
-        border-right: 1px solid #eee;
-        padding-right: 1rem;
-        max-height: 700px; 
-        background-color: #BCF2F6;
-        border-radius: 50px;
+        /* Optional: For Firefox, use the scrollbar-color and scrollbar-width properties */
+        .matches-list {
+        scrollbar-color: black #fff; /* thumb color track color */
+        scrollbar-width: thin; /* Sets the scrollbar width to thin */
         }
 
         .job-card {
@@ -1206,17 +1219,9 @@ const CompanyDashboard = () => {
           margin-bottom: 1rem;
           cursor: pointer;
           transition: all 0.2s ease;
-          box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-          background-color: #F8FAFC;
-        }
-
-         .job-cards {
-          padding: 1rem;
-          border-radius: 20px;
-          margin-bottom: 1rem;
-          cursor: pointer;
-          transition: all 0.2s ease;
-          background-color: #BCF2F6;
+          box-shadow: 0 8px 4px rgba(187, 205, 255, 0.24);
+          border: 10px solid #F8FAFC;
+          background-color: #bff2f7 !important;
         }
 
         .job-card:hover {
@@ -1253,7 +1258,7 @@ const CompanyDashboard = () => {
         align-items: center;
         margin: 0; /* Reset margin for alignment */
         font-size: 1.1rem; /* Adjust font size */
-        color: #333;
+        color: black;
         }
 
         .profile-picture {
@@ -1287,12 +1292,13 @@ const CompanyDashboard = () => {
         }
 
         .skill-tag {
-          background-color: #f0f0f0;
-          padding: 0.25rem 0.75rem;
+          background-color: white;
+          padding: 0.2rem 0.6rem;
           border-radius: 999px;
           font-size: 0.75rem;
           color: black;
-          box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+          border: 5px solid #F8FAFC;
+          box-shadow: 0 8px 4px rgba(187, 205, 255, 0.24);
         }
 
         .job-item {
@@ -1304,25 +1310,11 @@ const CompanyDashboard = () => {
         border: 1px solid #eee;
         border-radius: 8px;
         transition: box-shadow 0.3s ease;
+        border: 5px solid #F8FAFC;
+          box-shadow: 0 8px 4px rgba(187, 205, 255, 0.24);
         }
 
         .job-item:hover {
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .job-items {
-        display: flex;
-        align-items: center;
-        gap: 1rem; /* Space between the image and content */
-        padding: 2rem;
-        background: #fff;
-        border: 1px solid #eee;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        transition: box-shadow 0.3s ease;
-        }
-
-        .job-items:hover {
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
@@ -1340,16 +1332,16 @@ const CompanyDashboard = () => {
         }
 
         .job-detailss {
-        background: #E6EFF2;
-        border-radius: 10px;
+        background: #bff2f7;
+        border-radius: 30px;
         padding: 20px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        color: #333;
-        width: 100%;
+        border: 10px solid #F8FAFC;
+          box-shadow: 0 8px 4px rgba(187, 205, 255, 0.24);
+        color: black;
         }
 
         .job-detailss-bg{
-          background: #ECF8F9;
+          background: white;
           border-radius: 30px;
           padding: 20px;
           box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -1358,13 +1350,13 @@ const CompanyDashboard = () => {
         .job-detailss h2 {
         font-size: 1.8rem;
         font-weight: bold;
-        color: #2c3e50;
+        color: black;
         margin-bottom: 0.5rem;
         }
 
         .job-detailss h3 {
         font-size: 1.2rem;
-        color: #7f8c8d;
+        color: black;
         margin-bottom: 1rem;
         }
 
@@ -1376,7 +1368,7 @@ const CompanyDashboard = () => {
 
         .match-detailss{
           margin-top: 10px;
-          background: #ECF8F9;
+          background: white;
           border-radius: 30px;
           padding: 20px;
           box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -1392,7 +1384,7 @@ const CompanyDashboard = () => {
 
         .progress-itemss span {
         font-size: 0.9rem;
-        color: #34495e;
+        color: black;
         }
 
         .progress-barss {
@@ -1407,22 +1399,22 @@ const CompanyDashboard = () => {
         }
 
         .progressss {
-        background: linear-gradient(90deg, #ECF8F9, black);
+        background: linear-gradient(90deg, black, black);
         height: 100%;
         border-radius: 20px;
         transition: width 0.5s ease-in-out;
         }
 
         .progress-valuess {
-        font-size: 0.8rem;
-        color: #2c3e50;
+        font-size: 0.6rem;
+        color: black;
         margin-left: 10px;
         }
 
         .required-skillsss h4 {
         font-size: 1.4rem;
         margin-bottom: 0.5rem;
-        color: #34495e;
+        color: black;
         }
 
         .skills-gridss {
@@ -1436,7 +1428,7 @@ const CompanyDashboard = () => {
         color: white;
         padding: 5px 10px;
         border-radius: 20px;
-        font-size: 0.9rem;
+        font-size: 0.7rem;
         }
 
         .apply-buttonss {
@@ -1538,11 +1530,24 @@ const CompanyDashboard = () => {
         }
 
         .profile-section {
-          background: #BCF2F6;
+          background: #bff2f7;
           padding: 2rem;
           border-radius: 40px;
           box-shadow: 0 2px 4px rgba(0,0,0,0.1);
           margin-bottom: -30px;
+                    border: 10px solid #F8FAFC;
+          box-shadow: 0 8px 4px rgba(187, 205, 255, 0.24);
+        }
+
+         .profile-sections {
+           background: #f5f7f8;
+          padding: 2rem;
+          border-radius: 40px;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+          margin-bottom: -30px;
+                    border: 10px solid #F8FAFC;
+          box-shadow: 0 8px 4px rgba(187, 205, 255, 0.24);
+          margin-top:50px;
         }
 
         textarea::-webkit-scrollbar {
@@ -1586,15 +1591,35 @@ const CompanyDashboard = () => {
         }
 
         .edit-button {
-          padding: 0.75rem 1.5rem;
+          padding: 0.3rem 1.2rem;
           border-radius: 40px;
           border: none;
           background-color: black;
+          border: 0.6px solid;
+          border-style: dotted;
+          border-color: black;
           color: white;
           font-weight: 500;
           cursor: pointer;
           transition: all 0.3s ease;
-          box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+          font-size: 14px;
+          box-shadow: 0 2px 4px rgba(184, 203, 255, 0.2);
+        }
+
+        .logout-buttons {
+          padding: 0.3rem 1.2rem;
+          border-radius: 40px;
+          border: none;
+          background-color: transparent;
+          border: 0.6px solid;
+          border-style: dotted;
+          border-color: black;
+          color: black;
+          font-weight: 500;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          font-size: 14px;
+          box-shadow: 0 2px 4px rgba(184, 203, 255, 0.2);
         }
 
         .edit-button:hover {
@@ -1602,8 +1627,14 @@ const CompanyDashboard = () => {
           color: black;
         }
 
+        .logout-buttons:hover {
+          background-color: #FFF7F7;
+          color: black;
+        }
+
         .edit-button.save {
           background-color: white;
+          color: black;
         }
 
         .edit-buttons {
@@ -1620,6 +1651,7 @@ const CompanyDashboard = () => {
 
         .edit-buttons:hover {
           background-color: #FFF7F7;
+          color: black;
         }
 
         .edit-buttons.save {
@@ -1630,6 +1662,7 @@ const CompanyDashboard = () => {
         .edit-form {
           display: grid;
           gap: 1.5rem;
+          margin-top: 50px;
           margin-bottom: 2rem;
           background-color: white;
           padding: 1.75rem;
@@ -1967,7 +2000,7 @@ const CompanyDashboard = () => {
           -webkit-appearance: none;
           height: 6px;
           border-radius: 4px;
-          background: linear-gradient(to left, #4facfe, #00f2fe);
+          background: linear-gradient(to left, black, #00f2fe);
           outline: none;
         }
 
@@ -1981,7 +2014,7 @@ const CompanyDashboard = () => {
           border-radius: 50%;
           cursor: pointer;
           box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-          border: 2px solid #4facfe;
+          border: 2px solid black;
         }
 
         .slider::-moz-range-thumb {
@@ -2134,13 +2167,26 @@ const CompanyDashboard = () => {
         }
 
         /* Improved touch targets for mobile */
-        .tab, 
-        .edit-button,
-        .edit-buttons,
-        .logout-button,
+        // .logout-button,
+        // .logout-buttons {
+        //   min-height: 44px; /* Minimum touch target size */
+        //   padding: 0.5rem 1rem;
+        // }
+
         .logout-buttons {
-          min-height: 44px; /* Minimum touch target size */
-          padding: 0.5rem 1rem;
+          padding: 0.3rem 1.2rem;
+          border-radius: 40px;
+          border: none;
+          background-color: black;
+          border: 0.6px solid;
+          border-style: dashed;
+          border-color: black;
+          color: white;
+          font-weight: 500;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          font-size: 14px;
+          box-shadow: 0 2px 4px rgba(184, 203, 255, 0.2);
         }
 
         /* Improve form inputs for touch */

@@ -1,6 +1,7 @@
 import React from 'react'
 import Layout from '@/layouts/layout'
 import PracticeOfGeneralInsurance from '@/components/Exams/PracticeOfGeneralInsurance';
+import AwsCloudPractitioner from '@/components/Exams/AwsCloudPractitioner';
 
 export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
@@ -17,7 +18,7 @@ export const metadata = {
 export default function page() {
     return (
         <Layout>
-            <PracticeOfGeneralInsurance />
+            <AwsCloudPractitioner />
         </Layout>
     )
 }

@@ -12,7 +12,9 @@ const ExamMarket = () => {
     { id: 3, name: 'UPSC Preliminary Vol.1', image: 'https://fdryfwxmkllviwqmynme.supabase.co/storage/v1/object/public/exampaper/math-1.png', tags: ['UPSC', "History", "Geography", "Economy", "International Relations"], price: 'Company Calculator', link: '/mock-exams/upsc-preliminary-vol-1' },
     // { id: 4, name: 'IC 01 - Insurance Principles', image: 'https://zdmueezfheensjrefapy.supabase.co/storage/v1/object/sign/rust-timers/IC%2001.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJydXN0LXRpbWVycy9JQyAwMS5wbmciLCJpYXQiOjE3NDMxNDA4MTcsImV4cCI6MzMxOTk0MDgxN30.rzV7WmOdIgR_Sjw8zIHaY-49QeqiTL11K7fcAN89wLM', tags: ['Licentiate', "III", "IRDAI", "General Insurance"], price: 'Company Calculator', link: '/mock-exams/insurance-principles' },
     // { id: 5, name: 'IC 02 - Life Insurance Practices', image: 'https://zdmueezfheensjrefapy.supabase.co/storage/v1/object/sign/rust-timers/IC%2002.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJydXN0LXRpbWVycy9JQyAwMi5wbmciLCJpYXQiOjE3NDMyMzEwMjYsImV4cCI6MzMyMDAzMTAyNn0.XjSLofgCWTK2zrFPtHi1pj1HJVLwPpzip1ZNEtDKjAQ', tags: ['Licentiate', "III", "IRDAI", "Life Insurance"], price: 'Company Calculator', link: '/mock-exams/ic-02' },
-    // { id: 6, name: 'IC 11 - Practice of General Insurance', image: 'https://zdmueezfheensjrefapy.supabase.co/storage/v1/object/sign/rust-timers/IC%2011.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJydXN0LXRpbWVycy9JQyAxMS5wbmciLCJpYXQiOjE3NDMzMjAxNDgsImV4cCI6MzMyMDEyMDE0OH0.mfCaRYQfhz9S72ua7qATCEN_3_kI2aNlUjHsiMD3WH0', tags: ['Licentiate', "III", "IRDAI", "General Insurance"], price: 'Company Calculator', link: '/mock-exams/ic-11' },
+    { id: 4, name: 'IC 11 - Practice of General Insurance', image: 'https://fdryfwxmkllviwqmynme.supabase.co/storage/v1/object/public/exampaper/math-1.png', tags: ['Licentiate', "III", "IRDAI", "General Insurance"], price: 'Company Calculator', link: '/mock-exams/ic-11' },
+    { id: 5, name: 'AWS Cloud Practitioner', image: 'https://fdryfwxmkllviwqmynme.supabase.co/storage/v1/object/public/exampaper/math-1.png', tags: ['AWS', "Cloud Platform", "Certification", "Dev"], price: 'Company Calculator', link: '/mock-exams/aws-clf-c02' },
+    { id: 6, name: 'Microsoft Certified: Azure Fundamentals', image: 'https://fdryfwxmkllviwqmynme.supabase.co/storage/v1/object/public/exampaper/math-1.png', tags: ['Microsoft Azure', "Cloud Platform", "Certification", "Dev"], price: 'Company Calculator', link: '/mock-exams/az-900' },
 
   ];
 
@@ -114,7 +116,7 @@ const ExamMarket = () => {
                           <StepForward style={{width: 15, color: 'black'}} />
                           <span>Apply for</span>
                           <button 
-                              onClick={() => router.push("https://calendly.com/inspolix/30min")} 
+                              onClick={() => router.push("https://forms.office.com/r/8DFMQGJypx")} 
                               className="evaluate-btn"
                           >
                               Business English Programme

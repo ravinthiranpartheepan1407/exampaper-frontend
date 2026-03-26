@@ -148,7 +148,7 @@ export default function JobMatch() {
     formData.append('email', userEmail);
     
     try {
-      const response = await fetch('https://evalentumapi.com/analyze-resume', {
+      const response = await fetch('http://localhost:8000/analyze-resume', {
         method: 'POST',
         body: formData,
       });
@@ -167,7 +167,7 @@ export default function JobMatch() {
         .eq('email', userEmail);
 
       // Get job matches
-      const matchesResponse = await fetch('https://evalentumapi.com/find-matches', {
+      const matchesResponse = await fetch('http://localhost:8000/find-matches', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -761,10 +761,13 @@ export default function JobMatch() {
       )}
 
       <style jsx>{`
+        @import url('https://fonts.googleapis.com/css2?family=Lustria&family=DM+Sans:ital,opsz,wght@0,9..40,100..900;1,9..40,100..900&display=swap');
+
         .container {
-          max-width: 1200px;
+          max-width: 1400px;
           margin: 0 auto;
           padding: 3rem 2rem;
+          margin-top: -100px;
           background: linear-gradient(to bottom, #f7fafc, #ffffff);
           min-height: 100vh;
         }

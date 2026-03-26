@@ -1131,7 +1131,7 @@ useEffect(() => {
                           <StepForward style={{width: 15, color: 'black'}} />
                           <span>Apply for</span>
                           <button 
-                              onClick={() => router.push("https://calendly.com/inspolix/30min")} 
+                              onClick={() => router.push("https://forms.office.com/r/8DFMQGJypx")} 
                               className="evaluate-btn"
                           >
                               Business English Programme
