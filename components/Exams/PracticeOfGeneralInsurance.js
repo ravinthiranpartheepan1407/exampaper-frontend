@@ -3347,20 +3347,20 @@ export default function PracticeOfGeneralInsurance() {
   
       const handleAccessCodeSubmit = async () => {
           try {
-              // const response = await axios.post('http://localhost:8000/validate-access-code', {
-              //     email: userEmail,
-              //     accessCode: accessCode,
-              //     examType: 'IC11'
-              // });
+              const response = await axios.post('http://localhost:8000/validate-access-code', {
+                  email: userEmail,
+                  accessCode: accessCode,
+                  examType: 'IC11'
+              });
   
-              // if (response.data.message != "Access code is valid") {
-              //     setIsAccessGranted(true);
-              //     setIsTimerActive(true);
-              //     setExamMetadata(prev => ({
-              //         ...prev,
-              //         startTime: new Date()
-              //     }));
-              // }
+              if (response.data.message != "Access code is valid") {
+                  setIsAccessGranted(true);
+                  setIsTimerActive(true);
+                  setExamMetadata(prev => ({
+                      ...prev,
+                      startTime: new Date()
+                  }));
+              }
             setIsAccessGranted(true);
                    setIsTimerActive(true);
                    setExamMetadata(prev => ({
@@ -3855,7 +3855,7 @@ export default function PracticeOfGeneralInsurance() {
                               <StepBack size={15} /> Return to Exam
                           </button>
                       </div>
-                      <span style={{fontSize: 14}} className={styles.questionDifficulty}>
+                      <span style={{fontSize: 14, color: 'black'}} className={styles.questionDifficulty}>
                           <Trophy style={{marginTop: -3}} size={14} /> Exam History
                       </span>
                   </div>

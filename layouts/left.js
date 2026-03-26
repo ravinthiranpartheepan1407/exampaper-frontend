@@ -36,6 +36,12 @@ const data = [
         img: "/svg/cube.svg",
         
     },
+    {
+        title: "Find your Job Fit",
+        pathname: "/job-search",
+        img: "/svg/new.svg",
+        
+    },
 
     {
         title: "E-Notes Resources",
@@ -72,8 +78,8 @@ const data = [
     // },
     {
         title: "Learn English",
-        pathname: "#",
-        img: "/svg/lock.svg",
+        pathname: "https://forms.office.com/r/8DFMQGJypx",
+        img: "/svg/community.svg",
         
 
     },
@@ -227,7 +233,7 @@ export default function Left({ activeTrueFalse, activeMobileMenu }) {
                     <div className="nav_group">
                         <h2 className="group__title">Edu Marketplace</h2>
                         <ul className="group__list">
-                            {data.slice(8, 10).map((item, i) => (
+                            {data.slice(8, 9).map((item, i) => (
                                 <li key={i}>
                                     <Link href={`${item.pathname}`} className={`fn__tooltip menu__item ${item.pathname === pathname ? "active" : ""}`} title={item.title} >
                                         <span className="icon">
@@ -266,7 +272,7 @@ export default function Left({ activeTrueFalse, activeMobileMenu }) {
                     <div className="nav_group">
                         <h2 className="group__title">Support</h2>
                         <ul className="group__list">
-                            {data.slice(10, 11).map((item, i) => (
+                            {data.slice(11, 12).map((item, i) => (
                                 <li key={i}>
                                     <Link href={item.pathname} className={`fn__tooltip menu__item ${pathname === item.pathname ? " active" : ""}`} title={item.title} >
                                         <span className="icon"><img src={item.img} alt="" className="fn__svg" /></span>
@@ -282,7 +288,7 @@ export default function Left({ activeTrueFalse, activeMobileMenu }) {
                                     <span className="trigger"><img src="svg/arrow.svg" alt="" className="fn__svg" /></span>
                                 </a>
                                 <ul className="sub-menu" style={{ display: `${isToggle ? "block" : "none"}` }}>
-                                    {data.slice(11, 16).map((item, i) => (
+                                    {data.slice(12, 16).map((item, i) => (
                                         <li key={i}>
                                             {item.title === "Log Out" ? (
                                                 <a

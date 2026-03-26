@@ -1395,9 +1395,9 @@ export default function AwsCloudPractitioner() {
   
           if (error) throw error;
   
-          // Check if IC11 access code exists and is valid
-          if (data.accesscode && data.accesscode.IC11) {
-              const accessCodeData = data.accesscode.IC11;
+          // Check if aws-clf-c02 access code exists and is valid
+          if (data.accesscode && data.accesscode.aws-clf-c02) {
+              const accessCodeData = data.accesscode.aws-clf-c02;
               const expiresAt = new Date(accessCodeData.expires_at);
               
               if (expiresAt > new Date()) {
@@ -1441,7 +1441,7 @@ export default function AwsCloudPractitioner() {
           // Merge the new exam answers with existing answers
           const updatedExamAnswers = {
               ...existingExamAnswers,
-              'IC11': {
+              'aws-clf-c02': {
                   answers: formattedAnswers,
                   timestamp: new Date().toISOString()
               }
@@ -1485,8 +1485,8 @@ export default function AwsCloudPractitioner() {
   
           if (error) throw error;
   
-          if (data.examanswers && data.examanswers.IC11 && data.examanswers.IC11.answers) {
-              const savedAnswers = data.examanswers.IC11.answers;
+          if (data.examanswers && data.examanswers.aws-clf-c02 && data.examanswers.aws-clf-c02.answers) {
+              const savedAnswers = data.examanswers.aws-clf-c02.answers;
               
               // Create a new array to hold user answers, initialized with null
               const retrievedAnswers = new Array(questions.length).fill(null);
@@ -1547,7 +1547,7 @@ export default function AwsCloudPractitioner() {
       const generateAccessCode = () => {
           // Generate 6-digit random number
           const randomPin = Math.floor(100000 + Math.random() * 900000);
-          return `IC11-${randomPin}`;
+          return `aws-clf-c02-${randomPin}`;
       };
   
       // New function to update subscription status
@@ -1594,7 +1594,7 @@ export default function AwsCloudPractitioner() {
                               const response = await axios.post('http://localhost:8000/save-access-code', {
                                   email: userEmail,
                                   accessCode: generatedAccessCode,
-                                  examType: 'IC11'
+                                  examType: 'aws-clf-c02'
                               }, {
                                   timeout: 10000,
                                   headers: {
@@ -1644,7 +1644,7 @@ export default function AwsCloudPractitioner() {
                   const response = await axios.post('http://localhost:8000/save-access-code', {
                       email: userEmail,
                       accessCode: generatedAccessCode,
-                      examType: 'IC11'
+                      examType: 'aws-clf-c02'
                   }, {
                       timeout: 10000,
                       headers: {
@@ -1670,7 +1670,7 @@ export default function AwsCloudPractitioner() {
               // const response = await axios.post('http://localhost:8000/validate-access-code', {
               //     email: userEmail,
               //     accessCode: accessCode,
-              //     examType: 'IC11'
+              //     examType: 'aws-clf-c02'
               // });
   
               // if (response.data.message != "Access code is valid") {
