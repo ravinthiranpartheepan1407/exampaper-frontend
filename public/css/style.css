@@ -94,11 +94,11 @@
 	--techwave-main-color: white;
 	--techwave-main-color1: #ff9a00;
 	--techwave-main-color2: #b7a4fb;
-	--techwave-heading-color: black;
-	--techwave-body-color: black;
+	--techwave-heading-color: #15173D;
+	--techwave-body-color: #15173D;
 	--techwave-border-color: #ddd;
 	--techwave-button-bg-color: #F5F7F8;
-	--techwave-hover-color: black;
+	--techwave-hover-color: #15173D;
 	--techwave-heading-font-family: "Lustria", serif;
 	--techwave-body-font-family: "Lustria", sans-serif;
 	--techwave-left-panel-width: 300px;
@@ -127,7 +127,7 @@
 	--techwave-body-color: #444;
 	--techwave-border-color: #ddd;
 	--techwave-button-bg-color: #F5F7F8;
-	--techwave-hover-color: #000;
+	--techwave-hover-color: #15173D;
 }
 /*------------------------------------------------------------------*/
 /*	02) Base

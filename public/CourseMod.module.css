@@ -71,7 +71,7 @@
 .artifactPopupTitle h2 {
   margin: 0;
   font-size: 1.2rem;
-  color: black;
+  color: #15173D;
 }
 
 .artifactPopupClose {
@@ -79,7 +79,7 @@
   border: none;
   font-size: 16px;
   cursor: pointer;
-  color: black;
+  color: #15173D;
   padding: 5px;
 }
 
@@ -107,7 +107,7 @@
   margin-bottom: 14px;
   line-height: 1.6;
   margin-top: 20px;
-  color: black;
+  color: #15173D;
 }
 
 .markdownContent p {
@@ -148,7 +148,7 @@
 
 .artifactDownloadBtn {
   background-color: lightBlue;
-  color: black;
+  color: #15173D;
   border: none;
   padding: 8px 16px;
   border-radius: 40px;
@@ -550,7 +550,7 @@
   .userMessage {
     align-self: flex-end;
     background-color: #fbfbfb;
-    color: black;
+    color: #15173D;
     font-size: 15px;
   }
   
@@ -563,7 +563,7 @@
   
   .messageTime {
     font-size: 0.7rem;
-    color: black;
+    color: #15173D;
     text-align: right;
     margin-top: 5px;
   }
@@ -590,7 +590,7 @@
   
   .chatSubmitButton {
     background-color: aqua;
-    color: black;
+    color: #15173D;
     border: none;
     border-radius: 20px;
     padding: 0 20px;

@@ -176,7 +176,7 @@ const KnowbleMarket = () => {
                     <div className="upload-sections">
                         <div className="file-upload">
                             <label className="upload-btn">
-                                <StepForward style={{width: 15, color: 'black'}} />
+                                <StepForward style={{width: 15, color: '#15173D'}} />
                                 <span>Apply for</span>
                                 <button 
                                     onClick={() => router.push("https://calendly.com/inspolix/30min")} 
@@ -405,7 +405,7 @@ const KnowbleMarket = () => {
         }
         
         .evaluate-btn {
-          background-color: #000;
+          background-color: #15173D;
           color: #fff;
           border: none;
           border-radius: 40px;

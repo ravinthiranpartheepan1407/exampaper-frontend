@@ -300,16 +300,16 @@ const handleProfileUpdate = async () => {
         <div className="stats-grid">
             <div className="stat-card">
                 <div className="stat-card-content">
-                <span style={{backgroundColor: 'white', borderRadius: 30, padding: 10}} className="stat-icon"><Rocket color='black' /></span>
+                <span style={{backgroundColor: 'white', borderRadius: 30, padding: 10}} className="stat-icon"><Rocket color='#15173D' /></span>
                 <div className="stat-text">
-                    <h3 style={{color: 'black'}}>Total Matches</h3>
+                    <h3 style={{color: '#15173D'}}>Total Matches</h3>
                     <p>{matches.length}</p>
                 </div>
                 </div>
             </div>
             <div className="stat-card">
                 <div className="stat-card-content">
-                <span style={{backgroundColor: 'white', borderRadius: 30, padding: 10}} className="stat-icon"><Target color='black' /></span>
+                <span style={{backgroundColor: 'white', borderRadius: 30, padding: 10}} className="stat-icon"><Target color='#15173D' /></span>
                 <div className="stat-text">
                     <h3>Best Match Score</h3>
                     <p>{matches[0] ? formatPercentage(matches[0].overall_match) : 'N/A'}</p>
@@ -318,7 +318,7 @@ const handleProfileUpdate = async () => {
             </div>
             <div className="stat-card">
                 <div className="stat-card-content">
-                <span style={{backgroundColor: 'white', borderRadius: 30, padding: 10}} className="stat-icon"><Trophy color='black' /></span>
+                <span style={{backgroundColor: 'white', borderRadius: 30, padding: 10}} className="stat-icon"><Trophy color='#15173D' /></span>
                 <div className="stat-text">
                     <h3>Updated Skills Index</h3>
                     <p>{formatPercentage(personalityScores.work_style)}</p>
@@ -327,7 +327,7 @@ const handleProfileUpdate = async () => {
             </div>
             <div className="stat-card">
                 <div className="stat-card-content">
-                <span style={{backgroundColor: 'white', borderRadius: 30, padding: 10}} className="stat-icon"><Building color='black' /></span>
+                <span style={{backgroundColor: 'white', borderRadius: 30, padding: 10}} className="stat-icon"><Building color='#15173D' /></span>
                 <div className="stat-text">
                     <h3>Updated Culture Fit Index</h3>
                     <p>{formatPercentage(personalityScores.cultural_fit)}</p>
@@ -369,7 +369,7 @@ const handleProfileUpdate = async () => {
               <div>
                 <div className="profile-section">
                   <div className="profile-header">
-                    <h2 className='hs-title-11' style={{color: 'black'}}><ScanSearch size={20} style={{marginTop: -6}} /> Find your Job Fit</h2>
+                    <h2 className='hs-title-11' style={{color: '#15173D'}}><ScanSearch size={20} style={{marginTop: -6}} /> Find your Job Fit</h2>
                     <button 
                       className={`edit-button ${activeTab === 'profile' ? 'active' : ''}`}
                       style={{marginTop: -25}}
@@ -378,7 +378,7 @@ const handleProfileUpdate = async () => {
                       <Settings2 size={14} /> Edit Profile
                     </button>
                   </div>
-                  <p style={{marginTop: -25, fontSize: 14, color: 'black'}}>Take a moment to review your profile and make any necessary changes. If you spot any mistakes or outdated information, you can easily edit the details in the form to make sure everything is correct and reflects your current information. Keeping your profile up to date helps you to present the best version of yourself.</p>
+                  <p style={{marginTop: -25, fontSize: 14, color: '#15173D'}}>Take a moment to review your profile and make any necessary changes. If you spot any mistakes or outdated information, you can easily edit the details in the form to make sure everything is correct and reflects your current information. Keeping your profile up to date helps you to present the best version of yourself.</p>
                 </div>
               <div className="matches-container">
                 <div className="matches-list">
@@ -399,28 +399,28 @@ const handleProfileUpdate = async () => {
                                     /> 
                                     {job.title}
                                 </h3>
-                                <div style={{color: 'black'}} className="match-score">
+                                <div style={{color: '#15173D'}} className="match-score">
                                     <span>
                                     <Rocket size={16} color="white" /> {formatPercentage(job.overall_match)} Match
                                     </span>
                                 </div>
                             </div>
-                            <p style={{marginLeft: 10, color: 'black'}} class="company">
+                            <p style={{marginLeft: 10, color: '#15173D'}} class="company">
                                 <Zap size={16} style={{marginTop: -3}} /> {job.company_name} | <MapPin style={{marginTop: -3}} size={16} /> {job.location} | <Timer style={{marginTop: -3}} size={16} /> Years: {job.experience_required}+ yrs
                             </p>
-                            <p style={{marginLeft: 10, fontSize: 14, color: 'black'}}> {job.company_description}</p>
+                            <p style={{marginLeft: 10, fontSize: 14, color: '#15173D'}}> {job.company_description}</p>
                         </div>
                      </div>                 
                       <div>                       
                         <div className="skills">
                             {job.required_skills.slice(0, 4).map((skill, i) => (
-                            <span style={{backgroundColor: 'white', color: 'black'}}  key={i} className="skill-tag"><Star size={16} /> {skill}</span>
+                            <span style={{backgroundColor: 'white', color: '#15173D'}}  key={i} className="skill-tag"><Star size={16} /> {skill}</span>
                             ))}
                         </div>
                       </div>
                       <div style={{marginTop: 15}}></div>
                       {/* <button className="logout-buttonz">
-                            <span style={{fontSize: 13}}><Target size={14} color='black' style={{marginTop: -2, borderRadius: 10, backgroundColor: 'white', padding: 3}} />&nbsp;View Job</span>
+                            <span style={{fontSize: 13}}><Target size={14} color='#15173D' style={{marginTop: -2, borderRadius: 10, backgroundColor: 'white', padding: 3}} />&nbsp;View Job</span>
                       </button> */}
                     </div>
                   ))}
@@ -430,28 +430,28 @@ const handleProfileUpdate = async () => {
                     <div className="job-detailss">
                       <div className='job-detailss-bg'>
                         <h2> <img src={selectedJob.company_logo_url} alt="Profile Picture"  className="profile-picture" />  {selectedJob.title} </h2>
-                        <h3 style={{marginLeft: 10, fontSize: 14, color: 'black'}}><Zap size={16} style={{marginTop: -3}} /> {selectedJob.company_name} | <MapPin size={16} style={{marginTop: -3}} />{selectedJob.location} | <Timer size={16} style={{marginTop: -3}} />  Experience Required: {selectedJob.experience_required}+ years </h3>
-                        <p style={{marginLeft: 10, fontSize: 14, color: 'black'}}> {selectedJob.company_description}</p>
+                        <h3 style={{marginLeft: 10, fontSize: 14, color: '#15173D'}}><Zap size={16} style={{marginTop: -3}} /> {selectedJob.company_name} | <MapPin size={16} style={{marginTop: -3}} />{selectedJob.location} | <Timer size={16} style={{marginTop: -3}} />  Experience Required: {selectedJob.experience_required}+ years </h3>
+                        <p style={{marginLeft: 10, fontSize: 14, color: '#15173D'}}> {selectedJob.company_description}</p>
                         <div style={{marginTop: -10, backgroundColor: '#EBF4F6', padding: 10, borderRadius: 20, width: 120}} className="company-links">
                                 {selectedJob.linkedin_url && (
-                                  <a style={{color: 'black', backgroundColor: 'white', padding: 5, borderRadius: 15}} href={selectedJob.linkedin_url} target="_blank" rel="noopener noreferrer">
-                                    <Linkedin color='black' style={{marginTop: -5}} size={16} />
+                                  <a style={{color: '#15173D', backgroundColor: 'white', padding: 5, borderRadius: 15}} href={selectedJob.linkedin_url} target="_blank" rel="noopener noreferrer">
+                                    <Linkedin color='#15173D' style={{marginTop: -5}} size={16} />
                                   </a>
                                 )} &nbsp;
                                 {selectedJob.website_url && (
-                                  <a style={{color: 'black', backgroundColor: 'white', padding: 5, borderRadius: 15}} href={selectedJob.website_url} target="_blank" rel="noopener noreferrer">
-                                    <Globe2 color='black' style={{marginTop: -5}} size={16} />
+                                  <a style={{color: '#15173D', backgroundColor: 'white', padding: 5, borderRadius: 15}} href={selectedJob.website_url} target="_blank" rel="noopener noreferrer">
+                                    <Globe2 color='#15173D' style={{marginTop: -5}} size={16} />
                                   </a>
                                 )} &nbsp;
                                 {selectedJob.website_url && (
-                                  <a style={{color: 'black', backgroundColor: 'white', padding: 5, borderRadius: 15}} href={selectedJob.website_url} target="_blank" rel="noopener noreferrer">
-                                    <ScanSearch color='black' style={{marginTop: -5}} size={16} />
+                                  <a style={{color: '#15173D', backgroundColor: 'white', padding: 5, borderRadius: 15}} href={selectedJob.website_url} target="_blank" rel="noopener noreferrer">
+                                    <ScanSearch color='#15173D' style={{marginTop: -5}} size={16} />
                                   </a>
                                 )}
                       </div> 
                       </div>
                         <div className="match-detailss">
-                        <h4 style={{color: 'black'}} className='hs-title-11'><ScanSearch size={20} style={{marginTop: -3}} /> Match Breakdown</h4>
+                        <h4 style={{color: '#15173D'}} className='hs-title-11'><ScanSearch size={20} style={{marginTop: -3}} /> Match Breakdown</h4>
                         <div className="progress-sectionss">
                             {[
                             { label: "Overall Match", value: selectedJob.overall_match },
@@ -473,7 +473,7 @@ const handleProfileUpdate = async () => {
                         </div>
 
                         <div className="required-skillsss">
-                            <h4 style={{marginBottom: 15, color: 'black'}} className='hs-title-11'><Trophy size={20} style={{marginTop: -3}} /> Required Skills</h4>
+                            <h4 style={{marginBottom: 15, color: '#15173D'}} className='hs-title-11'><Trophy size={20} style={{marginTop: -3}} /> Required Skills</h4>
                             <div className="skills-gridss">
                             {selectedJob.required_skills.map((skill, index) => (
                                 <span key={index} className="skill-tagss"><Star size={14} style={{marginTop: -3}} /> {skill}</span>
@@ -490,7 +490,7 @@ const handleProfileUpdate = async () => {
             ) : (
               <div className="profile-section">
                 <div className="profile-header">
-                  <h2 className='hs-title-11' style={{color: 'black'}}><UserCircle2 size={18} style={{marginTop: -2}} /> Profile Details</h2>
+                  <h2 className='hs-title-11' style={{color: '#15173D'}}><UserCircle2 size={18} style={{marginTop: -2}} /> Profile Details</h2>
                   <button 
                     className={`edit-button ${editing ? 'save' : ''}`}
                     style={{marginTop: -25}}
@@ -505,7 +505,7 @@ const handleProfileUpdate = async () => {
                     {editing ? <><Save size={14} style={{marginTop: -2}} /> Save Changes</> : <><Edit3 size={14}  style={{marginTop: -2}} /> Edit Profile</>}
                   </button>
                 </div>
-                <p style={{marginTop: -25, fontSize: 14, color: 'black'}}>Take a moment to review your profile and make any necessary changes. If you spot any mistakes or outdated information, you can easily edit the details in the form to make sure everything is correct and reflects your current information. Keeping your profile up to date helps you to present the best version of yourself.</p>
+                <p style={{marginTop: -25, fontSize: 14, color: '#15173D'}}>Take a moment to review your profile and make any necessary changes. If you spot any mistakes or outdated information, you can easily edit the details in the form to make sure everything is correct and reflects your current information. Keeping your profile up to date helps you to present the best version of yourself.</p>
 
                 <div className="profile-content">
                 {editing && editedProfile && (
@@ -593,7 +593,7 @@ const handleProfileUpdate = async () => {
                         {editedProfile.work_experience.map((work, index) => (
                           <div key={index} className="card experience-card">
                             <div className="experience-grid-item">
-                              <label style={{color: 'black'}}><Building2 size={16} color='black' style={{marginTop: -3}} /> Company Name</label>
+                              <label style={{color: '#15173D'}}><Building2 size={16} color='#15173D' style={{marginTop: -3}} /> Company Name</label>
                               <input
                                 type="text"
                                 value={work.company}
@@ -608,7 +608,7 @@ const handleProfileUpdate = async () => {
                             </div>
 
                             <div className="experience-grid-item">
-                              <label style={{color: 'black'}}><Zap size={16} color='black' style={{marginTop: -3}} /> Job Position</label>
+                              <label style={{color: '#15173D'}}><Zap size={16} color='#15173D' style={{marginTop: -3}} /> Job Position</label>
                               <input
                                 type="text"
                                 value={work.job_position}
@@ -623,7 +623,7 @@ const handleProfileUpdate = async () => {
                             </div>
 
                             <div className="experience-grid-item">
-                              <label style={{color: 'black'}}><Timer size={16} color='black' style={{marginTop: -3}} /> Duration</label>
+                              <label style={{color: '#15173D'}}><Timer size={16} color='#15173D' style={{marginTop: -3}} /> Duration</label>
                               <input
                                 type="text"
                                 value={work.duration}
@@ -637,7 +637,7 @@ const handleProfileUpdate = async () => {
                               />
                             </div>
                             <div className="experience-grid-item">
-                              <label style={{color: 'black'}}><MapPin size={16} color='black' style={{marginTop: -3}} /> Location</label>
+                              <label style={{color: '#15173D'}}><MapPin size={16} color='#15173D' style={{marginTop: -3}} /> Location</label>
                               <input
                                 type="text"
                                 value={work.location}
@@ -758,7 +758,7 @@ const handleProfileUpdate = async () => {
               <div>
                 <div className="profile-sections">
                   <div className="profile-header">
-                    <h2 className='hs-title-11' style={{color: 'black'}}>
+                    <h2 className='hs-title-11' style={{color: '#15173D'}}>
                       <ScanSearch size={16} style={{marginTop: -2}} /> Applied Jobs
                     </h2>
                     {/* <button 
@@ -769,7 +769,7 @@ const handleProfileUpdate = async () => {
                       <Rocket /> Create a Job Post
                     </button> */}
                   </div>
-                  <p style={{marginTop: -25, fontSize: 14, color: 'black'}}>
+                  <p style={{marginTop: -25, fontSize: 14, color: '#15173D'}}>
                     View and track all the jobs you've applied to. Stay organized and monitor the status of your applications. Keep your job search momentum going by regularly checking for updates and new opportunities.
                   </p>
                 </div>
@@ -792,23 +792,23 @@ const handleProfileUpdate = async () => {
                                     /> 
                                     {job.title}
                                 </h3>
-                                <div style={{color: 'black'}} className="match-score">
+                                <div style={{color: '#15173D'}} className="match-score">
                                     <span>
                                     <Rocket size={16} color="white" /> {formatPercentage(job.overall_match)} Match
                                     </span>
                                 </div>
                             </div>
-                            <p style={{marginLeft: 10, color: 'black'}} class="company">
+                            <p style={{marginLeft: 10, color: '#15173D'}} class="company">
                                 <Zap size={16} style={{marginTop: -3}} /> {job.company} | <MapPin style={{marginTop: -3}} size={16} /> {job.location} | <Timer style={{marginTop: -3}} size={16} /> Years: {job.experience_required}+ yrs
                             </p>
-                            {/* <p style={{marginLeft: 10, fontSize: 14, color: 'black'}}> {job.company_description}</p> */}
+                            {/* <p style={{marginLeft: 10, fontSize: 14, color: '#15173D'}}> {job.company_description}</p> */}
                         </div>
                      </div>
                       <div>
                        
                         <div className="skills">
                             {job.required_skills.slice(0, 4).map((skill, i) => (
-                            <span style={{backgroundColor: 'black', color: 'white'}}  key={i} className="skill-tag"><Star size={14} /> {skill}</span>
+                            <span style={{backgroundColor: '#15173D', color: 'white'}}  key={i} className="skill-tag"><Star size={14} /> {skill}</span>
                             ))}
                         </div>
                       </div>
@@ -824,28 +824,28 @@ const handleProfileUpdate = async () => {
                     <div className="job-detailss">
                       <div className='job-detailss-bg'>
                         <h2> <img src={selectedJob.company_logo_url} alt="Profile Picture"  className="profile-picture" />  {selectedJob.title} </h2>
-                        <h3 style={{marginLeft: 10, fontSize: 14, color: 'black'}}><Zap size={16} style={{marginTop: -3}} /> {selectedJob.company} | <MapPin size={16} style={{marginTop: -3}} />{selectedJob.location} | <Timer size={16} style={{marginTop: -3}} />  Experience Required: {selectedJob.experience_required}+ years </h3>
-                        <p style={{marginLeft: 10, fontSize: 14, color: 'black'}}> {selectedJob.company_description}</p>
+                        <h3 style={{marginLeft: 10, fontSize: 14, color: '#15173D'}}><Zap size={16} style={{marginTop: -3}} /> {selectedJob.company} | <MapPin size={16} style={{marginTop: -3}} />{selectedJob.location} | <Timer size={16} style={{marginTop: -3}} />  Experience Required: {selectedJob.experience_required}+ years </h3>
+                        <p style={{marginLeft: 10, fontSize: 14, color: '#15173D'}}> {selectedJob.company_description}</p>
                         <div style={{marginTop: -10, backgroundColor: '#EBF4F6', padding: 10, borderRadius: 20, width: 120}} className="company-links">
                                 {selectedJob.linkedin_url && (
-                                  <a style={{color: 'black', backgroundColor: 'white', padding: 5, borderRadius: 15}} href={selectedJob.linkedin_url} target="_blank" rel="noopener noreferrer">
-                                    <Linkedin color='black' style={{marginTop: -5}} size={16} />
+                                  <a style={{color: '#15173D', backgroundColor: 'white', padding: 5, borderRadius: 15}} href={selectedJob.linkedin_url} target="_blank" rel="noopener noreferrer">
+                                    <Linkedin color='#15173D' style={{marginTop: -5}} size={16} />
                                   </a>
                                 )} &nbsp;
                                 {selectedJob.website_url && (
-                                  <a style={{color: 'black', backgroundColor: 'white', padding: 5, borderRadius: 15}} href={selectedJob.website_url} target="_blank" rel="noopener noreferrer">
-                                    <Globe2 color='black' style={{marginTop: -5}} size={16} />
+                                  <a style={{color: '#15173D', backgroundColor: 'white', padding: 5, borderRadius: 15}} href={selectedJob.website_url} target="_blank" rel="noopener noreferrer">
+                                    <Globe2 color='#15173D' style={{marginTop: -5}} size={16} />
                                   </a>
                                 )} &nbsp;
                                 {selectedJob.website_url && (
-                                  <a style={{color: 'black', backgroundColor: 'white', padding: 5, borderRadius: 15}} href={selectedJob.website_url} target="_blank" rel="noopener noreferrer">
-                                    <ScanSearch color='black' style={{marginTop: -5}} size={16} />
+                                  <a style={{color: '#15173D', backgroundColor: 'white', padding: 5, borderRadius: 15}} href={selectedJob.website_url} target="_blank" rel="noopener noreferrer">
+                                    <ScanSearch color='#15173D' style={{marginTop: -5}} size={16} />
                                   </a>
                                 )}
                       </div> 
                       </div>
                         <div className="match-detailss">
-                        <h4 style={{color: 'black'}} className='hs-title-11'><ScanSearch size={20} style={{marginTop: -3}} /> Match Breakdown</h4>
+                        <h4 style={{color: '#15173D'}} className='hs-title-11'><ScanSearch size={20} style={{marginTop: -3}} /> Match Breakdown</h4>
                         <div className="progress-sectionss">
                             {[
                             { label: "Overall Match", value: selectedJob.overall_match },
@@ -867,7 +867,7 @@ const handleProfileUpdate = async () => {
                         </div>
 
                         <div className="required-skillsss">
-                            <h4 style={{marginBottom: 15, color: 'black'}} className='hs-title-11'><Trophy size={20} style={{marginTop: -3}} /> Required Skills</h4>
+                            <h4 style={{marginBottom: 15, color: '#15173D'}} className='hs-title-11'><Trophy size={20} style={{marginTop: -3}} /> Required Skills</h4>
                             <div className="skills-gridss">
                             {selectedJob.required_skills.map((skill, index) => (
                                 <span key={index} className="skill-tagss"><Star size={16} style={{marginTop: -3}} /> {skill}</span>
@@ -912,20 +912,20 @@ const handleProfileUpdate = async () => {
         .nav-brand {
           font-size: 1.5rem;
           font-weight: normal;
-          color: black;
+          color: #15173D;
         }
 
         .nav-user {
           display: flex;
           align-items: center;
           gap: 1rem;
-          color: black;
+          color: #15173D;
         }
 
         .logout-button {
           padding: 0.5rem 1rem;
           background-color: transparent;
-          color: black;
+          color: #15173D;
           border: none;
           border-radius: 40px;
           cursor: pointer;
@@ -933,7 +933,7 @@ const handleProfileUpdate = async () => {
 
         .logout-buttonz {
           padding: 0.4rem 2rem;
-          background-color: black;
+          background-color: #15173D;
           color: white;
           border: none;
           border-radius: 40px;
@@ -969,14 +969,14 @@ const handleProfileUpdate = async () => {
         .stat-card h3 {
           margin: 0;
           font-size: 0.85rem;
-          color: black;
+          color: #15173D;
         }
 
         .stat-card p {
           margin: 0.5rem 0 0;
           font-size: 1rem;
           font-weight: bold;
-          color: black;
+          color: #15173D;
         }
 
         .tabs {
@@ -987,10 +987,10 @@ const handleProfileUpdate = async () => {
           padding: 0.5rem 1rem;
           background: #F8FAFC;
           border-radius: 40px;
-          border: 0.6px solid black;
+          border: 0.6px solid #15173D;
           border-style: dotted;
           cursor: pointer;
-          color: black;
+          color: #15173D;
           font-weight: 500;
           margin-right: 0.7rem !important;
           font-size: 0.84rem;
@@ -1001,7 +1001,7 @@ const handleProfileUpdate = async () => {
         .tab.active {
           color: white;
           border-radius: 40px;
-          background: black;
+          background: #15173D;
           border: 8px solid #F8FAFC;
           box-shadow: 0 8px 4px rgba(187, 205, 255, 0.44);
 
@@ -1044,7 +1044,7 @@ const handleProfileUpdate = async () => {
 
         /* Optional: For Firefox, use the scrollbar-color and scrollbar-width properties */
         .matches-list {
-        scrollbar-color: black #fff; /* thumb color track color */
+        scrollbar-color: #15173D #fff; /* thumb color track color */
         scrollbar-width: thin; /* Sets the scrollbar width to thin */
         }
 
@@ -1094,7 +1094,7 @@ const handleProfileUpdate = async () => {
 
         .job-cardz.selected {
           background-color: #f5f7f8;
-          border: 1px solid black;
+          border: 1px solid #15173D;
           box-shadow: 0 8px 4px rgba(187, 205, 255, 0.24);
         }
 
@@ -1139,7 +1139,7 @@ const handleProfileUpdate = async () => {
         }
 
         .match-score span {
-        background: black;
+        background: #15173D;
         color: white;
         border-radius: 30px;
         padding: 10px;
@@ -1198,7 +1198,7 @@ const handleProfileUpdate = async () => {
         border-radius: 10px;
         padding: 20px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        color: black;
+        color: #15173D;
         }
 
         .job-detailss-bg{
@@ -1211,19 +1211,19 @@ const handleProfileUpdate = async () => {
         .job-detailss h2 {
         font-size: 1.8rem;
         font-weight: bold;
-        color: black;
+        color: #15173D;
         margin-bottom: 0.5rem;
         }
 
         .job-detailss h3 {
         font-size: 1.2rem;
-        color: black;
+        color: #15173D;
         margin-bottom: 1rem;
         }
 
         .match-detailss h4 {
         font-size: 1.4rem;
-        color: black;
+        color: #15173D;
         margin-bottom: 1rem;
         }
 
@@ -1245,7 +1245,7 @@ const handleProfileUpdate = async () => {
 
         .progress-itemss span {
         font-size: 0.9rem;
-        color: black;
+        color: #15173D;
         }
 
         .progress-barss {
@@ -1260,7 +1260,7 @@ const handleProfileUpdate = async () => {
         }
 
         .progressss {
-        background: linear-gradient(90deg, black, black);
+        background: linear-gradient(90deg, #15173D, #15173D);
         height: 100%;
         border-radius: 20px;
         transition: width 0.5s ease-in-out;
@@ -1268,14 +1268,14 @@ const handleProfileUpdate = async () => {
 
         .progress-valuess {
         font-size: 0.6rem;
-        color: black;
+        color: #15173D;
         margin-left: 10px;
         }
 
         .required-skillsss h4 {
         font-size: 1.4rem;
         margin-bottom: 0.5rem;
-        color: black;
+        color: #15173D;
         }
 
         .skills-gridss {
@@ -1285,7 +1285,7 @@ const handleProfileUpdate = async () => {
         }
 
         .skill-tagss {
-        background: black;
+        background: #15173D;
         color: white;
         padding: 2px 10px;
         border-radius: 20px;
@@ -1293,7 +1293,7 @@ const handleProfileUpdate = async () => {
         }
 
         .apply-buttonss {
-        background-color: black;
+        background-color: #15173D;
         width: 100%;
         padding: 1rem;
         color: white;
@@ -1359,7 +1359,7 @@ const handleProfileUpdate = async () => {
           right: 0;
           top: -1.5rem;
           font-size: 0.875rem;
-          color: black;
+          color: #15173D;
         }
 
         .required-skills {
@@ -1415,7 +1415,7 @@ const handleProfileUpdate = async () => {
           width: 4px;  /* Width of the scrollbar */
         }
         textarea::-webkit-scrollbar-thumb {
-          background-color: #000;  /* Color of the scrollbar thumb */
+          background-color: #15173D;  /* Color of the scrollbar thumb */
           border-radius: 4px;  /* Round corners for the scrollbar thumb */
         }
         textarea::-webkit-scrollbar-track {
@@ -1455,10 +1455,10 @@ const handleProfileUpdate = async () => {
           padding: 0.75rem 1.5rem;
           border-radius: 40px;
           border: none;
-          background-color: black;
+          background-color: #15173D;
           border: 0.6px solid;
           border-style: dashed;
-          border-color: black;
+          border-color: #15173D;
           color: white;
           font-weight: 500;
           cursor: pointer;
@@ -1469,19 +1469,19 @@ const handleProfileUpdate = async () => {
 
         .edit-button:hover {
           background-color: #FFF7F7;
-          color: black;
+          color: #15173D;
         }
 
         .edit-button.save {
           background-color: white;
-          color: black;
+          color: #15173D;
         }
 
         .edit-buttons {
           padding: 0.75rem 1.5rem;
           border-radius: 40px;
           border: none;
-          background-color: black !important;
+          background-color: #15173D !important;
           color: white;
           font-weight: 500;
           cursor: pointer;
@@ -1491,7 +1491,7 @@ const handleProfileUpdate = async () => {
 
         .edit-buttons:hover {
           background-color: #FFF7F7;
-          color: black;
+          color: #15173D;
         }
 
         .edit-buttons.save {
@@ -1516,7 +1516,7 @@ const handleProfileUpdate = async () => {
 
         .form-group label {
           font-weight: 500;
-          color: black;
+          color: #15173D;
         }
 
         .form-group input,
@@ -1665,7 +1665,7 @@ const handleProfileUpdate = async () => {
         /* Add new button */
         .add-button {
           background: #EAF6F6;
-          color: #000;
+          color: #15173D;
           border: none;
           padding: 10px 15px;
           border-radius: 40px;

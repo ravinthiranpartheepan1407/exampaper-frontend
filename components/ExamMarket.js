@@ -113,7 +113,7 @@ const ExamMarket = () => {
               <div className="upload-sections">
                   <div className="file-upload">
                       <label className="upload-btn">
-                          <StepForward style={{width: 15, color: 'black'}} />
+                          <StepForward style={{width: 15, color: '#15173D'}} />
                           <span>Apply for</span>
                           <button 
                               onClick={() => router.push("https://forms.office.com/r/8DFMQGJypx")} 
@@ -338,7 +338,7 @@ const ExamMarket = () => {
         }
         
         .evaluate-btn {
-          background-color: #000;
+          background-color: #15173D;
           color: #fff;
           border: none;
           border-radius: 40px;
@@ -388,21 +388,21 @@ const ExamMarket = () => {
           padding: 0;
           margin-bottom: 1rem;
           text-align: left;
-          color: black;
+          color: #15173D;
         }
 
         .modal-content li {
           margin-bottom: 0.75rem;
           position: relative;
           text-align: left;
-          color: black;
+          color: #15173D;
         }
 
         .modal-content li::before {
           position: absolute;
           left: 0;
           text-align: left;
-          color: black;
+          color: #15173D;
         }
 
         .modal-acknowledgement {
@@ -579,7 +579,7 @@ const ExamMarket = () => {
 
         .filter-tag {
           background: #bff2f7;
-          color: black;
+          color: #15173D;
           padding: 0.3rem 0.6rem;
           border-radius: 50px;
           font-size: 0.8rem;
@@ -671,7 +671,7 @@ const ExamMarket = () => {
 
         .card-tag {
           background-color: #bff2f7;
-          color: black;
+          color: #15173D;
           font-size: 0.75rem;
           padding: 0.25rem 0.75rem;
           border-radius: 50px;
@@ -691,7 +691,7 @@ const ExamMarket = () => {
         .view-details-button {
           margin-top: auto;
           background-color: #bff2f7;
-          color: black;
+          color: #15173D;
           border: none;
           border-radius: 40px;
           padding: 0.6rem 1rem;
@@ -702,7 +702,7 @@ const ExamMarket = () => {
 
         .view-details-button:hover {
           background-color:  #e3fcfc;
-          color: black;
+          color: #15173D;
         }
 
         /* Ensure the card grid has proper spacing */

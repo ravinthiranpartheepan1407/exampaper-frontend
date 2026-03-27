@@ -23,12 +23,15 @@ import {
   Link,
   Medal,
   ArrowLeftCircle,
-  Image
+  Image,
+  ChevronDownCircle,
+  ChevronDown
 } from 'lucide-react';
 import axios from 'axios';
 import { createClient } from '@supabase/supabase-js';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
+import ConnectModal from './ConnectModal';
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
@@ -417,7 +420,7 @@ const CompanyDashboard = () => {
           <div className="stats-grid">
             <div className="stat-card">
               <div className="stat-card-content">
-                <span className="stat-icon"><Briefcase color='black' /></span>
+                <span className="stat-icon"><Briefcase color='#15173D' /></span>
                 <div className="stat-text">
                   <h3>Total Jobs</h3>
                   <p>{jobss.length}</p>
@@ -426,7 +429,7 @@ const CompanyDashboard = () => {
             </div>
             <div className="stat-card">
               <div className="stat-card-content">
-                <span className="stat-icon"><Users color='black' /></span>
+                <span className="stat-icon"><Users color='#15173D' /></span>
                 <div className="stat-text">
                   <h3>Total Applications</h3>
                   <p>{applications.length} / 100</p>
@@ -459,7 +462,7 @@ const CompanyDashboard = () => {
 
             <div className="profile-section">
               <div className="profile-header">
-                <h2 className='hs-title-11' style={{color: 'black'}}>
+                <h2 className='hs-title-11' style={{color: '#15173D'}}>
                   <ScanText size={18} style={{marginTop: -3}} /> Manage Jobs
                 </h2>
                 <button 
@@ -470,7 +473,7 @@ const CompanyDashboard = () => {
                   <PlusCircle size={14} style={{marginTop: -2}} /> Create New Job
                 </button>
               </div>
-              <p style={{marginTop: 0, fontSize: 14, color: 'black'}}>Take a moment to review your profile and make any necessary changes. If you spot any mistakes or outdated information, you can easily edit the details in the form to make sure everything is correct and reflects your current information. Keeping your profile up to date helps you to present the best version of yourself.</p>
+              <p style={{marginTop: 0, fontSize: 14, color: '#15173D'}}>Take a moment to review your profile and make any necessary changes. If you spot any mistakes or outdated information, you can easily edit the details in the form to make sure everything is correct and reflects your current information. Keeping your profile up to date helps you to present the best version of yourself.</p>
 
             </div>
             
@@ -485,7 +488,7 @@ const CompanyDashboard = () => {
                       type="text"
                       placeholder="Job Title"
                       value={formData.title}
-                      style={{color: 'black'}}
+                      style={{color: '#15173D'}}
                       onChange={(e) => setFormData({...formData, title: e.target.value})}
                       required
                     />
@@ -496,7 +499,7 @@ const CompanyDashboard = () => {
                       type="text"
                       placeholder="Company Name"
                       value={formData.company_name}
-                      style={{color: 'black'}}
+                      style={{color: '#15173D'}}
                       onChange={(e) => setFormData({...formData, company_name: e.target.value})}
                       required
                     />
@@ -507,7 +510,7 @@ const CompanyDashboard = () => {
                       type="text"
                       placeholder="Company Logo URL"
                       value={formData.company_logo_url}
-                      style={{color: 'black'}}
+                      style={{color: '#15173D'}}
                       onChange={(e) => setFormData({...formData, company_logo_url: e.target.value})}
                       required
                     />
@@ -518,7 +521,7 @@ const CompanyDashboard = () => {
                       type="email"
                       placeholder="Company Email"
                       value={formData.company_email}
-                      style={{color: 'black'}}
+                      style={{color: '#15173D'}}
                       onChange={handleEmailChange}
                       required
                     />
@@ -529,7 +532,7 @@ const CompanyDashboard = () => {
                       type="text"
                       placeholder="Location"
                       value={formData.location}
-                      style={{color: 'black'}}
+                      style={{color: '#15173D'}}
                       onChange={(e) => setFormData({...formData, location: e.target.value})}
                       required
                     />
@@ -539,7 +542,7 @@ const CompanyDashboard = () => {
                     <textarea
                       placeholder="Company Description"
                       value={formData.company_description}
-                      style={{color: 'black'}}
+                      style={{color: '#15173D'}}
                       onChange={(e) => setFormData({...formData, company_description: e.target.value})}
                       required
                     />
@@ -550,7 +553,7 @@ const CompanyDashboard = () => {
                       type="text"
                       placeholder="Required Skills (comma-separated)"
                       onChange={(e) => setFormData({...formData, required_skills: e.target.value.split(',').map(skill => skill.trim())})}
-                      style={{color: 'black'}}
+                      style={{color: '#15173D'}}
                       required
                     />
                   </div>
@@ -560,14 +563,14 @@ const CompanyDashboard = () => {
                       type="number"
                       placeholder="Experience Required (years)"
                       value={formData.experience_required}
-                      style={{color: 'black'}}
+                      style={{color: '#15173D'}}
                       onChange={(e) => setFormData({...formData, experience_required: parseInt(e.target.value)})}
                       required
                     />
                   </div>
                   <div className="mb-6">
-                    <label style={{marginTop: 20, marginBottom: 10, color: 'black', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                      <Sliders color='black' size={16} /> Desired Traits
+                    <label style={{marginTop: 20, marginBottom: 10, color: '#15173D', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+                      <Sliders color='#15173D' size={16} /> Desired Traits
                     </label>
                     
                     <div className="traits-container">
@@ -580,8 +583,8 @@ const CompanyDashboard = () => {
                         justifyContent: 'space-between',
                         alignItems: 'center'
                       }}>
-                        <span style={{color: 'black'}}><Zap size={16} color='black' /> Available Traits</span>
-                        <span className="trait-value"><Star size={16} color='black' /> Selected: {selectedTraits.length}/5</span>
+                        <span style={{color: '#15173D'}}><Zap size={16} color='#15173D' /> Available Traits</span>
+                        <span className="trait-value"><Star size={16} color='#15173D' /> Selected: {selectedTraits.length}/5</span>
                       </div>
 
                       <div style={{
@@ -604,7 +607,7 @@ const CompanyDashboard = () => {
                                 backgroundColor: isSelected ? '#E6EFF2' : '#fff',
                                 border: '1px solid #e2e8f0',
                                 borderRadius: '10px',
-                                color: 'black',
+                                color: '#15173D',
                                 transition: 'all 0.2s',
                                 cursor: isDisabled ? 'not-allowed' : 'pointer',
                                 opacity: isDisabled ? 0.6 : 1,
@@ -616,7 +619,7 @@ const CompanyDashboard = () => {
                                   height: '18px',
                                   borderRadius: '4px',
                                   border: '2px solid #e2e8f0',
-                                  backgroundColor: isSelected ? 'black' : 'transparent',
+                                  backgroundColor: isSelected ? '#15173D' : 'transparent',
                                   display: 'flex',
                                   alignItems: 'center',
                                   justifyContent: 'center',
@@ -631,7 +634,7 @@ const CompanyDashboard = () => {
                                     }} />
                                   )}
                                 </div>
-                                <span><Target size={16} color='black' /> {trait.trait}</span>
+                                <span><Target size={16} color='#15173D' /> {trait.trait}</span>
                               </div>
                             </div>
                           );
@@ -647,7 +650,7 @@ const CompanyDashboard = () => {
                           <div style={{
                             marginBottom: '15px',
                             fontWeight: 600,
-                            color: 'black'
+                            color: '#15173D'
                           }}>
                             Set Score For Selected Traits
                           </div>
@@ -656,8 +659,8 @@ const CompanyDashboard = () => {
                             return (
                               <div key={trait.trait} className="trait-slider" style={{ marginBottom: '12px' }}>
                                 <div className="trait-label">
-                                  <span style={{color: 'black'}}><Zap size={16} color='black' /> {trait.trait}</span>
-                                  <span style={{color: 'black'}} className="trait-value"> <Disc size={16} color='black' /> {trait.score.toFixed(1)}</span>
+                                  <span style={{color: '#15173D'}}><Zap size={16} color='#15173D' /> {trait.trait}</span>
+                                  <span style={{color: '#15173D'}} className="trait-value"> <Disc size={16} color='#15173D' /> {trait.score.toFixed(1)}</span>
                                 </div>
                                 <input
                                   type="range"
@@ -672,7 +675,7 @@ const CompanyDashboard = () => {
                                   }}
                                   className="slider"
                                   style={{
-                                    background: `linear-gradient(90deg, black ${percentage}%, white ${percentage}%)`
+                                    background: `linear-gradient(90deg, #15173D ${percentage}%, white ${percentage}%)`
                                   }}
                                 />
                               </div>
@@ -689,7 +692,7 @@ const CompanyDashboard = () => {
                       required
                       placeholder="Business LinkedIn URL"
                       value={formData.linkedin_url}
-                      style={{color: 'black'}}
+                      style={{color: '#15173D'}}
                       onChange={(e) => setFormData({...formData, linkedin_url: e.target.value})}
                     />
                   </div>
@@ -700,16 +703,16 @@ const CompanyDashboard = () => {
                       required
                       placeholder="Business Website URL"
                       value={formData.website_url}
-                      style={{color: 'black'}}
+                      style={{color: '#15173D'}}
                       onChange={(e) => setFormData({...formData, website_url: e.target.value})}
                     />
                   </div>
                   <div className="button-group">
-                    <button disabled={!isValidEmail} style={{backgroundColor: 'black', opacity: isValidEmail ? 1 : 0.5, cursor: isValidEmail ? 'pointer' : 'not-allowed'}}  type="submit" className="apply-buttonss">
+                    <button disabled={!isValidEmail} style={{backgroundColor: '#15173D', opacity: isValidEmail ? 1 : 0.5, cursor: isValidEmail ? 'pointer' : 'not-allowed'}}  type="submit" className="apply-buttonss">
                       <Rocket /> Post Job
                     </button>
                     <button
-                    style={{backgroundColor: '#E6EFF2', color: 'black'}} 
+                    style={{backgroundColor: '#E6EFF2', color: '#15173D'}} 
                       type="button" 
                       className="apply-buttonss"
                       onClick={() => setShowJobForm(false)}
@@ -744,20 +747,20 @@ const CompanyDashboard = () => {
                                   {job.title}
                                 </h3>
                               </div>
-                              <p style={{color: 'black'}}>About: {job.company_description}</p>
-                              <p style={{marginTop: -10, color: 'black'}} className="company">
+                              <p style={{color: '#15173D', fontSize: 12}}>About: {job.company_description}</p>
+                              <p style={{marginTop: -10, color: '#15173D'}} className="company">
                                 <Building size={16} /> {job.company_name} | 
                                 <MapPin size={16} /> {job.location} | 
                                 <Timer size={16} /> {job.experience_required}+ yrs
                               </p>                          
                               <div style={{marginTop: 15}} className="company-links">
                                 {job.linkedin_url && (
-                                  <a style={{color: 'black'}} href={job.linkedin_url} target="_blank" rel="noopener noreferrer">
+                                  <a style={{color: '#15173D'}} href={job.linkedin_url} target="_blank" rel="noopener noreferrer">
                                     <Linkedin style={{marginTop: -5}} size={16} />
                                   </a>
                                 )} &nbsp;
                                 {job.website_url && (
-                                  <a style={{color: 'black'}} href={job.website_url} target="_blank" rel="noopener noreferrer">
+                                  <a style={{color: '#15173D'}} href={job.website_url} target="_blank" rel="noopener noreferrer">
                                     <Globe2 style={{marginTop: -5}} size={16} />
                                   </a>
                                 )}
@@ -794,16 +797,16 @@ const CompanyDashboard = () => {
                            <img src={selectedJob.company_logo_url} alt="Profile Picture" className="profile-picture" />
                            {selectedJob.title}
                          </h2>
-                         <h3 style={{marginLeft: 10, fontSize: 14, color: 'black'}}>
+                         <h3 style={{marginLeft: 10, fontSize: 14, color: '#15173D'}}>
                            <Zap size={16} style={{marginTop: -3}} /> {selectedJob.company} | 
                            <MapPin size={16} style={{marginTop: -3}} /> {selectedJob.location} | 
                            <Timer size={16} style={{marginTop: -3}} /> Experience Required: {selectedJob.experience_required}+ years
                          </h3>
-                         <p style={{marginLeft: 10, fontSize: 14, color: 'black'}}>{selectedJob.company_description}</p>
+                         <p style={{marginLeft: 10, fontSize: 14, color: '#15173D'}}>{selectedJob.company_description}</p>
                        </div>
                        
                        <div className="match-detailss">
-                         <h4 style={{color: 'black'}} className='hs-title-11'>
+                         <h4 style={{color: '#15173D'}} className='hs-title-11'>
                            <ScanSearch size={18} style={{marginTop: -3}} /> Personal Traits Requirement
                          </h4>
                          <div className="progress-sectionss">
@@ -826,7 +829,7 @@ const CompanyDashboard = () => {
                          </div>
                  
                          <div className="required-skillsss">
-                           <h4 style={{marginBottom: 15, color: 'black'}} className='hs-title-11'>
+                           <h4 style={{marginBottom: 15, color: '#15173D'}} className='hs-title-11'>
                              <Trophy size={16} style={{marginTop: -3}} /> Required Skills
                            </h4>
                            <div className="skills-gridss">
@@ -869,13 +872,13 @@ const CompanyDashboard = () => {
                           <div className="job-items">
                             <div style={{marginTop: -15}} className="job-details">
                               <div className="job-header">
-                                <h3 style={{fontSize: 17}}>
+                                <h3 style={{fontSize: 16}}>
                                   <img
                                     src={selectedJob.company_logo_url}
                                     alt="Applicant"
                                     className="profile-picture"
                                   /><span>{selectedJob.title}</span>|&nbsp;
-                                  {application.resume_details.name} | <Zap size={16} color='black' /> Overall Match: {' '}
+                                  {application.resume_details.name} | <Zap size={16} color='#15173D' /> Overall Match: {' '}
                                     {application.personality_scores.overall >= 70 ? (
                                       <span style={{ 
                                         backgroundColor: '#2ecc71', 
@@ -892,28 +895,31 @@ const CompanyDashboard = () => {
                                         borderRadius: '12px', 
                                         fontSize: '0.7em' 
                                       }}>Good Fit</span>
-                                    ) : null} | <Timer size={16} color='black' /> Years of working experience: {application.resume_details.experience_years}+ years | <ChevronDownSquare />
+                                    ) : null} | <Timer size={16} color='#15173D' /> Years of working experience: {application.resume_details.experience_years}+ years  <ChevronDown fill='#15173D' color='white' size={30} style={{marginLeft: 40}} />
                                   </h3>
                               </div>
                               
                               <div className={`content ${expandedItems[index] ? 'expanded' : ''}`}>
-                                <p style={{backgroundColor: 'white', padding: 10, borderRadius: 40, color: 'black'}} className="company">
+                                <p style={{backgroundColor: 'white', padding: 10, borderRadius: 40, color: '#15173D'}} className="company">
                                   <Mail size={16} /> {application.applicant_email} | 
-                                  <Zap size={16} color='black' />Overall Psychometric Score: {application.personality_scores.overall.toFixed(2)}% |
-                                  <Zap size={16} color='black' /> Cultural Fit: {application.personality_scores?.cultural_fit.toFixed(2)}% |
-                                  <Zap size={16} color='black' /> Conflict Resolution: {application.personality_scores?.conflict_resolution.toFixed(2)}% |
-                                  <a onClick={(e) => e.stopPropagation()} href={application.resume_details?.github_url}><Github size={24} color='white' style={{backgroundColor: 'black', padding: 4, borderRadius: 20}} /></a>
-                                  <a onClick={(e) => e.stopPropagation()} href={application.resume_details?.linkedin_url}><Linkedin size={20} color='black' /></a>
+                                  <Zap size={16} color='#15173D' />Overall Psychometric Score: {application.personality_scores.overall.toFixed(2)}% |
+                                  <Zap size={16} color='#15173D' /> Cultural Fit: {application.personality_scores?.cultural_fit.toFixed(2)}% |
+                                  <Zap size={16} color='#15173D' /> Conflict Resolution: {application.personality_scores?.conflict_resolution.toFixed(2)}% |
+                                  <a onClick={(e) => e.stopPropagation()} href={application.resume_details?.github_url}><Github size={20} color='white' style={{backgroundColor: '#15173D', padding: 4, borderRadius: 20, marginTop: -2}} /></a>
+                                  <a onClick={(e) => e.stopPropagation()} href={application.resume_details?.linkedin_url}><Linkedin size={18} style={{marginTop: -3}} color='#15173D' /></a>
                                   
                                 </p>
                                 <br />
-                                <a 
-                                  onClick={(e) => e.stopPropagation()} 
-                                  href={`mailto:${application.applicant_email}?subject=Next Steps: Machine Learning Engineer Position at Evalentum AI&body=Hi%20${application.resume_details?.name},%0D%0A%0D%0AWe reviewed your application through Evalentum Job search for Machine Learning Engineer position at Evalentum AI, Finland and would love to connect to discuss next steps. Could you please suggest some date and time for an introductory call?%0D%0A%0D%0ABest regards,%0D%0AEvalentum AI Team`}
-                                  style={{backgroundColor: 'black', color: 'white', padding: 10, borderRadius: 40, fontSize: 14}}
-                                >
-                                  <Zap size={12} style={{marginTop: -2}} /> Let's Connect!
-                                </a> &nbsp;
+                                <ConnectModal
+                                  application={{
+                                    applicant_email: application.applicant_email,
+                                    applicant_name: application.resume_details?.name,
+                                    job_id: selectedJob?.id,           // from selectedJob state
+                                    job_title: selectedJob?.title,     // from selectedJob state
+                                    company_name: selectedJob?.company_name,  // from selectedJob state
+                                    hr_email: userEmail,
+                                  }}
+                                /> &nbsp;
 
                                 <button onClick={(e) => { e.stopPropagation(); handleRejectApplication(application.id);}} style={{backgroundColor: 'red', color: 'white', padding: 10, borderRadius: 40, fontSize: 14}}><X size={16} style={{marginTop: -3}} /> Different Direction </button>
                                     
@@ -970,14 +976,14 @@ const CompanyDashboard = () => {
                                             <Zap size={16} style={{marginTop: -2}} /> Title: {exp.job_position}
                                           </div>
                                           <div style={{ 
-                                            color: '#000',
+                                            color: '#15173D',
                                             fontSize: '15px',
                                             fontWeight: '500'
                                           }}>
                                             <Building2 size={16} style={{marginTop: -2}} /> Company: {exp.company}
                                           </div>
                                           <div style={{ 
-                                            color: '#000',
+                                            color: '#15173D',
                                             fontSize: '14px',
                                             marginTop: 'auto'
                                           }}>
@@ -1025,14 +1031,14 @@ const CompanyDashboard = () => {
                                             <Medal size={16} style={{marginTop: -2}} /> Title: {exp.name}
                                           </div>
                                           <div style={{ 
-                                            color: '#000',
+                                            color: '#15173D',
                                             fontSize: '15px',
                                             fontWeight: '500'
                                           }}>
                                             <Target size={16} style={{marginTop: -2}} /> Summary: {exp.description}
                                           </div>
                                           <div style={{ 
-                                            color: '#000',
+                                            color: '#15173D',
                                             fontSize: '14px',
                                             marginTop: 'auto'
                                           }}>
@@ -1077,20 +1083,20 @@ const CompanyDashboard = () => {
         .nav-brand {
           font-size: 1.5rem;
           font-weight: normal;
-          color: black;
+          color: #15173D;
         }
 
         .nav-user {
           display: flex;
           align-items: center;
           gap: 1rem;
-          color: black;
+          color: #15173D;
         }
 
         .logout-button {
           padding: 0.5rem 1rem;
           background-color: transparent;
-          color: black;
+          color: #15173D;
           border: none;
           border-radius: 40px;
           cursor: pointer;
@@ -1125,14 +1131,14 @@ const CompanyDashboard = () => {
         .stat-card h3 {
           margin: 0;
           font-size: 0.85rem;
-          color: black;
+          color: #15173D;
         }
 
         .stat-card p {
           margin: 0.5rem 0 0;
           font-size: 1rem;
           font-weight: bold;
-          color: black;
+          color: #15173D;
         }
 
         .tabs {
@@ -1143,10 +1149,10 @@ const CompanyDashboard = () => {
           padding: 0.5rem 1rem;
           background: #F8FAFC;
           border-radius: 40px;
-          border: 0.6px solid black;
+          border: 0.6px solid #15173D;
           border-style: dotted;
           cursor: pointer;
-          color: black;
+          color: #15173D;
           font-weight: 500;
           margin-right: 0.7rem !important;
           font-size: 0.84rem;
@@ -1157,7 +1163,7 @@ const CompanyDashboard = () => {
         .tab.active {
           color: white;
           border-radius: 40px;
-          background: black;
+          background: #15173D;
           border: 8px solid #F8FAFC;
           box-shadow: 0 8px 4px rgba(187, 205, 255, 0.44);
 
@@ -1209,7 +1215,7 @@ const CompanyDashboard = () => {
 
         /* Optional: For Firefox, use the scrollbar-color and scrollbar-width properties */
         .matches-list {
-        scrollbar-color: black #fff; /* thumb color track color */
+        scrollbar-color: #15173D #fff; /* thumb color track color */
         scrollbar-width: thin; /* Sets the scrollbar width to thin */
         }
 
@@ -1258,7 +1264,7 @@ const CompanyDashboard = () => {
         align-items: center;
         margin: 0; /* Reset margin for alignment */
         font-size: 1.1rem; /* Adjust font size */
-        color: black;
+        color: #15173D;
         }
 
         .profile-picture {
@@ -1296,7 +1302,7 @@ const CompanyDashboard = () => {
           padding: 0.2rem 0.6rem;
           border-radius: 999px;
           font-size: 0.75rem;
-          color: black;
+          color: #15173D;
           border: 5px solid #F8FAFC;
           box-shadow: 0 8px 4px rgba(187, 205, 255, 0.24);
         }
@@ -1337,7 +1343,7 @@ const CompanyDashboard = () => {
         padding: 20px;
         border: 10px solid #F8FAFC;
           box-shadow: 0 8px 4px rgba(187, 205, 255, 0.24);
-        color: black;
+        color: #15173D;
         }
 
         .job-detailss-bg{
@@ -1350,13 +1356,13 @@ const CompanyDashboard = () => {
         .job-detailss h2 {
         font-size: 1.8rem;
         font-weight: bold;
-        color: black;
+        color: #15173D;
         margin-bottom: 0.5rem;
         }
 
         .job-detailss h3 {
         font-size: 1.2rem;
-        color: black;
+        color: #15173D;
         margin-bottom: 1rem;
         }
 
@@ -1384,7 +1390,7 @@ const CompanyDashboard = () => {
 
         .progress-itemss span {
         font-size: 0.9rem;
-        color: black;
+        color: #15173D;
         }
 
         .progress-barss {
@@ -1393,13 +1399,13 @@ const CompanyDashboard = () => {
         background: #ecf0f1;
         border-radius: 20px;
         overflow: hidden;
-        height: 10px;
+        height: 7px;
         margin: 5px 0;
         position: relative;
         }
 
         .progressss {
-        background: linear-gradient(90deg, black, black);
+        background: linear-gradient(90deg, #15173D, #15173D);
         height: 100%;
         border-radius: 20px;
         transition: width 0.5s ease-in-out;
@@ -1407,14 +1413,14 @@ const CompanyDashboard = () => {
 
         .progress-valuess {
         font-size: 0.6rem;
-        color: black;
+        color: #15173D;
         margin-left: 10px;
         }
 
         .required-skillsss h4 {
         font-size: 1.4rem;
         margin-bottom: 0.5rem;
-        color: black;
+        color: #15173D;
         }
 
         .skills-gridss {
@@ -1424,15 +1430,16 @@ const CompanyDashboard = () => {
         }
 
         .skill-tagss {
-        background: black;
-        color: white;
+        background: #bff2f7;
+        color: #15173D;
         padding: 5px 10px;
         border-radius: 20px;
         font-size: 0.7rem;
+        font-weight: 700;
         }
 
         .apply-buttonss {
-        background-color: black;
+        background-color: #15173D;
         width: 100%;
         padding: 1rem;
         color: white;
@@ -1554,7 +1561,7 @@ const CompanyDashboard = () => {
           width: 4px;  /* Width of the scrollbar */
         }
         textarea::-webkit-scrollbar-thumb {
-          background-color: #000;  /* Color of the scrollbar thumb */
+          background-color: #15173D;  /* Color of the scrollbar thumb */
           border-radius: 4px;  /* Round corners for the scrollbar thumb */
         }
         textarea::-webkit-scrollbar-track {
@@ -1594,10 +1601,10 @@ const CompanyDashboard = () => {
           padding: 0.3rem 1.2rem;
           border-radius: 40px;
           border: none;
-          background-color: black;
+          background-color: #15173D;
           border: 0.6px solid;
           border-style: dotted;
-          border-color: black;
+          border-color: #15173D;
           color: white;
           font-weight: 500;
           cursor: pointer;
@@ -1613,8 +1620,8 @@ const CompanyDashboard = () => {
           background-color: transparent;
           border: 0.6px solid;
           border-style: dotted;
-          border-color: black;
-          color: black;
+          border-color: #15173D;
+          color: #15173D;
           font-weight: 500;
           cursor: pointer;
           transition: all 0.3s ease;
@@ -1624,24 +1631,24 @@ const CompanyDashboard = () => {
 
         .edit-button:hover {
           background-color: #FFF7F7;
-          color: black;
+          color: #15173D;
         }
 
         .logout-buttons:hover {
           background-color: #FFF7F7;
-          color: black;
+          color: #15173D;
         }
 
         .edit-button.save {
           background-color: white;
-          color: black;
+          color: #15173D;
         }
 
         .edit-buttons {
           padding: 0.75rem 1.5rem;
           border-radius: 40px;
           border: none;
-          background-color: black !important;
+          background-color: #15173D !important;
           color: white;
           font-weight: 500;
           cursor: pointer;
@@ -1651,7 +1658,7 @@ const CompanyDashboard = () => {
 
         .edit-buttons:hover {
           background-color: #FFF7F7;
-          color: black;
+          color: #15173D;
         }
 
         .edit-buttons.save {
@@ -1677,7 +1684,7 @@ const CompanyDashboard = () => {
 
         .form-group label {
           font-weight: 500;
-          color: black;
+          color: #15173D;
         }
 
         .form-group input,
@@ -1826,7 +1833,7 @@ const CompanyDashboard = () => {
         /* Add new button */
         .add-button {
           background: #EAF6F6;
-          color: #000;
+          color: #15173D;
           border: none;
           padding: 10px 15px;
           border-radius: 40px;
@@ -1992,7 +1999,7 @@ const CompanyDashboard = () => {
 
         .trait-value {
           font-weight: 600;
-          color: black;
+          color: #15173D;
         }
 
         .slider {
@@ -2000,7 +2007,7 @@ const CompanyDashboard = () => {
           -webkit-appearance: none;
           height: 6px;
           border-radius: 4px;
-          background: linear-gradient(to left, black, #00f2fe);
+          background: linear-gradient(to left, #15173D, #00f2fe);
           outline: none;
         }
 
@@ -2014,7 +2021,7 @@ const CompanyDashboard = () => {
           border-radius: 50%;
           cursor: pointer;
           box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-          border: 2px solid black;
+          border: 2px solid #15173D;
         }
 
         .slider::-moz-range-thumb {
@@ -2177,10 +2184,10 @@ const CompanyDashboard = () => {
           padding: 0.3rem 1.2rem;
           border-radius: 40px;
           border: none;
-          background-color: black;
+          background-color: #15173D;
           border: 0.6px solid;
           border-style: dashed;
-          border-color: black;
+          border-color: #15173D;
           color: white;
           font-weight: 500;
           cursor: pointer;

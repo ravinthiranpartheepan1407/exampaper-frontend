@@ -659,7 +659,7 @@ export default function JobMatch() {
                     <div className="upload-sections">
                     <div className="file-upload">
                     <label className="upload-btn">
-                        <StepForward style={{width: 15, color: 'black'}} />
+                        <StepForward style={{width: 15, color: '#15173D'}} />
                         <span>Post a Job Now!</span>
                         <button 
                         onClick={() => router.push("/job-search/org")} 
@@ -677,12 +677,12 @@ export default function JobMatch() {
           <form onSubmit={handleTestSubmit}>
             {Object.entries(questions).map(([section, sectionQuestions]) => (
               <div key={section} className="section">
-                <h2 style={{color: 'black'}}><ScanSearch size={20} style={{marginTop: -5}} /> {section.replace('_', ' ').toUpperCase()}</h2>
+                <h2 style={{color: '#15173D'}}><ScanSearch size={20} style={{marginTop: -5}} /> {section.replace('_', ' ').toUpperCase()}</h2>
                 <p>Everyone is great at something, so be honest it will help us match your personality and skills with the best cultural fit for you. This test helps us understand how you approach workplace situations, align with our company culture, and manage tasks. Your responses will give us insights into your problem-solving skills, teamwork, and working style to match a good fit for both you and the team.</p>
                 <p>If any trait scores lower, don't worry! You have unique strengths that others may not, and everyone is different. Remember, you are amazing and talented in your own way.</p>
                 {sectionQuestions.map(q => (
                   <div key={q.id} className="question">
-                    <p style={{color: 'black'}}><Target style={{marginTop: -1}} size={18} /> {q.text}</p>
+                    <p style={{color: '#15173D'}}><Target style={{marginTop: -1}} size={18} /> {q.text}</p>
                     {q.type === "multiple" ? (
                       <div className="options">
                         {q.options.map((opt, idx) => (
@@ -730,7 +730,7 @@ export default function JobMatch() {
       ) : (
         <div className="section">
           <div className="section">
-                <h2 style={{color: 'black'}}><Zap size={20} style={{marginTop: -2}} /> Upload Resume</h2>
+                <h2 style={{color: '#15173D'}}><Zap size={20} style={{marginTop: -2}} /> Upload Resume</h2>
                 <p>Upload your resume to show your skills and experience. This helps employers understand what you are good at and find the right job for you. A clear and complete resume makes it easier to get noticed and land a great job.</p>
           </div>
           <form onSubmit={handleResumeSubmit}>
@@ -862,13 +862,13 @@ export default function JobMatch() {
         }
 
         input[type="radio"]:checked {
-          border-color: black;
-          background-color: black;
+          border-color: #15173D;
+          background-color: #15173D;
           box-shadow: inset 0 0 0 4px white;
         }
 
         .radio-label {
-          color: black;
+          color: #15173D;
           font-size: 1rem;
           flex: 1;
         }
@@ -914,7 +914,7 @@ export default function JobMatch() {
         .submit-button {
           width: 100%;
           padding: 1rem;
-          background-color: black;
+          background-color: #15173D;
           color: white;
           border: none;
           border-radius: 40px;
@@ -1047,7 +1047,7 @@ export default function JobMatch() {
           display: none;
         }
           .evaluate-btn {
-          background-color: #000;
+          background-color: #15173D;
           color: #fff;
           border: none;
           border-radius: 40px;

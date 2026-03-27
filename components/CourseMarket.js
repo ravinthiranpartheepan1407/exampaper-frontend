@@ -1128,7 +1128,7 @@ useEffect(() => {
               <div className="upload-sections">
                   <div className="file-upload">
                       <label className="upload-btn">
-                          <StepForward style={{width: 15, color: 'black'}} />
+                          <StepForward style={{width: 15, color: '#15173D'}} />
                           <span>Apply for</span>
                           <button 
                               onClick={() => router.push("https://forms.office.com/r/8DFMQGJypx")} 
@@ -1550,7 +1550,7 @@ useEffect(() => {
         }
         
         .evaluate-btn {
-          background-color: black;
+          background-color: #15173D;
           color: white;
           border: none;
           border-radius: 40px;
@@ -1602,7 +1602,7 @@ useEffect(() => {
 
         .modal-header h2 {
           font-size: 16px;
-          color: black;
+          color: #15173D;
           font-weight: 500;
           margin: 0;
           display: flex;
@@ -1626,7 +1626,7 @@ useEffect(() => {
           box-shadow: 0 10px 30px rgba(221, 196, 254, 0.5);
           inset: 0 1px 0 rgba(255, 255, 255, 0.1);
           backdrop-filter: blur(3px);
-          color: black;
+          color: #15173D;
           padding: 4px 8px;
           border-radius: 4px;
           font-size: 11px;
@@ -1760,7 +1760,7 @@ useEffect(() => {
 
         .badge.free {
           background-color: aqua;
-          color: black;
+          color: #15173D;
         }
 
         .badge.premium {
@@ -1874,7 +1874,7 @@ useEffect(() => {
         .modal-confirm {
           background-color: #f1f5f9;
           border: none;
-          color: black;
+          color: #15173D;
         }
 
         .modal-confirm:hover:not(:disabled),
@@ -2034,7 +2034,7 @@ useEffect(() => {
 
         .filter-tag {
           background: aqua;
-          color: black;
+          color: #15173D;
           padding: 0.3rem 0.6rem;
           border-radius: 50px;
           font-size: 0.8rem;
@@ -2128,7 +2128,7 @@ useEffect(() => {
 
         .card-tag {
           background-color: #bff2f7;
-          color: black;
+          color: #15173D;
           font-size: 0.75rem;
           padding: 0.25rem 0.75rem;
           border-radius: 50px;
@@ -2148,7 +2148,7 @@ useEffect(() => {
         .view-details-button {
           margin-top: auto;
           background-color: #bff2f7;
-          color: black;
+          color: #15173D;
           border: none;
           border-radius: 40px;
           padding: 0.6rem 1rem;
@@ -2159,7 +2159,7 @@ useEffect(() => {
 
         .view-details-button:hover {
           background-color:  #e3fcfc;
-          color: black;
+          color: #15173D;
         }
 
         /* Ensure the card grid has proper spacing */

@@ -1667,20 +1667,20 @@ export default function AwsCloudPractitioner() {
   
       const handleAccessCodeSubmit = async () => {
           try {
-              // const response = await axios.post('http://localhost:8000/validate-access-code', {
-              //     email: userEmail,
-              //     accessCode: accessCode,
-              //     examType: 'aws-clf-c02'
-              // });
+              const response = await axios.post('http://localhost:8000/validate-access-code', {
+                  email: userEmail,
+                  accessCode: accessCode,
+                  examType: 'aws-clf-c02'
+              });
   
-              // if (response.data.message != "Access code is valid") {
-              //     setIsAccessGranted(true);
-              //     setIsTimerActive(true);
-              //     setExamMetadata(prev => ({
-              //         ...prev,
-              //         startTime: new Date()
-              //     }));
-              // }
+              if (response.data.message != "Access code is valid") {
+                  setIsAccessGranted(true);
+                  setIsTimerActive(true);
+                  setExamMetadata(prev => ({
+                      ...prev,
+                      startTime: new Date()
+                  }));
+              }
             setIsAccessGranted(true);
                    setIsTimerActive(true);
                    setExamMetadata(prev => ({
