@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import { useRouter } from 'next/navigation';
-import { Rocket, ScanSearch, StepBack, StepForward, Target, Upload, Zap } from 'lucide-react';
+import { Rocket, Save, ScanSearch, StepBack, StepForward, Target, Upload, Zap } from 'lucide-react';
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
@@ -654,8 +654,8 @@ export default function JobMatch() {
     <div className="container">
     <div className="hero-section">
           <div className="hero-content">
-                    <h1 className="hs-title-8">Job Search Redefined!</h1>
-                    <p style={{color: 'white'}} className='hs-title'>Personalized job recommendations, matching your potential with great opportunities.</p>
+                    <h1 style={{color: '#15173D'}} className="hs-title-8">Job Search Made Easier</h1>
+                    <p style={{color: '#15173D'}} className='hs-title'>Personalized job recommendations, matching your potential with great opportunities.</p>
                     <div className="upload-sections">
                     <div className="file-upload">
                     <label className="upload-btn">
@@ -723,7 +723,7 @@ export default function JobMatch() {
               disabled={loading}
               className="submit-button"
             >
-              <Zap color='white' /> {loading ? 'Saving...' : 'Submit Assessment'}
+              <Save color='white' size={18} style={{marginTop: -4}} /> {loading ? 'Saving...' : 'Submit Assessment'}
             </button>
           </form>
         </div>
@@ -786,7 +786,7 @@ export default function JobMatch() {
           margin-bottom: 2.5rem;
           padding: 2rem;
           background: white;
-          border-radius: 1rem;
+          border-radius: 40px;
           box-shadow: 0 4px 6px rgba(0,0,0,0.05), 
                      0 10px 15px -3px rgba(0,0,0,0.1);
           transition: transform 0.2s ease;
@@ -808,9 +808,9 @@ export default function JobMatch() {
         .question {
           margin-bottom: 2rem;
           padding: 1.5rem;
-          background: #f8fafc;
-          border-radius: 0.75rem;
-          border: 1px solid #e2e8f0;
+          background: rgba(191, 242, 247, 0.25);
+          border-radius: 40px;
+          border: 1px solid rgb(191, 242, 247);
         }
 
         .question p {
@@ -848,7 +848,8 @@ export default function JobMatch() {
         }
 
         label:hover {
-          background-color: #edf2f7;
+          background-color: white;
+          border-radius: 40px;
         }
 
         input[type="radio"] {
@@ -919,7 +920,7 @@ export default function JobMatch() {
           border: none;
           border-radius: 40px;
           font-size: 1.1rem;
-          font-weight: 600;
+          font-weight: 400;
           cursor: pointer;
           transition: all 0.2s ease;
           box-shadow: 0 4px 6px rgba(66, 153, 225, 0.2);
@@ -970,33 +971,32 @@ export default function JobMatch() {
         }
         .hero-section {
             text-align: center;
-            margin-bottom: 3rem;
-            background-image: url('./texture/match.jpg');
+            margin-bottom: 40px;
+            margin-top: -20px;
+            background-image: url('./texture/audio.jpg');
             background-size: cover;
             background-position: center;
-            height: 300px;
             background-blend-mode: overlay;
-            padding: 3rem 2rem;
-            border-radius: 10px;
-           
-            box-shadow: 0 10px 30px rgba(166, 38, 76, 0.3),
-              inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(3px);   
+            padding: 40px;
+            border-radius: 40px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(227, 207, 250, 0.5),
+              inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(1px);   
         }
 
         .hero-section::before {
-            content: '';
+             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            border-radius: 10px;
-            background-color: rgba(191, 151, 255, 0.16); /* Darkens the background image */
+            border-radius: 40px;
             border: 1px solid rgba(255, 255, 255, 0.05);     
             box-shadow: 0 10px 30px rgba(208, 172, 255, 0.3),
               inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(6px);             
+            backdrop-filter: blur(2px);       
             z-index: 1;
         }
 

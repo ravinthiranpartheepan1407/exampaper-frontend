@@ -151,16 +151,16 @@ export default function ConnectModal({ application }) {
               ✕
             </button>
 
-            <h2 style={{ fontSize: 18, fontWeight: 700, marginBottom: 6, color: "#111" }}>
+            <h2 style={{ fontSize: 18, fontWeight: 700, marginBottom: 6, color: "#15173D" }}>
               Connect with Candidate
             </h2>
-            <p style={{ fontSize: 13, color: "#888", marginBottom: 24 }}>
+            <p style={{ fontSize: 13, color: "#15173D", marginBottom: 24 }}>
               {name} · {application?.job_title || jobTitle}
             </p>
 
             {/* Email To (read-only) */}
             <div style={{ marginBottom: 20 }}>
-              <label style={{ fontSize: 12, fontWeight: 600, color: "#555", display: "block", marginBottom: 6 }}>
+              <label style={{ fontSize: 12, fontWeight: 600, color: "#15173D", display: "block", marginBottom: 6 }}>
                 EMAIL TO
               </label>
               <input
@@ -168,7 +168,7 @@ export default function ConnectModal({ application }) {
                 readOnly
                 style={{
                   width: "100%", padding: "10px 14px", border: "1px solid #e0e0e0",
-                  borderRadius: 8, fontSize: 14, background: "#fafafa", color: "#333",
+                  borderRadius: 8, fontSize: 14, background: "#fafafa", color: "#15173D",
                   outline: "none",
                 }}
               />
@@ -178,17 +178,17 @@ export default function ConnectModal({ application }) {
             <div
               style={{
                 display: "flex", alignItems: "center", justifyContent: "space-between",
-                padding: "14px 16px", border: "1px solid #e8e8e8",
-                borderRadius: 10, marginBottom: 24, background: sendTest ? "#f8f4ff" : "#fafafa",
+                padding: "14px 16px", border: "0.2px solid #15173D", borderStyle: "dashed",
+                borderRadius: 10, marginBottom: 24, background: sendTest ? "#fafafa" : "#f8f4ff7c",
                 cursor: "pointer",
               }}
               onClick={() => setSendTest(!sendTest)}
             >
               <div>
-                <div style={{ fontSize: 14, fontWeight: 600, color: "#111" }}>
+                <div style={{ fontSize: 14, fontWeight: 600, color: "#15173D" }}>
                   Send Preliminary Screening Test
                 </div>
-                <div style={{ fontSize: 12, color: "#888", marginTop: 2 }}>
+                <div style={{ fontSize: 12, color: "#15173D", marginTop: 2 }}>
                   Unique link with aptitude, grammar &amp; coding questions
                 </div>
               </div>
@@ -196,7 +196,7 @@ export default function ConnectModal({ application }) {
               <div
                 style={{
                   width: 44, height: 24, borderRadius: 12, flexShrink: 0,
-                  background: sendTest ? "#7c3aed" : "#d0d0d0",
+                  background: sendTest ? "#15173D" : "#d0d0d0",
                   position: "relative", transition: "background 0.2s", marginLeft: 16,
                 }}
               >
@@ -212,7 +212,7 @@ export default function ConnectModal({ application }) {
             </div>
 
             {/* Preview of link when toggled on */}
-            {sendTest && (
+            {/* {sendTest && (
               <div
                 style={{
                   background: "#f3f0ff", border: "1px solid #c4b5fd",
@@ -227,7 +227,7 @@ export default function ConnectModal({ application }) {
                   Unique questions will be shuffled per candidate
                 </span>
               </div>
-            )}
+            )} */}
 
             {/* Error */}
             {error && (
@@ -246,22 +246,19 @@ export default function ConnectModal({ application }) {
             {result && (
               <div
                 style={{
-                  background: "#f0fdf4", border: "1px solid #86efac",
+                  background: "#15173D", border: "1px solid #15173D",
                   borderRadius: 8, padding: "12px 14px", marginBottom: 16,
-                  fontSize: 13, color: "#15803d",
+                  fontSize: 13, color: "white",
                 }}
               >
                 {result.type === "test" ? (
                   <>
-                    <div style={{ fontWeight: 700, marginBottom: 4 }}>
-                      {result.already_exists ? "⚠ Test already sent — resending email" : "✅ Screening invite sent!"}
-                    </div>
-                    <div style={{ wordBreak: "break-all", fontFamily: "monospace", fontSize: 11, color: "#166534" }}>
-                      {result.test_link}
+                    <div style={{ fontWeight: 400, marginBottom: 0 }}>
+                      {result.already_exists ? "Test link already sent!" : "Screening invite sent!"}
                     </div>
                   </>
                 ) : (
-                  <div style={{ fontWeight: 700 }}>✅ Email client opened</div>
+                  <div style={{ fontWeight: 700 }}>Email client opened</div>
                 )}
               </div>
             )}
@@ -273,14 +270,14 @@ export default function ConnectModal({ application }) {
                 disabled={sending}
                 style={{
                   width: "100%", padding: "13px 0",
-                  background: sending ? "#999" : "#000",
+                  background: sending ? "#999" : "#15173D",
                   color: "#fff", border: "none",
-                  borderRadius: 10, fontSize: 15, fontWeight: 700,
+                  borderRadius: 10, fontSize: 15, fontWeight: 400,
                   cursor: sending ? "not-allowed" : "pointer",
                   transition: "background 0.15s",
                 }}
               >
-                {sending ? "Sending…" : sendTest ? "📨 Send Screening Invite" : "📧 Open Email Client"}
+                {sending ? "Sending…" : sendTest ? "Send Screening Invite" : "Open Email Client"}
               </button>
             )}
 

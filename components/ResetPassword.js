@@ -95,7 +95,7 @@ export default function ResetPassword() {
                     <div className="text-center">
                       <div className="row">
                         <div className="col-md-8 offset-md-2">
-                          <h2 style={{color: '#a6264c'}} className="section-caption-border mb-30 mb-xs-20">
+                          <h2 style={{color: '#15173D'}} className="section-caption-border mb-30 mb-xs-20">
                             Update Password
                           </h2>
                           <h1 className="hs-title-1 mb-0">
@@ -103,7 +103,7 @@ export default function ResetPassword() {
                               <AnimatedText text="Request verification code to update your password" />
                               <p></p>
                             </span> */}
-                            <p style={{color: '#a6264c'}}>Request verification code to update your password</p>
+                            <p style={{color: '#15173D'}}>Request verification code to update your password</p>
                           </h1>
                         </div>
                       </div>
@@ -125,7 +125,7 @@ export default function ResetPassword() {
                       
                       <div className="form-group">
                         <input
-                          style={{color: '#a6264c', borderColor: '#a6264c'}}
+                          style={{color: '#15173D', borderColor: '#15173D'}}
                           type="email"
                           className="input-lg round form-control"
                           placeholder="Enter Your Email Address"
@@ -141,7 +141,7 @@ export default function ResetPassword() {
                           className="submit_btn btn btn-mod btn-large btn-round btn-full btn-hover-anim"
                           onClick={handleRequestReset}
                           disabled={isRequestingCode || !email}
-                          style={{backgroundColor: '#a6264c'}}
+                          style={{backgroundColor: '#15173D'}}
                         >
                           {isRequestingCode ? (
                             <Loader className="animate-spin mr-2" />
@@ -200,6 +200,10 @@ export default function ResetPassword() {
           </main>
         </div>
       </div>
+      <style jsx>{`
+        @import url('https://fonts.googleapis.com/css2?family=Lustria&family=DM+Sans:ital,opsz,wght@0,9..40,100..900;1,9..40,100..900&display=swap');
+      `}
+      </style>
     </div>
   );
 }

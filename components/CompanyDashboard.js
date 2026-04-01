@@ -25,7 +25,8 @@ import {
   ArrowLeftCircle,
   Image,
   ChevronDownCircle,
-  ChevronDown
+  ChevronDown,
+  Layers
 } from 'lucide-react';
 import axios from 'axios';
 import { createClient } from '@supabase/supabase-js';
@@ -47,6 +48,11 @@ const CompanyDashboard = () => {
   const [selectedJob, setSelectedJob] = useState(null);
   const [userEmail, setUserEmail] = useState('');
   const [userId, setUserId] = useState(null);
+
+  const [subscription, setSubscription] = useState('free');
+  const JOB_LIMIT = subscription === 'premium' ? 7 : 1;
+  const APPLICANT_LIMIT = subscription === 'premium' ? 20 : 1;
+
   const allTraits = [
     { trait: "Problem Solving", score: 4.0 },
     { trait: "Team Collaboration", score: 4.5 },
@@ -109,22 +115,21 @@ const CompanyDashboard = () => {
   }, []);
 
   const fetchUserId = async (email) => {
-    try {
-      const { data, error } = await supabase
-        .from('users')
-        .select('ID')
-        .eq('email', email)
-        .single();
+  try {
+    const { data, error } = await supabase
+      .from('users')
+      .select('ID, subscription')
+      .eq('email', email)
+      .single();
 
-      if (error) throw error;
-      
-      if (data) {
-        setUserId(data.ID);
-        // fetchMentorProfile(data.ID);
-      }
-    } catch (err) {
-      console.error(err);
+    if (error) throw error;
+    if (data) {
+      setUserId(data.ID);
+      setSubscription(data.subscription || 'free');
     }
+  } catch (err) {
+    console.error(err);
+  }
 };
 
   useEffect(() => {
@@ -432,7 +437,7 @@ const CompanyDashboard = () => {
                 <span className="stat-icon"><Users color='#15173D' /></span>
                 <div className="stat-text">
                   <h3>Total Applications</h3>
-                  <p>{applications.length} / 100</p>
+                  <p>{applications.length} / {APPLICANT_LIMIT}</p>
                 </div>
               </div>
             </div>
@@ -463,15 +468,30 @@ const CompanyDashboard = () => {
             <div className="profile-section">
               <div className="profile-header">
                 <h2 className='hs-title-11' style={{color: '#15173D'}}>
-                  <ScanText size={18} style={{marginTop: -3}} /> Manage Jobs
+                  <ScanText size={18} style={{marginTop: -3}} /> Candidate Screening
                 </h2>
-                <button 
-                  className="edit-button"
-                  style={{marginTop: -25}}
-                  onClick={() => setShowJobForm(true)}
+                <div>
+                <button
+                    className="upgrade-plan"
+                    style={{ marginTop: -25 }}
+                    onClick={() => {
+                      if (jobss.length >= JOB_LIMIT) {
+                        toast.error(`Plan limit reached: max ${JOB_LIMIT} job posts`);
+                        return;
+                      }
+                      setShowJobForm(true);
+                    }}
                 >
                   <PlusCircle size={14} style={{marginTop: -2}} /> Create New Job
+                </button> &nbsp;
+                  <button 
+                    className="upgrade-plan"
+                    style={{marginTop: -25}}
+                    onClick={() => router.push("/candidate-filter")}
+                  >
+                  <Layers size={14} style={{marginTop: -2}} /> View Reports
                 </button>
+                </div>
               </div>
               <p style={{marginTop: 0, fontSize: 14, color: '#15173D'}}>Take a moment to review your profile and make any necessary changes. If you spot any mistakes or outdated information, you can easily edit the details in the form to make sure everything is correct and reflects your current information. Keeping your profile up to date helps you to present the best version of yourself.</p>
 
@@ -730,7 +750,7 @@ const CompanyDashboard = () => {
                   {activeTab === 'posts' ? (
                     <div className="matches-container">
                     <div className="matches-list">
-                      {jobss.map((job, index) => (
+                      {jobss.slice(0, JOB_LIMIT).map((job, index) => (
                         <div key={index}
                         className={`job-card ${selectedJob === job ? 'selected' : ''}`}
                         onClick={() => setSelectedJob(job)}
@@ -867,7 +887,7 @@ const CompanyDashboard = () => {
                       marginTop: '70px',
                       borderRadius: '40px'
                     }} className="matches-lists">
-                      {applications.map((application, index) => (
+                      {applications.slice(0, APPLICANT_LIMIT).map((application, index) => (
                         <div key={index} className="job-cards" onClick={() => toggleExpand(index)}>
                           <div className="job-items">
                             <div style={{marginTop: -15}} className="job-details">

@@ -1123,8 +1123,8 @@ useEffect(() => {
     <div style={{backgroundColor: 'white'}} className={styles.container}>
       <div className="hero-section">
           <div className="hero-content">
-              <h1 className="hs-title-8">Micro Learning Modules</h1>
-              <p style={{color: 'white'}} className='hs-title'>Self-Paced Video Lectures with Q&A Engine</p>
+              <h1 style={{color: '#15173D'}} className="hs-title-8">Micro Learning Modules</h1>
+              <p style={{color: '#15173D'}} className='hs-title'>Self-Paced Video Lectures with Q&A Engine</p>
               <div className="upload-sections">
                   <div className="file-upload">
                       <label className="upload-btn">
@@ -1477,7 +1477,7 @@ useEffect(() => {
             background-position: center;
             background-blend-mode: overlay;
             padding: 40px;
-            border-radius: 10px;
+            border-radius: 40px;
             position: relative;
             box-shadow: 0 10px 30px rgba(227, 207, 250, 0.5),
               inset 0 1px 0 rgba(255, 255, 255, 0.5);
@@ -1485,14 +1485,13 @@ useEffect(() => {
         }
 
         .hero-section::before {
-            content: '';
+             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            border-radius: 10px;
-            background-color: rgba(147, 81, 255, 0.16); /* Darkens the background image */
+            border-radius: 40px;
             border: 1px solid rgba(255, 255, 255, 0.05);     
             box-shadow: 0 10px 30px rgba(208, 172, 255, 0.3),
               inset 0 1px 0 rgba(255, 255, 255, 0.1);

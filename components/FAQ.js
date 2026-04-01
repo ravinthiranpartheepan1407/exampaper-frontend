@@ -26,11 +26,11 @@ export default function FAQ() {
         {/* #1 accordion item */}
         <div onClick={() => handleToggle(1)} className={`acc__item ${isActive.key === 1 ? "opened" : ""}`} >
           <div className="acc__header">
-            <h2 className="acc__title">Which features am I paying for?</h2>
+            <h2 className="acc__title">What tools are included in my subscription?</h2>
             <div className="acc__icon" />
           </div>
           <div className="acc__content" style={isActive.key === 1 ? { "display": "block" } : { "display": "none" }}>
-            <p>You are paying only for the main feature, which is the Premium Library Catalogs, and AI Research Engine.</p>
+            <p>The subscription covers the job screening tool only; MCQ and Micro Courses are not included.</p>
           </div>
         </div>
         {/* !#1 accordion item */}
@@ -41,7 +41,7 @@ export default function FAQ() {
             <div className="acc__icon" />
           </div>
           <div className="acc__content" style={isActive.key === 2 ? { "display": "block" } : { "display": "none" }} >
-            <p>If you have any technical issues, reach out to us at info@studypoints24.com</p>
+            <p>If you have any technical issues, reach out to us at admin@exampaper.academy</p>
           </div>
         </div>
         {/* !#2 accordion item */}
@@ -52,7 +52,7 @@ export default function FAQ() {
             <div className="acc__icon" />
           </div>
           <div className="acc__content" style={isActive.key === 3 ? { "display": "block" } : { "display": "none" }}>
-            <p>If you have any payment-related issues, reach out to us at info@studypoints24.com</p>
+            <p>If you have any payment-related issues, reach out to us at support@exampaper.academy</p>
           </div>
         </div>
         {/* !#3 accordion item */}

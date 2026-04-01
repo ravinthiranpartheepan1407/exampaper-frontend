@@ -97,9 +97,15 @@ const data = [
         
     },
     {
+        title: "Manage Subscription",
+        pathname: "/subscription",
+        img: "/svg/billing.svg"
+
+    },
+    {
         title: "Feedback Form",
-        pathname: "https://forms.gle/BRZ6FHYqAKUJJNGYA",
-        img: "/svg/thunder.svg"
+        pathname: "https://forms.cloud.microsoft/r/2iuZCvQBMr?origin=lprLink",
+        img: "/svg/question.svg"
 
     },
 
@@ -272,7 +278,7 @@ export default function Left({ activeTrueFalse, activeMobileMenu }) {
                     <div className="nav_group">
                         <h2 className="group__title">Support</h2>
                         <ul className="group__list">
-                            {data.slice(11, 12).map((item, i) => (
+                            {data.slice(11, 13).map((item, i) => (
                                 <li key={i}>
                                     <Link href={item.pathname} className={`fn__tooltip menu__item ${pathname === item.pathname ? " active" : ""}`} title={item.title} >
                                         <span className="icon"><img src={item.img} alt="" className="fn__svg" /></span>
@@ -288,7 +294,7 @@ export default function Left({ activeTrueFalse, activeMobileMenu }) {
                                     <span className="trigger"><img src="svg/arrow.svg" alt="" className="fn__svg" /></span>
                                 </a>
                                 <ul className="sub-menu" style={{ display: `${isToggle ? "block" : "none"}` }}>
-                                    {data.slice(12, 16).map((item, i) => (
+                                    {data.slice(13, 17).map((item, i) => (
                                         <li key={i}>
                                             {item.title === "Log Out" ? (
                                                 <a

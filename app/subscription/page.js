@@ -20,12 +20,12 @@ export const metadata = {
 export default function page() {
   return (
     <Layout>
-      <div className="techwave_fn_pricing_page">
+      <div style={{marginTop: -140}} className="techwave_fn_pricing_page">
         <div className="techwave_fn_title_holder">
           <div className="container">
-            <h1 className="title hs-title-1">Built for Your Growth</h1>
+            <h1 className="title hs-title-10">Built for Your HR Team</h1>
             <br />
-            <p className="desc fn__animated_text hs-title-6">Start small and free, upgrade as you go. Take control of everything.</p>
+            <p className="desc fn__animated_text hs-title-6">Start small and free, upgrade as you go.</p>
           </div>
         </div>
         {/* Pricing Shortcode */}
@@ -38,7 +38,7 @@ export default function page() {
         <div className="techwave_fn_title_holder">
           <div className="container">
             <h1 className="title">Frequently Asked Questions</h1>
-            <p className="desc fn__animated_text">Many support queries and technical questions will already be answered</p>
+            <p style={{marginTop: 20}} className="desc fn__animated_text">Many support queries and technical questions will already be answered.</p>
           </div>
         </div>
         <div className="container medium">

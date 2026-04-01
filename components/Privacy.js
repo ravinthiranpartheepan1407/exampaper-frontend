@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 
 export default function Privacy() {
@@ -5,14 +6,14 @@ export default function Privacy() {
         <>
             <div className="techwave_fn_privacy_page">
                 {/* Page Title */}
-                <div className="techwave_fn_pagetitle">
+                <div style={{marginTop: -99}}  className="techwave_fn_pagetitle">
                     <h2 className="title">Privacy Policy</h2>
                 </div>
                 {/* !Page Title */}
                 <div className="privacypage">
                     <div className="container small">
                         <h4 className="fn__animated_text">Website</h4>
-                        <p>Our website address is: https://studypoints24.com/</p>
+                        <p>Our website address is: https://exampaper.academy/</p>
                         <hr />
 
                         <h4 className="fn__animated_text">1. Information We Collect</h4>
@@ -20,8 +21,7 @@ export default function Privacy() {
                         <ul>
                             <li><strong>Email address</strong>: For account creation, communication, and notifications.</li>
                             <li><strong>Username</strong>: To identify you within the platform.</li>
-                            <li><strong>LinkedIn Public URL</strong>: For professional networking and co-founder/mentor matching purposes.</li>
-                            <li><strong>Usage Data</strong>: We automatically collect data on how you interact with our services, such as IP addresses, device information, and browsing activity.</li>
+                            <li><strong>LinkedIn Public URL</strong>: For professional networking.</li>
                         </ul>
                         <hr />
 
@@ -67,7 +67,7 @@ export default function Privacy() {
                             <li><strong>Opt-out</strong>: You may opt-out of receiving marketing communications from us by following the unsubscribe instructions in such communications.</li>
                             <li><strong>Object to Processing</strong>: You may object to certain types of data processing, including for direct marketing purposes.</li>
                         </ul>
-                        <p>To exercise these rights, please contact us at info@studypoints24.com.</p>
+                        <p>To exercise these rights, please contact us at support@exampaper.academy</p>
                         <hr />
 
                         <h4 className="fn__animated_text">8. Cookies and Tracking Technologies</h4>
@@ -88,12 +88,15 @@ export default function Privacy() {
 
                         <h4 className="fn__animated_text">12. Contact Us</h4>
                         <p>If you have any questions or concerns about this Privacy Policy or our data practices, or if you wish to exercise your rights regarding your personal data, please contact us at:</p>
-                        <p>Email: info@studypoints24.com</p>
-                        <p>Website: www.studypoints24.com</p>
+                        <p>Email: support@exampaper.academy</p>
+                        <p>Website: www.exampaper.academy</p>
                     </div>
                 </div>    
             </div>
-
+            <style jsx>{`
+                @import url('https://fonts.googleapis.com/css2?family=Lustria&family=DM+Sans:ital,opsz,wght@0,9..40,100..900;1,9..40,100..900&display=swap');
+            `}
+            </style>
         </>
     )
 }

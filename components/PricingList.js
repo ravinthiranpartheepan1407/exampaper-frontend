@@ -51,15 +51,15 @@ const PRICING = {
     symbol: '$'
   },
   'EUR': {
-    basePrice: 1499, // €14.99 EUR
+    basePrice: 1999, // €19.99 EUR
     symbol: '€'
   },
   'INR': {
-    basePrice: 29900, // ₹499 INR
+    basePrice: 39900, // ₹399 INR
     symbol: '₹'
   },
   'GBP': {
-    basePrice: 1599, // £15.99 GBP
+    basePrice: 1999, // £19.99 GBP
     symbol: '£'
   }
 };
@@ -204,29 +204,89 @@ export default function PricingList() {
 
   const getFreeButtonContent = () => {
     if (isLoading) {
-      return <button className="techwave_fn_button" disabled><span>Loading...</span></button>;
+      return <button className="upgrade-plan" disabled><span>Loading...</span></button>;
     }
     if (subscription === 'premium') {
-      return <button className="techwave_fn_button" disabled><span>Plan Upgraded</span></button>;
+      return <button className="upgrade-plan" disabled><span>Plan Upgraded</span></button>;
     }
-    return <button className="techwave_fn_button" disabled><span>Current Plan</span></button>;
+    return(
+      <>
+       <button className="plan-button" disabled><span>Current Plan</span></button>
+        <style jsx>{`
+            .plan-button{  
+              padding: 0.5rem 1rem;
+              background: #F8FAFC !important;
+              border-radius: 40px;
+              border-style: dotted;
+              cursor: pointer;
+              color: white;
+              font-weight: 500;
+              font-size: 0.84rem;
+              border-radius: 40px;
+              background: #15173D !important;
+              border: 8px solid #F8FAFC !important;
+              box-shadow: 0 8px 4px rgba(187, 205, 255, 0.44);
+            }
+          `}
+        </style>
+      </>
+    )
   };
 
   const getPremiumButtonContent = () => {
     if (isLoading) {
-      return <button className="techwave_fn_button" disabled><span>Loading...</span></button>;
+      return <button className="upgrade-plan" disabled><span>Loading...</span></button>;
     }
     if (subscription === 'premium') {
-      return <button className="techwave_fn_button" disabled><span>Current Plan</span></button>;
+    return (
+      <>
+       <button className="plan-button" disabled><span>Current Plan</span></button>
+        <style jsx>{`
+            .plan-button{  
+              padding: 0.5rem 1rem;
+              background: #F8FAFC !important;
+              border-radius: 40px;
+              border-style: dotted;
+              cursor: pointer;
+              color: white;
+              font-weight: 500;
+              font-size: 0.84rem;
+              border-radius: 40px;
+              background: #15173D !important;
+              border: 8px solid #F8FAFC !important;
+              box-shadow: 0 8px 4px rgba(187, 205, 255, 0.44);
+            }
+          `}
+        </style>
+      </>
+    )
     }
     return (
+    <>
       <button 
-        type="button"
-        className="techwave_fn_button"
         onClick={handlePayment}
+        className='upgrade-plan'
       >
-        Upgrade Plan
+        <span>Upgrade Plan</span>
       </button>
+      <style jsx>{`
+            .upgrade-plan{  
+              padding: 0.5rem 1rem;
+              background: #F8FAFC !important;
+              border-radius: 40px;
+              border-style: dotted;
+              cursor: pointer;
+              color: #15173D;
+              font-weight: 500;
+              font-size: 0.84rem;
+              border-radius: 40px;
+              background: white !important;
+              border: 4px solid #F8FAFC !important;
+              box-shadow: 0 8px 4px rgba(187, 205, 255, 0.44);
+            }
+          `}
+      </style>
+    </>
     );
   };
 
@@ -284,7 +344,7 @@ export default function PricingList() {
         key: razorpayTK, // Should come from environment variable
         amount: price.toString(),
         currency: currencyCode,
-        name: "Arkhamm AI Private Limited",
+        name: "Exam Paper - Job Screening",
         description: `Premium Subscription (${symbol}${formattedPrice})`,
         handler: async function(response) {
           if (response.razorpay_payment_id) {
@@ -301,9 +361,8 @@ export default function PricingList() {
           }
         },
         prefill: {
-          name: "Customer",
+          name: userEmail || "",
           email: userEmail || "",
-          contact: "" // This should be collected from user
         },
         theme: {
           color: "#3399cc"
@@ -334,9 +393,9 @@ export default function PricingList() {
       {/* toggle pricing */}
       <div className="pricing__toggle">
         <div className="toggle_in">
-          <a onClick={() => handleOnClick(1)}  className={activeIndex === 1 ? "active" : ""}>Monthly</a>
-          <a  className={activeIndex === 2 ? " active" : ""}>Yearly <Lock size={14} style={{marginTop: -3}} /> </a>
-          <span className="bg" style={activeIndex===1 ? {"left":"10px","width":"118.875px"} : {"left":"128.875px","width":"134.594px"}} />
+          <a onClick={() => handleOnClick(1)}  className={activeIndex === 1 ? "active" : ""}>Monthly Subscription</a>
+          {/* <a onClick={() => handleOnClick(2)} className={activeIndex === 2 ? " active" : ""}>Yearly </a> */}
+          <span className="bg" style={activeIndex===1 ? {"left":"10px","width":"140.875px"} : {"left":"128.875px","width":"134.594px"}} />
         </div>
       </div>
       {/* !toggle pricing */}
@@ -351,25 +410,29 @@ export default function PricingList() {
                 <div className="pricing__item__header">
                   <h2 className="title">Free</h2>
                   <h3 className="price"><span>₹0</span> / month</h3>
-                   <p className="desc">Limited Main Feature<br /><span>and</span> Other Free Features</p>
+                   <p className="desc">Limited Seat Capacity<br /><span>and</span> Other Free Features</p>
                   <p className="purchase">
                     {getFreeButtonContent()}
                   </p>
                 </div>
                 <div className="pricing__item__heading">
-                  <h2 className="title">Main Features</h2>
+                  <h2 className="title">Job Search Engine</h2>
                 </div>
                 <div className="pricing__item_list">
                   <div className="pricing__item_list_item">
-                    <h4 className="title">Library Catalogs</h4>
-                    <p className="desc">Free Catalogs Only</p>
+                    <h4 className="title">Email Invitation</h4>
+                    <p className="desc">5 Emails</p>
                   </div>
                   <div className="pricing__item_list_item">
-                    <h4 className="title">AI Research Engine</h4>
-                    <p className="desc">5</p>
+                    <h4 className="title">Applicant Volume</h4>
+                    <p className="desc">5/Job</p>
+                  </div>
+                  <div className="pricing__item_list_item">
+                    <h4 className="title">Job Post capacity</h4>
+                    <p className="desc">3/Business</p>
                   </div>
                 </div>
-                <div className="pricing__item__heading">
+                {/* <div className="pricing__item__heading">
                   <h2 className="title">Other Free Features</h2>
                 </div>
                 <div className="pricing__item_list">
@@ -385,7 +448,7 @@ export default function PricingList() {
                     <h4 className="title">Candidate Search Engine</h4>
                     <p className="desc">+</p>
                   </div>
-                </div>
+                </div> */}
                 <div className="pricing__item_footer">
                   {getFreeButtonContent()}
                 </div>
@@ -399,26 +462,31 @@ export default function PricingList() {
                 <div className="pricing__item__header">
                   <h2 className="title">Premium</h2>
                   <h3 className="price"><span>{displayPrice()}</span> / month</h3>
-                  <p className="desc">Main Feature<br /><span>and</span> Other Free Features</p>
+                  <p className="desc">Extended Seat Capacity<br /><span>and</span> Free Features</p>
                   <p className="purchase">
-                    {/* <Link href="#" className="techwave_fn_button"><span>Buy Premium</span></Link> */}
+                    {/* <Link href="#" className="upgrade-plan"><span>Buy Premium</span></Link> */}
                     {getPremiumButtonContent()}
                   </p>
                 </div>
                 <div className="pricing__item__heading">
-                  <h2 className="title">Main Features</h2>
+                  <h2 className="title">Job Search Engine</h2>
                 </div>
                 <div className="pricing__item_list">
                   <div className="pricing__item_list_item">
-                    <h4 className="title">Library Catalogs</h4>
-                    <p className="desc">Premium Catalogs</p>
+                    <h4 className="title">Email Invitation</h4>
+                    <p className="desc">20 Emails</p>
                   </div>
                   <div className="pricing__item_list_item">
-                    <h4 className="title">AI Research Engine</h4>
-                    <p className="desc">50</p>
+                    <h4 className="title">Applicant Volume</h4>
+                    <p className="desc">20/Job</p>
                   </div>
+                  <div className="pricing__item_list_item">
+                    <h4 className="title">Job Post Volume</h4>
+                    <p className="desc">10/Business</p>
+                  </div>
+                  
                 </div>
-                <div className="pricing__item__heading">
+                {/* <div className="pricing__item__heading">
                   <h2 className="title">Other Free Features</h2>
                 </div>
                 <div className="pricing__item_list">
@@ -434,7 +502,7 @@ export default function PricingList() {
                     <h4 className="title">Candidate Search Engine</h4>
                     <p className="desc">+</p>
                   </div>
-                </div>
+                </div> */}
                 <div className="pricing__item_footer">
                   {getPremiumButtonContent()}
                 </div>
@@ -449,23 +517,27 @@ export default function PricingList() {
                   <h3 className="price"><span>Contact us</span></h3>
                   <p className="desc">Get iny<br /><span>Touch</span> with us</p>
                   <p className="purchase">
-                    <Link href="/contact" className="techwave_fn_button"><span>Contact us</span></Link>
+                    <Link href="/contact" className="upgrade-plan"><span>Contact us</span></Link>
                   </p>
                 </div>
                 <div className="pricing__item__heading">
-                  <h2 className="title">Main Features</h2>
+                  <h2 className="title">Job Search Engine</h2>
                 </div>
                 <div className="pricing__item_list">
                   <div className="pricing__item_list_item">
-                    <h4 className="title">Library Catalogs</h4>
+                    <h4 className="title">Email Invitation</h4>
                     <p className="desc">Contact us</p>
                   </div>
                   <div className="pricing__item_list_item">
-                    <h4 className="title">AI Research Engine</h4>
+                    <h4 className="title">Applicant Volume</h4>
+                    <p className="desc">Contact us</p>
+                  </div>
+                  <div className="pricing__item_list_item">
+                    <h4 className="title">Job Post Volume</h4>
                     <p className="desc">Contact us</p>
                   </div>
                 </div>
-                <div className="pricing__item__heading">
+                {/* <div className="pricing__item__heading">
                   <h2 className="title">Other Free Features</h2>
                 </div>
                 <div className="pricing__item_list">
@@ -473,10 +545,6 @@ export default function PricingList() {
                     <h4 className="title">AI Test</h4>
                     <p className="desc">-</p>
                   </div>
-                  {/* <div className="pricing__item_list_item">
-                    <h4 className="title">Startup Mentor Matchmaking</h4>
-                    <p className="desc">-</p>
-                  </div> */}
                   <div className="pricing__item_list_item">
                     <h4 className="title">S24 Courses + AI</h4>
                     <p className="desc">+</p>
@@ -485,9 +553,9 @@ export default function PricingList() {
                     <h4 className="title">Candidate Search Engine</h4>
                     <p className="desc">+</p>
                   </div>
-                </div>
+                </div> */}
                 <div className="pricing__item_footer">
-                  <Link href="#" className="techwave_fn_button"><span>Contact us</span></Link>
+                  <Link href="#" className="upgrade-plan"><span>Contact us</span></Link>
                 </div>
               </div>
             </div>
@@ -502,7 +570,7 @@ export default function PricingList() {
                 <div className="item_col">
                   <h2 className="title hs-title-6">Free</h2>
                   <h3 className="price"><span>₹0</span> / month</h3>
-                   <p className="desc">Limited Main Feature<br /><span>and</span> Other Free Features</p>
+                   <p className="desc">Limited Seat Capacity<br /><span>and</span> Other Free Features</p>
                   <p className="purchase">
                     {getFreeButtonContent()}
                   </p>
@@ -511,9 +579,9 @@ export default function PricingList() {
                   <div className="popular"><span>Most Popular</span></div>
                   <h2 className="title">Premium</h2>
                   <h3 className="price"><span>{displayPrice()}</span> / month</h3>
-                  <p className="desc">Main Feature<br /><span>and</span> Other Free Features</p>
+                  <p className="desc">Extended Seat Capacity<br /><span>and</span> Free Features</p>
                   <p className="purchase">
-                    {/* <Link href="#" className="techwave_fn_button"><span>Buy Premium</span></Link> */}
+                    {/* <Link href="#" className="upgrade-plan"><span>Buy Premium</span></Link> */}
                     {getPremiumButtonContent()}
                   </p>
                 </div>
@@ -522,7 +590,7 @@ export default function PricingList() {
                   <h3 className="price"><span>Contact us</span></h3>
                   <p className="desc">Get in<br /><span>Touch</span> with us!</p>
                   <p className="purchase">
-                    <Link href="/contact" className="techwave_fn_button"><span>Contact us</span></Link>
+                    <Link href="/contact" className="upgrade-plan"><span>Contact us</span></Link>
                   </p>
                 </div>
               </div>
@@ -530,7 +598,7 @@ export default function PricingList() {
             {/* !table's header */}
             {/* table's heading */}
             <div className="pricing__heading">
-              <div className="item"><span className="title">Main Features</span></div>
+              <div className="item"><span className="title">Job Search Engine</span></div>
               <div className="item wide" />
             </div>
             {/* !table's heading */}
@@ -538,41 +606,58 @@ export default function PricingList() {
             <div className="pricing__fields">
               <div className="item_row">
                 <div className="item_col">
-                  <span className="heading_text">Library Catalogs</span>
+                  <span className="heading_text">Email Invitation</span>
                 </div>
                 <div className="item_col">
-                  <span className="option_text">Free Catalogs</span>
+                  <span className="option_text">5 Emails</span>
                 </div>
                 <div className="item_col">
-                  <span className="option_text">Premium Catalogs</span>
+                  <span className="option_text">20 Emails</span>
                 </div>
                 <div className="item_col">
                   <span className="option_text">Contact us</span>
                 </div>
               </div>
+              
               <div className="item_row">
                 <div className="item_col">
-                  <span className="heading_text">AI Research Engine</span>
+                  <span className="heading_text">Applicant Volume</span>
                 </div>
                 <div className="item_col">
-                  <span className="option_text">5</span>
+                  <span className="option_text">5/Job</span>
                 </div>
                 <div className="item_col">
-                  <span className="option_text">50</span>
+                  <span className="option_text">20/Job</span>
                 </div>
                 <div className="item_col">
                   <span className="option_text">Contact us</span>
                 </div>
               </div>
+
+              
+              <div className="item_row">
+                <div className="item_col">
+                  <span className="heading_text">Job Post Volume</span>
+                </div>
+                <div className="item_col">
+                  <span className="option_text">3/Business</span>
+                </div>
+                <div className="item_col">
+                  <span className="option_text">10/Business</span>
+                </div>
+                <div className="item_col">
+                  <span className="option_text">Contact us</span>
+                </div>
+              </div>
+              
             </div>
             {/* !table's options */}
             {/* table's heading */}
-            <div className="pricing__heading">
+            {/* <div className="pricing__heading">
               <div className="item"><span className="title">Other Free Features</span></div>
               <div className="item wide" />
             </div>
-            {/* !table's heading */}
-            {/* table's options */}
+
             <div className="pricing__fields">
               <div className="item_row">
                 <div className="item_col">
@@ -616,7 +701,7 @@ export default function PricingList() {
                   <span className="option_text">+</span>
                 </div>
               </div>
-            </div>
+            </div> */}
             {/* !table's options */}
             {/* table's footer */}
             <div className="pricing__footer">
@@ -629,7 +714,7 @@ export default function PricingList() {
                 {getPremiumButtonContent()}
                 </div>
                 <div className="item_col">
-                  <Link href="#" className="techwave_fn_button"><span>Contact us</span></Link>
+                  <Link href="#" className="upgrade-plan"><span>Contact us</span></Link>
                 </div>
               </div>
             </div>
@@ -645,25 +730,25 @@ export default function PricingList() {
                 <div className="pricing__item__header">
                   <h2 className="title">Free</h2>
                   <h3 className="price"><span>₹0</span> / month</h3>
-                   <p className="desc">Limited Main Feature<br /><span>and</span> Other Free Features</p>
+                   <p className="desc">Limited Seat Capacity<br /><span>and</span> Other Free Features</p>
                   <p className="purchase">
                     {getFreeButtonContent()}
                   </p>
                 </div>
                 <div className="pricing__item__heading">
-                  <h2 className="title">Main Features</h2>
+                  <h2 className="title">Job Search Engine</h2>
                 </div>
                 <div className="pricing__item_list">
                   <div className="pricing__item_list_item">
-                    <h4 className="title">Library Catalogs</h4>
+                    <h4 className="title">Email Invitation</h4>
                     <p className="desc">Free Catalogs</p>
                   </div>
                   <div className="pricing__item_list_item">
-                    <h4 className="title">AI Research Engine</h4>
+                    <h4 className="title">Applicant Volume</h4>
                     <p className="desc">5</p>
                   </div>
                 </div>
-                <div className="pricing__item__heading">
+                {/* <div className="pricing__item__heading">
                   <h2 className="title">Other Free Features</h2>
                 </div>
                 <div className="pricing__item_list">
@@ -671,10 +756,6 @@ export default function PricingList() {
                     <h4 className="title">AI Test Engine</h4>
                     <p className="desc">-</p>
                   </div>
-                  {/* <div className="pricing__item_list_item">
-                    <h4 className="title">Startup Mentor Matchmaking</h4>
-                    <p className="desc">+</p>
-                  </div> */}
                   <div className="pricing__item_list_item">
                     <h4 className="title">S24 Courses + AI</h4>
                     <p className="desc">-</p>
@@ -683,7 +764,7 @@ export default function PricingList() {
                     <h4 className="title">Candidate Search Engine</h4>
                     <p className="desc">+</p>
                   </div>
-                </div>
+                </div> */}
                 <div className="pricing__item_footer">
                   {getFreeButtonContent()}
                 </div>
@@ -703,19 +784,19 @@ export default function PricingList() {
                   </p>
                 </div>
                 <div className="pricing__item__heading">
-                  <h2 className="title">Main Features</h2>
+                  <h2 className="title">Job Search Engine</h2>
                 </div>
                 <div className="pricing__item_list">
                   <div className="pricing__item_list_item">
-                    <h4 className="title">Library Catalogs</h4>
+                    <h4 className="title">Email Invitation</h4>
                     <p className="desc">Premium Catalogs</p>
                   </div>
                   <div className="pricing__item_list_item">
-                    <h4 className="title">AI Research Engine</h4>
+                    <h4 className="title">Applicant Volume</h4>
                     <p className="desc">50</p>
                   </div>
                 </div>
-                <div className="pricing__item__heading">
+                {/* <div className="pricing__item__heading">
                   <h2 className="title">Other Free Features</h2>
                 </div>
                 <div className="pricing__item_list">
@@ -723,10 +804,6 @@ export default function PricingList() {
                     <h4 className="title">AI Test Engine</h4>
                     <p className="desc">-</p>
                   </div>
-                  {/* <div className="pricing__item_list_item">
-                    <h4 className="title">Startup Mentor Matchmaking</h4>
-                    <p className="desc">+</p>
-                  </div> */}
                   <div className="pricing__item_list_item">
                     <h4 className="title">S24 Courses + AI</h4>
                     <p className="desc">-</p>
@@ -735,7 +812,7 @@ export default function PricingList() {
                     <h4 className="title">Candidate Search Engine</h4>
                     <p className="desc">+</p>
                   </div>
-                </div>
+                </div> */}
                 <div className="pricing__item_footer">
                 {getPremiumButtonContent()}
                 </div>
@@ -750,19 +827,19 @@ export default function PricingList() {
                   <h3 className="price"><span>Contact us</span></h3>
                   <p className="desc">Get in<br /><span>Touch</span> with us</p>
                   <p className="purchase">
-                    <Link href="/contact" className="techwave_fn_button"><span>Contact us</span></Link>
+                    <Link href="/contact" className="upgrade-plan"><span>Contact us</span></Link>
                   </p>
                 </div>
                 <div className="pricing__item__heading">
-                  <h2 className="title">Main Features</h2>
+                  <h2 className="title">Job Search Engine</h2>
                 </div>
                 <div className="pricing__item_list">
                   <div className="pricing__item_list_item">
-                    <h4 className="title">Library Catalogs</h4>
+                    <h4 className="title">Email Invitation</h4>
                     <p className="desc">Contact us</p>
                   </div>
                   <div className="pricing__item_list_item">
-                    <h4 className="title">AI Research Engine</h4>
+                    <h4 className="title">Applicant Volume</h4>
                     <p className="desc">5</p>
                   </div>
                   {/* <div className="pricing__item_list_item">
@@ -790,7 +867,7 @@ export default function PricingList() {
                     <p className="desc">+</p>
                   </div> */}
                 </div>
-                <div className="pricing__item__heading">
+                {/* <div className="pricing__item__heading">
                   <h2 className="title">Other Free Features</h2>
                 </div>
                 <div className="pricing__item_list">
@@ -798,10 +875,6 @@ export default function PricingList() {
                     <h4 className="title">AI Test Engine</h4>
                     <p className="desc">-</p>
                   </div>
-                  {/* <div className="pricing__item_list_item">
-                    <h4 className="title">Startup Mentor Matchmaking</h4>
-                    <p className="desc">+</p>
-                  </div> */}
                   <div className="pricing__item_list_item">
                     <h4 className="title">S24 Courses + AI</h4>
                     <p className="desc">+</p>
@@ -810,9 +883,9 @@ export default function PricingList() {
                     <h4 className="title">Candidate Search Engine</h4>
                     <p className="desc">+</p>
                   </div>
-                </div>
+                </div> */}
                 <div className="pricing__item_footer">
-                  <Link href="#" className="techwave_fn_button"><span>Contact us</span></Link>
+                  <Link href="#" className="upgrade-plan"><span>Contact us</span></Link>
                 </div>
               </div>
             </div>
@@ -827,7 +900,7 @@ export default function PricingList() {
                 <div className="item_col">
                   <h2 className="title">Free</h2>
                   <h3 className="price"><span>₹0</span> / month</h3>
-                   <p className="desc">Limited Main Feature<br /><span>and</span> Other Free Features</p>
+                   <p className="desc">Limited Seat Capacity<br /><span>and</span> Other Free Features</p>
                   <p className="purchase">
                     {getFreeButtonContent()}
                   </p>
@@ -846,7 +919,7 @@ export default function PricingList() {
                   <h3 className="price"><span>Contact us</span></h3>
                   <p className="desc">Get in<br /><span>Touch</span> with us</p>
                   <p className="purchase">
-                    <Link href="/contact" className="techwave_fn_button"><span>Contact us</span></Link>
+                    <Link href="/contact" className="upgrade-plan"><span>Contact us</span></Link>
                   </p>
                 </div>
               </div>
@@ -854,7 +927,7 @@ export default function PricingList() {
             {/* !table's header */}
             {/* table's heading */}
             <div className="pricing__heading">
-              <div className="item"><span className="title">Main Features</span></div>
+              <div className="item"><span className="title">Job Search Engine</span></div>
               <div className="item wide" />
             </div>
             {/* !table's heading */}
@@ -862,7 +935,7 @@ export default function PricingList() {
             <div className="pricing__fields">
               <div className="item_row">
                 <div className="item_col">
-                  <span className="heading_text">Library Catalogs</span>
+                  <span className="heading_text">Email Invitation</span>
                 </div>
                 <div className="item_col">
                   <span className="option_text">Free Catalogs</span>
@@ -876,7 +949,7 @@ export default function PricingList() {
               </div>
               <div className="item_row">
                 <div className="item_col">
-                  <span className="heading_text">AI Research Engine</span>
+                  <span className="heading_text">Applicant Volume</span>
                 </div>
                 <div className="item_col">
                   <span className="option_text">5</span>
@@ -979,8 +1052,7 @@ export default function PricingList() {
               <div className="item"><span className="title">Other Free Features</span></div>
               <div className="item wide" />
             </div>
-            {/* !table's heading */}
-            {/* table's options */}
+
             <div className="pricing__fields">
               <div className="item_row">
                 <div className="item_col">
@@ -996,20 +1068,7 @@ export default function PricingList() {
                   <span className="option_text">+</span>
                 </div>
               </div>
-              {/* <div className="item_row">
-                <div className="item_col">
-                  <span className="heading_text">Startup Mentor Matchmaking</span>
-                </div>
-                <div className="item_col">
-                  <span className="option_text">+</span>
-                </div>
-                <div className="item_col">
-                  <span className="option_text">+</span>
-                </div>
-                <div className="item_col">
-                  <span className="option_text">+</span>
-                </div>
-              </div> */}
+
               <div className="item_row">
                 <div className="item_col">
                   <span className="heading_text">S24 Courses + AI</span>
@@ -1051,7 +1110,7 @@ export default function PricingList() {
                 {getPremiumButtonContent()}
                 </div>
                 <div className="item_col">
-                  <Link href="#" className="techwave_fn_button"><span>Upgrade Plan</span></Link>
+                  <Link href="#" className="upgrade-plan"><span><span>Upgrade Plan</span></span></Link>
                 </div>
               </div>
             </div>
@@ -1059,6 +1118,10 @@ export default function PricingList() {
           </div>
         </div>
       </div>
+      <style jsx>{`
+        @import url('https://fonts.googleapis.com/css2?family=Lustria&family=DM+Sans:ital,opsz,wght@0,9..40,100..900;1,9..40,100..900&display=swap');
+        `}
+      </style>
       {/* !pricing tabs */}
     </>
   )
