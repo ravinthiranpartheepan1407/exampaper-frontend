@@ -25,7 +25,7 @@ export default function Header({ searchToggle }) {
     useEffect(() => {
         const token = localStorage.getItem('authToken')
         if (!token) {
-            router.push('/')
+            // router.push('/')
             return
         }
 
@@ -57,7 +57,7 @@ export default function Header({ searchToggle }) {
             checkSubscription()
         } catch (err) {
             console.error('Error decoding token:', err)
-            router.push('/')
+            // router.push('/')
         }
     }, [])
 

@@ -15,7 +15,7 @@ const CourseMarket = () => {
     { 
       id: 1, 
       name: 'Learn Time Series Analysis using Rust', 
-      image: 'https://fdryfwxmkllviwqmynme.supabase.co/storage/v1/object/public/exampaper/math-1.png', 
+      image: 'https://fdryfwxmkllviwqmynme.supabase.co/storage/v1/object/public/exampaper/1_2.png', 
       tags: ["Time Series", "ML", "Rust"], 
       price: 'Company Calculator', 
       link: '/micro-courses/time-series-analysis-using-rust',
@@ -24,8 +24,17 @@ const CourseMarket = () => {
     { 
       id: 2, 
       name: 'Transformer Architecture from Scratch', 
-      image: 'https://fdryfwxmkllviwqmynme.supabase.co/storage/v1/object/public/exampaper/math-1.png', 
+      image: 'https://fdryfwxmkllviwqmynme.supabase.co/storage/v1/object/public/exampaper/2_2.png', 
       tags: ["Deep Learning", "Python"], 
+      price: 'Company Calculator', 
+      link: '/micro-courses/transformers-from-scratch-core-of-gpt-google-translate',
+      courseId: 'transformers_from_scratch_002'  // Added course ID
+    },
+    { 
+      id: 3, 
+      name: 'Vision Informed Transformer-Bilberrydb', 
+      image: 'https://fdryfwxmkllviwqmynme.supabase.co/storage/v1/object/public/exampaper/3_2.png', 
+      tags: ["Deep Learning", "Python", "JS"], 
       price: 'Company Calculator', 
       link: '/micro-courses/transformers-from-scratch-core-of-gpt-google-translate',
       courseId: 'transformers_from_scratch_002'  // Added course ID
@@ -46,7 +55,7 @@ const CourseMarket = () => {
   useEffect(() => {
     const token = localStorage.getItem('authToken');
     if (!token) {
-      router.push('/');
+      // router.push('/');
       return;
     }
 
@@ -86,7 +95,7 @@ const CourseMarket = () => {
       fetchUserCourses();
     } catch (err) {
       console.error('Error decoding token:', err);
-      router.push('/');
+      // router.push('/');
     }
   }, []);
 
@@ -1357,19 +1366,28 @@ useEffect(() => {
               >
                 <X size={15} style={{marginTop: -3}} /> Cancel
               </button>
-              <button 
-                onClick={confirmAndNavigate}
-                className="modal-confirm"
-                disabled={!isAcknowledged || isProcessingPayment}
-              >
-                {isProcessingPayment ? (
-                  <span>Processing...</span>
-                ) : (
-                  <>
-                    <ShoppingCart size={14} style={{marginTop: -1}} /> Buy Now (₹399)
-                  </>
-                )}
-              </button>
+              {userEmail ? (
+                <button 
+                  onClick={confirmAndNavigate}
+                  className="modal-confirm"
+                  disabled={!isAcknowledged || isProcessingPayment}
+                >
+                  {isProcessingPayment ? (
+                    <span>Processing...</span>
+                  ) : (
+                    <>
+                      <ShoppingCart size={14} style={{marginTop: -1}} /> Buy Now (₹399)
+                    </>
+                  )}
+                </button>
+              ) : (
+                <button 
+                  onClick={() => router.push('/')}
+                  className="modal-confirm"
+                >
+                  Login / Register
+                </button>
+              )}
             </div>
             
             {/* Script for DynTube Player */}
@@ -1392,7 +1410,7 @@ useEffect(() => {
       </div>
 
       <div className="tag-filter-container">
-        <h3><Layers size={18} style={{marginTop: -5}} /> Filter by tag:</h3>
+        <h3><Layers size={15} style={{marginTop: -5, color: '#15173D'}} /> Filter by tag:</h3>
           <div className="all-tags">
             {allTags.map((tag, index) => (
               <span 
@@ -1431,7 +1449,7 @@ useEffect(() => {
                 <img src={product.image} alt={product.name} className="card-image" />
               </div>
               <div className="card-content">
-                <h4 className="card-title"><Focus size={18} style={{marginTop: -5}} /> {product.name}</h4>
+                {/* <h4 className="card-title"><Focus size={18} style={{marginTop: -5}} /> {product.name}</h4> */}
                 <div className="card-tag-container">
                   {product.tags.map((tag, index) => (
                     <span 

@@ -148,13 +148,27 @@ export default function Left({ activeTrueFalse, activeMobileMenu }) {
 
     useEffect(() => {
         const token = localStorage.getItem('authToken');
-        const publicRoutes = ['/', '/register', '/verify-otp'];
-
+        const publicRoutes = ['/', '/register', '/verify-otp', '/micro-courses', '/job-search', '/job-search/list', '/job-search/[id]'];
+        
         // If no token and not on public routes, redirect to login
         if (!token && !publicRoutes.includes(pathname)) {
             router.push("/")
         }
     }, [pathname, router]);
+
+    const PERSONAL_EMAIL_DOMAINS = new Set([
+        'gmail.com','yahoo.com','outlook.com','hotmail.com','live.com',
+        'icloud.com','me.com','mac.com','aol.com','protonmail.com',
+        'proton.me','yandex.com','mail.com','gmx.com',
+        'rediffmail.com','msn.com','inbox.com'
+    ]);
+
+    const [showBusinessModal, setShowBusinessModal] = useState(false);
+
+    const isPersonalEmail = (email) => {
+        const domain = email.split('@')[1]?.toLowerCase();
+        return PERSONAL_EMAIL_DOMAINS.has(domain);
+    };
 
 
     const handleLogout = async (e) => {
@@ -280,10 +294,22 @@ export default function Left({ activeTrueFalse, activeMobileMenu }) {
                         <ul className="group__list">
                             {data.slice(11, 13).map((item, i) => (
                                 <li key={i}>
-                                    <Link href={item.pathname} className={`fn__tooltip menu__item ${pathname === item.pathname ? " active" : ""}`} title={item.title} >
+                                    {item.title === "Manage Subscription" && isPersonalEmail(userEmail) ? (
+                                    <a
+                                        href="#"
+                                        onClick={e => { e.preventDefault(); setShowBusinessModal(true); }}
+                                        className={`fn__tooltip menu__item`}
+                                        title={item.title}
+                                    >
+                                        <span className="icon"><img src={item.img} alt="" className="fn__svg" /></span>
+                                        <span className="text">{item.title}</span>
+                                    </a>
+                                    ) : (
+                                    <Link href={item.pathname} className={`fn__tooltip menu__item ${pathname === item.pathname ? "active" : ""}`} title={item.title}>
                                         <span className="icon"><img src={item.img} alt="" className="fn__svg" /></span>
                                         <span className="text">{item.title}</span>
                                     </Link>
+                                    )}
                                 </li>
                             ))}
 
@@ -360,6 +386,47 @@ export default function Left({ activeTrueFalse, activeMobileMenu }) {
                 </div>
                 {/* !content (left panel) */}
             </div>
+            {showBusinessModal && (
+                <div
+                    onClick={() => setShowBusinessModal(false)}
+                    style={{
+                    position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.45)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    zIndex: 9999,
+                    }}
+                >
+                    <div
+                    onClick={e => e.stopPropagation()}
+                    style={{
+                        background: '#fff', borderRadius: 16, padding: 32,
+                        maxWidth: 420, width: '90%', textAlign: 'center',
+                        boxShadow: '0 20px 60px rgba(0,0,0,0.15)',
+                    }}
+                    >
+                    <div style={{ fontSize: 36, marginBottom: 12 }}>🔒</div>
+                    <h2 style={{ fontSize: 18, fontWeight: 700, color: '#15173D', marginBottom: 8 }}>
+                        Business Account Required
+                    </h2>
+                    <p style={{ fontSize: 13, color: '#64748b', lineHeight: 1.6, marginBottom: 20 }}>
+                        Subscription management is only available to users with a business account.
+                        Please sign in with your company email (e.g. you@yourcompany.com) to access this feature.
+                    </p>
+                    <p style={{ fontSize: 12, color: '#94a3b8', marginBottom: 24 }}>
+                        Currently signed in as: <strong style={{ color: '#15173D' }}>{userEmail}</strong>
+                    </p>
+                    <button
+                        onClick={() => setShowBusinessModal(false)}
+                        style={{
+                        padding: '10px 28px', background: '#15173D', color: '#fff',
+                        border: 'none', borderRadius: 40, fontSize: 13,
+                        fontWeight: 600, cursor: 'pointer',
+                        }}
+                    >
+                        Got it
+                    </button>
+                    </div>
+                </div>
+                )}
         </>
     )
 }

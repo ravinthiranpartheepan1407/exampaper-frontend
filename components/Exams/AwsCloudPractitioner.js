@@ -1580,8 +1580,8 @@ export default function AwsCloudPractitioner() {
                   key: process.env.RAZOR_TEST,
                   amount: "29900", // 49 INR
                   currency: "INR",
-                  name: "Arkhamm AI Private Limited",
-                  description: "IC-11 Practice of General Insurance Exam Access",
+                  name: "Exam Paper Academy",
+                  description: "AWS Cloud Practitioner Exam Access",
                   handler: async function(response) {
                       if (response.razorpay_payment_id) {
                           try {
@@ -1839,12 +1839,12 @@ export default function AwsCloudPractitioner() {
           // Logo and Header
           doc.addImage(LogoImage, 'PNG', 150, 150, 150, 150);
           doc.setFontSize(16);
-          doc.text('III-IC 11: Practice of General Insurance Mock Report', 10, 10);
+          doc.text('AWS Cloud Practitioner Mock Report', 10, 10);
           
           // Certificate Details
           doc.setFontSize(12);
           doc.text(`Certificate Number: ${examMetadata.certificateNumber}`, 10, 50);
-          doc.text(`Exam Name: Practice of General Insurance IC 11`, 10, 60);
+          doc.text(`Exam Name: AWS Cloud Practitioner`, 10, 60);
           doc.text(`Start Time: ${examMetadata.startTime.toLocaleString()}`, 10, 70);
           doc.text(`End Time: ${endTime.toLocaleString()}`, 10, 80);
           doc.text(`Time Taken: ${formatTime(questions.length * 15 * 60 - timeRemaining)}`, 10, 90);
@@ -1932,7 +1932,7 @@ export default function AwsCloudPractitioner() {
               // Title
               doc.setFontSize(14);
               doc.setTextColor(41, 128, 185);
-              doc.text('III-IC 11: Practice of General Insurance Mock Report', pageWidth / 2, 30, { align: 'right' });
+              doc.text('AWS Cloud Practitioner Mock Report', pageWidth / 2, 30, { align: 'right' });
       
               // Exam Details
               doc.setFontSize(12);
@@ -1945,7 +1945,7 @@ export default function AwsCloudPractitioner() {
               };
       
               addDetailLine('Report Number', examMetadata.certificateNumber);
-              addDetailLine('Exam Name', 'Practice of General Insurance IC 11');
+              addDetailLine('Exam Name', 'AWS Cloud Practitioner');
               addDetailLine('Start Time', examMetadata.startTime.toLocaleString());
               addDetailLine('End Time', endTime.toLocaleString());
               // addDetailLine('Time Taken', formatTime(questions.length * 15 * 60 - timeRemaining));
@@ -1976,7 +1976,7 @@ export default function AwsCloudPractitioner() {
               doc.addImage(logoImage, 'PNG', margin, margin, 50, 10);
               doc.setFontSize(14);
               doc.setTextColor(41, 128, 185);
-              doc.text('III-IC 11: Practice of General Insurance Mock Report', pageWidth / 2, 30, { align: 'right' });
+              doc.text('AWS Cloud Practitioner Mock Report', pageWidth / 2, 30, { align: 'right' });
       
               // Question Details
               doc.setFontSize(10);
@@ -2240,8 +2240,8 @@ export default function AwsCloudPractitioner() {
           return (
               <div className={styles.accessContainer}>
               <div className={styles.accessCodeContainer}>
-                  <h1 style={{fontSize: 24}}><ScanSearch size={20} style={{marginTop: -5}} /> IRDAI: IC 11</h1>
-                  <p><Play size={15} style={{marginTop: -3}} /> Module: Practice of General Insurance</p>
+                  <h1 style={{fontSize: 24}}><ScanSearch size={20} style={{marginTop: -5}} /> AWS Cloud Practitioner</h1>
+                  <p><Play size={15} style={{marginTop: -3}} /> Module: AWS Cloud Practitioner</p>
                   <div className={styles.accessCodePanel}>
                       <input 
                           type="email" 
@@ -2289,7 +2289,7 @@ export default function AwsCloudPractitioner() {
               <div className={styles.examHeader}>
                   <div className={styles.headerLeft}>
                       <h1 style={{fontWeight: 500}}>
-                          <Disc size={18} /> IC-11: Practice of General Insurance Exam
+                          <Disc size={18} /> AWS Cloud Practitioner
                       </h1>
                   </div>
                   <div className={styles.headerRight}>

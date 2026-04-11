@@ -1,25 +1,28 @@
-import React from 'react'
-import Layout from '@/layouts/layout'
+'use client';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import Layout from '@/layouts/layout';
 import JobMatch from '@/components/JobMatch';
-// import ChatPage from '@/components/ChatBot/ChatPage'
 
-export const dynamic = "force-dynamic";
-export const fetchCache = "force-no-store";
+export default function Page() {
+  const router = useRouter();
 
-export const metadata = {
-    title:'Studypoints24 - Job Search',
-    content:'text/html',
-    openGraph: {
-      title:'Studypoints24 - Job Search',
-      content:'text/html',
-    },
-  }
+  useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    if (!token) {
+      router.push('/job-search/list');
+      return;
+    }
+    try {
+      JSON.parse(atob(token.split('.')[1])); // validate token is decodable
+    } catch {
+      router.push('/job-search/list');
+    }
+  }, []);
 
-export default function page() {
-    return (
-        <Layout>
-            <JobMatch />
-            {/* <ChatPage/> */}
-        </Layout>
-    )
+  return (
+    <Layout>
+      <JobMatch />
+    </Layout>
+  );
 }

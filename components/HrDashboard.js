@@ -1,3 +1,5 @@
+"./HRDashboard.js"
+
 "use client";
 
 import CandidateTestAnalysis from "@/components/CandidateTestAnalysis";

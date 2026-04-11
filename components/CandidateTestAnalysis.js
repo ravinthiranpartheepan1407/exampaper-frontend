@@ -6,6 +6,7 @@ import { Box, Building, CheckSquare, Eye, Filter, Layers2, Layers3, Loader2, Luc
 import { useState, useEffect } from "react";
 
 const API_BASE = "http://localhost:8002";
+const COLLAB_API = "http://localhost:8003";
 
 // ── Helpers ──────────────────────────────────────────────────
 function ScoreRing({ value, color, label, size = 80 }) {
@@ -47,9 +48,9 @@ function Badge({ text, color, bg }) {
 
 function RecommendationBadge({ rec }) {
   const map = {
-    great_fit: { text: "⭐ Great Fit", color: "#15173D", bg: "#d1fae5" },
-    good_fit: { text: "👍 Good Fit", color: "#1e40af", bg: "#dbeafe" },
-    not_a_fit: { text: "✕ Not a Fit", color: "#7f1d1d", bg: "#fee2e2" },
+    great_fit: { text: "Great Fit", color: "#15173D", bg: "#d1fae5" },
+    good_fit: { text: "Good Fit", color: "#1e40af", bg: "#dbeafe" },
+    not_a_fit: { text: "Not a Fit", color: "#7f1d1d", bg: "#fee2e2" },
   };
   const m = map[rec] || { text: "Pending", color: "#555", bg: "#f0f0f0" };
   return <Badge text={m.text} color={m.color} bg={m.bg} />;
@@ -249,26 +250,6 @@ function ReportModal({ testId, hrEmail, onClose }) {
           </p>
         </div>
       )}
-
-      {/* Recommendation summary */}
-      {/* {analysis && (
-        <div style={{
-          marginTop: 28, padding: "16px 20px",
-          background: recBg(analysis.recommendation),
-          border: `1px solid ${recBorder(analysis.recommendation)}`,
-          borderRadius: 12, display: "flex", alignItems: "center", gap: 16,
-        }}>
-          <div style={{ fontSize: 32 }}>{recIcon(analysis.recommendation)}</div>
-          <div>
-            <div style={{ fontSize: 15, fontWeight: 700, color: "#111", marginBottom: 4 }}>
-              {recTitle(analysis.recommendation)}
-            </div>
-            <div style={{ fontSize: 13, color: "#15173D" }}>
-              {recDescription(analysis.recommendation, analysis.overall_score)}
-            </div>
-          </div>
-        </div>
-      )} */}
     </ModalShell>
   );
 }
@@ -380,33 +361,69 @@ export default function CandidateTestAnalysis({ hrEmail }) {
   const [loading, setLoading] = useState(true);
   const [recommendations, setRecommendations] = useState({});
 
+  // Inside CandidateTestAnalysis, replace the jobs useEffect:
+  useEffect(() => {
+    if (!hrEmail) return;
+    setLoadingJobs(true);
+
+    Promise.all([
+      fetch(`${API_BASE}/api/hr/jobs?hr_email=${encodeURIComponent(hrEmail)}`).then(r => r.json()),
+      fetch(`${COLLAB_API}/collaboration/my-access/${encodeURIComponent(hrEmail)}`).then(r => r.json()),
+    ])
+      .then(([ownedData, collabData]) => {
+        const ownedJobs = (ownedData.jobs || []).map(j => ({ ...j, _source: "owned" }));
+        const collabJobs = (collabData.jobs || [])
+          .filter(cj => cj.collab_verified)                          // only verified
+          .filter(cj => cj.collab_role === "admin" || cj.collab_role === "viewer") // must have applicant access
+          .filter(cj => !ownedJobs.find(j => j.id === cj.id))       // deduplicate
+          .map(cj => ({
+            id: cj.id,
+            title: cj.title,
+            company_name: cj.company_name,
+            location: cj.location,
+            _source: "collab",
+            _collab_role: cj.collab_role,
+            _collab_owner: cj.collab_owner_email,
+          }));
+
+        setJobs([...ownedJobs, ...collabJobs]);
+        setLoadingJobs(false);
+      })
+      .catch(() => setLoadingJobs(false));
+  }, [hrEmail]);
+
+  // Replace the two selectedJob useEffects with this single one:
   useEffect(() => {
     if (!selectedJob) return;
     setLoadingTests(true);
-    fetch(`${API_BASE}/api/hr/tests?hr_email=${encodeURIComponent(hrEmail)}&job_id=${selectedJob.id}`)
+    setRecommendations({});
+
+    // For collab jobs, fetch tests using the owner's email
+    const fetchEmail = selectedJob._source === "collab"
+      ? selectedJob._collab_owner
+      : hrEmail;
+
+    fetch(`${API_BASE}/api/hr/tests?hr_email=${encodeURIComponent(fetchEmail)}&job_id=${selectedJob.id}`)
       .then(r => r.json())
       .then(async d => {
-        const tests = d.tests || [];
-        setTests(tests);
+        const fetchedTests = d.tests || [];
+        setTests(fetchedTests);
         setLoadingTests(false);
 
-        // Fetch recommendations for completed tests
-        const completed = tests.filter(t => t.status === "completed");
+        const completed = fetchedTests.filter(t => t.status === "completed");
         const recMap = {};
         await Promise.all(
           completed.map(t =>
-            fetch(`${API_BASE}/api/hr/report/${t.test_id}?hr_email=${encodeURIComponent(hrEmail)}`)
+            fetch(`${API_BASE}/api/hr/report/${t.test_id}?hr_email=${encodeURIComponent(fetchEmail)}`)
               .then(r => r.json())
-              .then(data => {
-                recMap[t.test_id] = data?.analysis?.recommendation || null;
-              })
+              .then(data => { recMap[t.test_id] = data?.analysis?.recommendation || null; })
               .catch(() => {})
           )
         );
         setRecommendations(recMap);
       })
       .catch(() => setLoadingTests(false));
-  }, [selectedJob, hrEmail]);
+}, [selectedJob, hrEmail]);
 
   const analysis = report;
 
@@ -432,32 +449,13 @@ export default function CandidateTestAnalysis({ hrEmail }) {
     return <Badge text={m.text} color={m.color} bg={m.bg} />;
   }
 
-  // Fetch jobs
-  useEffect(() => {
-    if (!hrEmail) return;
-    fetch(`${API_BASE}/api/hr/jobs?hr_email=${encodeURIComponent(hrEmail)}`)
-      .then(r => r.json())
-      .then(d => { setJobs(d.jobs || []); setLoadingJobs(false); })
-      .catch(() => setLoadingJobs(false));
-  }, [hrEmail]);
-
-  // Fetch tests when job selected
-  useEffect(() => {
-    if (!selectedJob) return;
-    setLoadingTests(true);
-    fetch(`${API_BASE}/api/hr/tests?hr_email=${encodeURIComponent(hrEmail)}&job_id=${selectedJob.id}`)
-      .then(r => r.json())
-      .then(d => { setTests(d.tests || []); setLoadingTests(false); })
-      .catch(() => setLoadingTests(false));
-  }, [selectedJob, hrEmail]);
-
   return (
     <div className="dashboard">
       {/* Report modal */}
       {reportTestId && (
         <ReportModal
           testId={reportTestId}
-          hrEmail={hrEmail}
+          hrEmail={selectedJob?._source === "collab" ? selectedJob._collab_owner : hrEmail}
           onClose={() => setReportTestId(null)}
         />
       )}
@@ -484,7 +482,6 @@ export default function CandidateTestAnalysis({ hrEmail }) {
 
 
         .dashboard {
-          min-height: 190vh;
           margin-top: -100px;
         }
 
@@ -529,8 +526,8 @@ export default function CandidateTestAnalysis({ hrEmail }) {
 
 
       <div style={{ marginBottom: 20, padding: 20 }}>
-        <h2 style={{ fontSize: 16, fontWeight: 700, marginBottom: 30, marginTop: 23 }}>
-          <Layers2 size={18} style={{marginTop: -2}} />&nbsp; Your Job Posts
+        <h2 style={{ fontSize: 15, fontWeight: 700, marginBottom: 30, marginTop: 23 }}>
+          <Layers2 size={15} style={{marginTop: -2}} />&nbsp; Your Job Posts
         </h2>
         {loadingJobs ? (
           <div style={{ color: "#15173D", fontSize: 13 }}><Loader2 size={12} style={{marginTop: -3, marginLeft: 4}} />&nbsp;  Loading jobs…</div>
@@ -546,12 +543,29 @@ export default function CandidateTestAnalysis({ hrEmail }) {
                   padding: "14px 18px", borderRadius: 12, cursor: "pointer",
                   border: selectedJob?.id === job.id ? "2px solid #000" : "1px solid #e0e0e0",
                   background: selectedJob?.id === job.id ? "#f9f9f9" : "#fff",
+                  marginBottom: 10,
                   transition: "all 0.15s", minWidth: 200,
                 }}
               >
-                <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 4 }}><Box size={18} style={{marginTop: -2}} />&nbsp; {job.title}</div>
+                <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 4 }}>
+                  <Box size={18} style={{marginTop: -2}} />&nbsp; {job.title}
+                  {job._source === "collab" && (
+                    <span style={{
+                      marginLeft: 8, fontSize: 10, fontWeight: 700,
+                      background: "#eef2ff", color: "#6366f1",
+                      padding: "2px 8px", borderRadius: 20,
+                    }}>
+                      Shared
+                    </span>
+                  )}
+                </div>
                 <div style={{ fontSize: 12, color: "#888" }}>{job.company_name}</div>
                 <div style={{ fontSize: 11, color: "#15173D", marginTop: 4 }}>{job.location}</div>
+                {job._source === "collab" && (
+                  <div style={{ fontSize: 10, color: "#6366f1", marginTop: 4 }}>
+                    Role: {job._collab_role} · Owner: {job._collab_owner}
+                  </div>
+                )}
               </div>
             ))}
           </div>
@@ -565,18 +579,18 @@ export default function CandidateTestAnalysis({ hrEmail }) {
             display: "flex", alignItems: "center", justifyContent: "space-between",
             marginBottom: 7, padding: 20
           }}>
-            <h2 style={{ fontSize: 16, fontWeight: 700 }}>
-              <Filter size={18} style={{marginTop: -2, marginLeft: 4}} />&nbsp;  Applicants — {selectedJob.title}
+            <h2 style={{ fontSize: 15, fontWeight: 700 }}>
+              <Filter size={15} style={{marginTop: -2, marginLeft: 4}} />&nbsp;  Applicants — {selectedJob.title}
             </h2>
             <span style={{ fontSize: 12, color: "#888" }}>{tests.length} candidates</span>
           </div>
 
           {loadingTests ? (
-            <div style={{ color: "#15173D", fontSize: 13 }}><Loader2 size={12} style={{marginTop: -3, marginLeft: 4}} />&nbsp;  Loading candidates…</div>
+            <div style={{ color: "#15173D", fontSize: 13 }}></div>
           ) : tests.length === 0 ? (
             <div style={{
               padding: "32px", textAlign: "center",
-              background: "#fafafa", borderRadius: 12,
+              background: "#fafafa", borderRadius: 0,
               border: "1px dashed #e0e0e0", color: "#15173D", fontSize: 13,
             }}>
               No screening tests sent for this job yet.

@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import { useRouter } from 'next/navigation';
-import { Rocket, Save, ScanSearch, StepBack, StepForward, Target, Upload, Zap } from 'lucide-react';
+import { Dot, Layers3, Rocket, Save, Scale3D, ScanSearch, StepBack, StepForward, Target, Upload, Zap } from 'lucide-react';
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
@@ -25,7 +25,7 @@ export default function JobMatch() {
     const checkUserApplication = async () => {
       const token = localStorage.getItem('authToken');
       if (!token) {
-        router.push('/');
+        // router.push('/');
         return;
       }
   
@@ -48,7 +48,7 @@ export default function JobMatch() {
         
       } catch (err) {
         console.error('Error processing token:', err);
-        router.push('/');
+        // router.push('/');
       }
     };
   
@@ -677,12 +677,12 @@ export default function JobMatch() {
           <form onSubmit={handleTestSubmit}>
             {Object.entries(questions).map(([section, sectionQuestions]) => (
               <div key={section} className="section">
-                <h2 style={{color: '#15173D'}}><ScanSearch size={20} style={{marginTop: -5}} /> {section.replace('_', ' ').toUpperCase()}</h2>
+                <h2 className='hs-title-11' style={{color: '#15173D'}}><Scale3D size={20} style={{marginTop: -5}} /> {section.replace('_', ' ').toUpperCase()}</h2>
                 <p>Everyone is great at something, so be honest it will help us match your personality and skills with the best cultural fit for you. This test helps us understand how you approach workplace situations, align with our company culture, and manage tasks. Your responses will give us insights into your problem-solving skills, teamwork, and working style to match a good fit for both you and the team.</p>
                 <p>If any trait scores lower, don't worry! You have unique strengths that others may not, and everyone is different. Remember, you are amazing and talented in your own way.</p>
                 {sectionQuestions.map(q => (
                   <div key={q.id} className="question">
-                    <p style={{color: '#15173D'}}><Target style={{marginTop: -1}} size={18} /> {q.text}</p>
+                    <p style={{color: '#15173D', fontWeight: 600, fontSize: 17}}><Dot style={{marginTop: -3}} size={15} /> {q.text}</p>
                     {q.type === "multiple" ? (
                       <div className="options">
                         {q.options.map((opt, idx) => (
@@ -723,7 +723,7 @@ export default function JobMatch() {
               disabled={loading}
               className="submit-button"
             >
-              <Save color='white' size={18} style={{marginTop: -4}} /> {loading ? 'Saving...' : 'Submit Assessment'}
+              <Save color='white' size={15} style={{marginTop: -4}} /> {loading ? 'Saving...' : 'Submit Assessment'}
             </button>
           </form>
         </div>
@@ -768,7 +768,7 @@ export default function JobMatch() {
           margin: 0 auto;
           padding: 3rem 2rem;
           margin-top: -100px;
-          background: linear-gradient(to bottom, #f7fafc, #ffffff);
+          background: white;
           min-height: 100vh;
         }
 
@@ -783,12 +783,10 @@ export default function JobMatch() {
         }
 
         .section {
-          margin-bottom: 2.5rem;
+          margin-bottom: 0rem;
           padding: 2rem;
-          background: white;
+          background: transparent;
           border-radius: 40px;
-          box-shadow: 0 4px 6px rgba(0,0,0,0.05), 
-                     0 10px 15px -3px rgba(0,0,0,0.1);
           transition: transform 0.2s ease;
         }
 
@@ -808,7 +806,7 @@ export default function JobMatch() {
         .question {
           margin-bottom: 2rem;
           padding: 1.5rem;
-          background: rgba(191, 242, 247, 0.25);
+          background: #bff2f772;
           border-radius: 40px;
           border: 1px solid rgb(191, 242, 247);
         }
@@ -913,21 +911,23 @@ export default function JobMatch() {
         }
 
         .submit-button {
-          width: 100%;
+          width: 30%;
           padding: 1rem;
           background-color: #15173D;
           color: white;
           border: none;
           border-radius: 40px;
-          font-size: 1.1rem;
+          font-size: 0.9rem;
           font-weight: 400;
+          display: block;
+          margin: 0 auto !important;
           cursor: pointer;
           transition: all 0.2s ease;
           box-shadow: 0 4px 6px rgba(66, 153, 225, 0.2);
         }
 
         .submit-button:hover:not(:disabled) {
-          background-color: #2a2a2a;
+          background-color: #15173deb;
           transform: translateY(-1px);
           box-shadow: 0 6px 8px rgba(66, 153, 225, 0.3);
         }
@@ -980,7 +980,7 @@ export default function JobMatch() {
             padding: 40px;
             border-radius: 40px;
             position: relative;
-            box-shadow: 0 10px 30px rgba(227, 207, 250, 0.5),
+            box-shadow: 0 10px 30px rgba(227, 207, 250, 0.15),
               inset 0 1px 0 rgba(255, 255, 255, 0.5);
             backdrop-filter: blur(1px);   
         }
@@ -994,7 +994,7 @@ export default function JobMatch() {
             height: 100%;
             border-radius: 40px;
             border: 1px solid rgba(255, 255, 255, 0.05);     
-            box-shadow: 0 10px 30px rgba(208, 172, 255, 0.3),
+            box-shadow: 0 10px 30px rgba(208, 172, 255, 0.19),
               inset 0 1px 0 rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(2px);       
             z-index: 1;

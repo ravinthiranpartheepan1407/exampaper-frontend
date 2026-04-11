@@ -26,18 +26,1542 @@ import {
   Image,
   ChevronDownCircle,
   ChevronDown,
-  Layers
+  Layers,
+  Share2,
+  Lock
 } from 'lucide-react';
 import axios from 'axios';
 import { createClient } from '@supabase/supabase-js';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 import ConnectModal from './ConnectModal';
+import CollaborateModal, { VerifyAccessButton, CollabRoleBadge } from "./CollaborateModal";
+import { useCollaboration, useCollabJobs } from "./useCollaboration";
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_KEY
 );
+
+
+const JobCardActions = ({ job, selectedJob, setSelectedJob, userEmail, editJob, deleteJob }) => {
+  const { canEdit, canDelete, canViewApplicants, isOwner, verified, role } = useCollaboration(job.id, userEmail, job.creator);
+  const [applicantCount, setApplicantCount] = useState(null);
+
+  useEffect(() => {
+    if (!job?.id || (!isOwner && !verified)) return;
+    fetch(`http://localhost:8003/applications/count/${job.id}`)  // adjust endpoint to yours
+      .then(r => r.json())
+      .then(d => setApplicantCount(d.count ?? d.total ?? null))
+      .catch(() => {});
+  }, [job.id, isOwner, verified]);
+ 
+  // If this is a collab job that is NOT yet verified, show the verify button
+  if (!isOwner && !verified && role !== null) {
+    return (
+    <div
+      className={`job-card ${selectedJob?.id === job.id ? 'selected' : ''}`}
+      onClick={() => setSelectedJob(job)}
+    >
+      <div style={{borderRadius: 20}} className="job-item">
+        <div style={{marginTop: -10}} className="job-details">
+          <div className="job-header">
+            <h3>
+              <img
+                src={job.company_logo_url}
+                alt="Company Logo"
+                className="profile-picture"
+              />
+              {job.title}
+            </h3>
+          </div>
+          <p style={{color: '#15173D', fontSize: 12}}>About: {job.company_description}</p>
+          <p style={{marginTop: -10, color: '#15173D'}} className="company">
+            <Building size={16} /> {job.company_name} |
+            <MapPin size={16} /> {job.location} |
+            <Timer size={16} /> {job.experience_required}+ yrs
+          </p>
+          <div style={{marginTop: 15}} className="company-links">
+            {job.linkedin_url && (
+              <a style={{color: '#15173D'}} href={job.linkedin_url} target="_blank" rel="noopener noreferrer">
+                <Linkedin style={{marginTop: -5}} size={16} />
+              </a>
+            )} &nbsp;
+            {job.website_url && (
+              <a style={{color: '#15173D'}} href={job.website_url} target="_blank" rel="noopener noreferrer">
+                <Globe2 style={{marginTop: -5}} size={16} />
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+      <br />
+      <div className="skills">
+        {job.required_skills.slice(0, 4).map((skill, i) => (
+          <span key={i} className="skill-tag">
+            <Star size={14} /> {skill}
+          </span>
+        ))}
+      </div>
+      <br />
+      <div className="button-group">
+        <VerifyAccessButton
+          jobId={job.id}
+          userEmail={userEmail}
+          onVerified={() => window.location.reload()}
+        />
+      </div>
+      <style jsx>{`
+        .job-items{
+          border: 14px solid #F8FAFC;
+          box-shadow: 0 8px 4px rgba(187, 205, 255, 0.44);
+          borderRadius: 30px !important; 
+          padding: 30px !important;
+          marginTop: 0px; 
+          backgroundColor: '#bff2f7';
+        }
+
+        /* Optional: For Firefox, use the scrollbar-color and scrollbar-width properties */
+        .matches-list {
+        scrollbar-color: #15173D #fff; /* thumb color track color */
+        scrollbar-width: thin; /* Sets the scrollbar width to thin */
+        }
+
+        .job-card {
+          padding: 1rem;
+          border-radius: 20px;
+          margin-bottom: 1rem;
+          box-shadow: 0 8px 4px rgba(187, 205, 255, 0.24);
+          border: 10px solid #F8FAFC;
+          background-color: #bff2f7 !important;
+        }
+
+
+        .company, .location {
+          margin: 0.25rem 0;
+          font-size: 0.875rem;
+          color: #666;
+        }
+
+        .job-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center; /* Align items vertically in the center */
+        gap: 1rem; /* Optional: Adds space between the elements */
+        padding: 0.5rem 0; /* Adds spacing above and below */
+        }
+
+        .job-header h3 {
+        display: flex;
+        align-items: center;
+        margin: 0; /* Reset margin for alignment */
+        font-size: 1.1rem; /* Adjust font size */
+        color: #15173D;
+        }
+
+        .profile-picture {
+        width: 32px; /* Set size for the profile picture */
+        height: 32px;
+        border-radius: 50%; /* Make the image circular */
+        margin-right: 0.5rem; /* Adds space between the image and text */
+        }
+
+        .match-score {
+        display: flex;
+        align-items: center;
+        }
+
+        .match-score span {
+        background: linear-gradient(90deg, #ECF8F9, #DDE6ED);
+        border-radius: 30px;
+        padding: 10px;
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem; /* Adds space between the icon and text */
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+
+        .skills {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+        }
+
+        .skill-tag {
+          background-color: white;
+          padding: 0.2rem 0.6rem;
+          border-radius: 999px;
+          font-size: 0.75rem;
+          color: #15173D;
+          border: 5px solid #F8FAFC;
+          box-shadow: 0 8px 4px rgba(187, 205, 255, 0.24);
+        }
+
+        .job-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem; /* Space between the image and content */
+        padding: 1rem;
+        background: #fff;
+        border: 1px solid #eee;
+        border-radius: 8px;
+        transition: box-shadow 0.3s ease;
+        border: 5px solid #F8FAFC;
+          box-shadow: 0 8px 4px rgba(187, 205, 255, 0.24);
+        }
+
+        .job-item:hover {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-picture {
+        width: 50px; /* Set the width of the profile picture */
+        height: 50px; /* Set the height of the profile picture */
+        border-radius: 50%; /* Makes it a circle */
+        object-fit: cover; /* Ensures the image doesn't stretch */
+        }
+
+        .job-details {
+        display: flex;
+        flex-direction: column; /* Stack the content vertically */
+      
+        }
+
+        .job-detailss {
+        background: #bff2f7;
+        border-radius: 30px;
+        padding: 20px;
+        border: 10px solid #F8FAFC;
+          box-shadow: 0 8px 4px rgba(187, 205, 255, 0.24);
+        color: #15173D;
+        }
+
+        .job-detailss-bg{
+          background: white;
+          border-radius: 30px;
+          padding: 20px;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .job-detailss h2 {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #15173D;
+        margin-bottom: 0.5rem;
+        }
+
+        .job-detailss h3 {
+        font-size: 1.2rem;
+        color: #15173D;
+        margin-bottom: 1rem;
+        }
+
+        .match-detailss h4 {
+        font-size: 1.4rem;
+        color: #34495e;
+        margin-bottom: 1rem;
+        }
+
+        .match-detailss{
+          margin-top: 10px;
+          background: white;
+          border-radius: 30px;
+          padding: 20px;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-sectionss {
+        margin-bottom: 2rem;
+        }
+
+        .progress-itemss {
+        margin-bottom: 1rem;
+        }
+
+        .progress-itemss span {
+        font-size: 0.9rem;
+        color: #15173D;
+        }
+
+        .progress-barss {
+        display: flex;
+        align-items: center;
+        background: #ecf0f1;
+        border-radius: 20px;
+        overflow: hidden;
+        height: 7px;
+        margin: 5px 0;
+        position: relative;
+        }
+
+        .progressss {
+        background: linear-gradient(90deg, #15173D, #15173D);
+        height: 100%;
+        border-radius: 20px;
+        transition: width 0.5s ease-in-out;
+        }
+
+        .progress-valuess {
+        font-size: 0.6rem;
+        color: #15173D;
+        margin-left: 10px;
+        }
+
+        .required-skillsss h4 {
+        font-size: 1.4rem;
+        margin-bottom: 0.5rem;
+        color: #15173D;
+        }
+
+        .skills-gridss {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        }
+
+        .skill-tagss {
+        background: #bff2f7;
+        color: #15173D;
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        }
+
+        .apply-buttonss {
+        background-color: #15173D;
+        width: 100%;
+        padding: 1rem;
+        color: white;
+        margin-top: 30px;
+          border: none;
+          border-radius: 40px;
+          font-size: 1rem;
+          font-weight: 500;
+          cursor: pointer;
+          transition: background-color 0.2s ease;
+        }
+
+        .apply-buttonss:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3);
+        }
+
+
+        .job-details h3 {
+        margin: 0;
+        font-size: 1.2rem;
+        color: #333;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        }
+
+        .job-details .company {
+        margin: 0.25rem 0 0;
+        font-size: 0.9rem;
+        color: #666;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        }
+
+
+        .progress-section {
+          margin: 1.5rem 0;
+        }
+
+        .progress-item {
+          margin-bottom: 1rem;
+        }
+
+        .progress-bar {
+          height: 8px;
+          background-color: #f0f0f0;
+          border-radius: 999px;
+          overflow: hidden;
+          position: relative;
+          margin-top: 0.5rem;
+        }
+
+        .progress {
+          height: 100%;
+          background-color: #2196f3;
+          transition: width 0.3s ease;
+        }
+
+        .progress-bar span {
+          position: absolute;
+          right: 0;
+          top: -1.5rem;
+          font-size: 0.875rem;
+          color: #666;
+        }
+
+        .required-skills {
+          margin: 1.5rem 0;
+        }
+
+        .skills-grid {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+          margin-top: 0.5rem;
+        }
+
+        .apply-button {
+          width: 100%;
+          padding: 1rem;
+          background-color: #2196f3;
+          color: white;
+          border: none;
+          border-radius: 8px;
+          font-size: 1rem;
+          font-weight: 500;
+          cursor: pointer;
+          transition: background-color 0.2s ease;
+        }
+
+        .apply-button:hover {
+          background-color: #1976d2;
+        }
+
+        .profile-section {
+          background: #bff2f7;
+          padding: 2rem;
+          border-radius: 40px;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+          margin-bottom: -30px;
+                    border: 10px solid #F8FAFC;
+          box-shadow: 0 8px 4px rgba(187, 205, 255, 0.24);
+        }
+
+         .profile-sections {
+           background: #f5f7f8;
+          padding: 2rem;
+          border-radius: 40px;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+          margin-bottom: -30px;
+                    border: 10px solid #F8FAFC;
+          box-shadow: 0 8px 4px rgba(187, 205, 255, 0.24);
+          margin-top:50px;
+        }
+
+        textarea::-webkit-scrollbar {
+          width: 4px;  /* Width of the scrollbar */
+        }
+        textarea::-webkit-scrollbar-thumb {
+          background-color: #15173D;  /* Color of the scrollbar thumb */
+          border-radius: 4px;  /* Round corners for the scrollbar thumb */
+        }
+        textarea::-webkit-scrollbar-track {
+          background-color: #f0f0f0;  /* Background color of the scrollbar track */
+          border-radius: 4px;  /* Round corners for the track */
+        }
+          
+        .score-grid {
+          display: grid;
+          gap: 1.5rem;
+          margin-top: 1rem;
+        }
+
+        .profile-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 2rem;
+        }
+
+        .edit-button {
+          padding: 0.3rem 1.2rem;
+          border-radius: 40px;
+          border: none;
+          background-color: #15173D;
+          border: 0.6px solid;
+          border-style: dotted;
+          border-color: #15173D;
+          color: white;
+          font-weight: 500;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          font-size: 14px;
+          box-shadow: 0 2px 4px rgba(184, 203, 255, 0.2);
+        }
+
+        .logout-buttons {
+          padding: 0.3rem 1.2rem;
+          border-radius: 40px;
+          border: none;
+          background-color: transparent;
+          border: 0.6px solid;
+          border-style: dotted;
+          border-color: #15173D;
+          color: #15173D;
+          font-weight: 500;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          font-size: 14px;
+          box-shadow: 0 2px 4px rgba(184, 203, 255, 0.2);
+        }
+
+        .edit-button:hover {
+          background-color: #FFF7F7;
+          color: #15173D;
+        }
+
+        .logout-buttons:hover {
+          background-color: #FFF7F7;
+          color: #15173D;
+        }
+
+        .edit-button.save {
+          background-color: white;
+          color: #15173D;
+        }
+
+        .edit-buttons {
+          padding: 0.75rem 1.5rem;
+          border-radius: 40px;
+          border: none;
+          background-color: #15173D !important;
+          color: white;
+          font-weight: 500;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .edit-buttons:hover {
+          background-color: #FFF7F7;
+          color: #15173D;
+        }
+
+        .edit-buttons.save {
+          background-color: white;
+        }
+      `}</style>
+      </div>
+    );
+  }
+ 
+  // If verified collab — show role badge + allowed actions
+  if (!isOwner && verified) {
+    return (
+      <div
+      className={`job-card ${selectedJob?.id === job.id ? 'selected' : ''}`}
+      onClick={() => setSelectedJob(job)}
+    >
+      <div style={{borderRadius: 20}} className="job-item">
+        <div style={{marginTop: -10}} className="job-details">
+          <div className="job-header">
+            <h3>
+              <img
+                src={job.company_logo_url}
+                alt="Company Logo"
+                className="profile-picture"
+              />
+              {job.title}
+            </h3>
+          </div>
+          <p style={{color: '#15173D', fontSize: 12}}>About: {job.company_description}</p>
+          <p style={{marginTop: -10, color: '#15173D'}} className="company">
+            <Building size={16} /> {job.company_name} |
+            <MapPin size={16} /> {job.location} |
+            <Timer size={16} /> {job.experience_required}+ yrs
+          </p>
+          <div style={{marginTop: 15}} className="company-links">
+            {job.linkedin_url && (
+              <a style={{color: '#15173D'}} href={job.linkedin_url} target="_blank" rel="noopener noreferrer">
+                <Linkedin style={{marginTop: -5}} size={16} />
+              </a>
+            )} &nbsp;
+            {job.website_url && (
+              <a style={{color: '#15173D'}} href={job.website_url} target="_blank" rel="noopener noreferrer">
+                <Globe2 style={{marginTop: -5}} size={16} />
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+      <br />
+      <div className="skills">
+        {job.required_skills.slice(0, 4).map((skill, i) => (
+          <span key={i} className="skill-tag">
+            <Star size={14} /> {skill}
+          </span>
+        ))}
+      </div>
+      <br />
+      <div className="button-group">
+        <CollabRoleBadge role={role} />
+        &nbsp;
+        {canEdit && (
+          <button
+            className="edit-button"
+            onClick={(e) => { e.stopPropagation(); editJob(job); }}
+          >
+            <Edit2 size={14} style={{ marginTop: -3 }} /> &nbsp;Edit
+          </button>
+        )}
+        &nbsp;
+        {canDelete && (
+          <button
+            className="logout-buttons"
+            onClick={(e) => { e.stopPropagation(); deleteJob(job.id); }}
+          >
+            <Trash2 size={14} style={{ marginTop: -3 }} /> Delete
+          </button>
+        )}
+      </div>
+      <style jsx>{`
+        .job-items{
+          border: 14px solid #F8FAFC;
+          box-shadow: 0 8px 4px rgba(187, 205, 255, 0.44);
+          borderRadius: 30px !important; 
+          padding: 30px !important;
+          marginTop: 0px; 
+          backgroundColor: '#bff2f7';
+        }
+
+        /* Optional: For Firefox, use the scrollbar-color and scrollbar-width properties */
+        .matches-list {
+        scrollbar-color: #15173D #fff; /* thumb color track color */
+        scrollbar-width: thin; /* Sets the scrollbar width to thin */
+        }
+
+        .job-card {
+          padding: 1rem;
+          border-radius: 20px;
+          margin-bottom: 1rem;
+          box-shadow: 0 8px 4px rgba(187, 205, 255, 0.24);
+          border: 10px solid #F8FAFC;
+          background-color: #bff2f7 !important;
+        }
+
+
+        .company, .location {
+          margin: 0.25rem 0;
+          font-size: 0.875rem;
+          color: #666;
+        }
+
+        .job-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center; /* Align items vertically in the center */
+        gap: 1rem; /* Optional: Adds space between the elements */
+        padding: 0.5rem 0; /* Adds spacing above and below */
+        }
+
+        .job-header h3 {
+        display: flex;
+        align-items: center;
+        margin: 0; /* Reset margin for alignment */
+        font-size: 1.1rem; /* Adjust font size */
+        color: #15173D;
+        }
+
+        .profile-picture {
+        width: 32px; /* Set size for the profile picture */
+        height: 32px;
+        border-radius: 50%; /* Make the image circular */
+        margin-right: 0.5rem; /* Adds space between the image and text */
+        }
+
+        .match-score {
+        display: flex;
+        align-items: center;
+        }
+
+        .match-score span {
+        background: linear-gradient(90deg, #ECF8F9, #DDE6ED);
+        border-radius: 30px;
+        padding: 10px;
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem; /* Adds space between the icon and text */
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+
+        .skills {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+        }
+
+        .skill-tag {
+          background-color: white;
+          padding: 0.2rem 0.6rem;
+          border-radius: 999px;
+          font-size: 0.75rem;
+          color: #15173D;
+          border: 5px solid #F8FAFC;
+          box-shadow: 0 8px 4px rgba(187, 205, 255, 0.24);
+        }
+
+        .job-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem; /* Space between the image and content */
+        padding: 1rem;
+        background: #fff;
+        border: 1px solid #eee;
+        border-radius: 8px;
+        transition: box-shadow 0.3s ease;
+        border: 5px solid #F8FAFC;
+          box-shadow: 0 8px 4px rgba(187, 205, 255, 0.24);
+        }
+
+        .job-item:hover {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-picture {
+        width: 50px; /* Set the width of the profile picture */
+        height: 50px; /* Set the height of the profile picture */
+        border-radius: 50%; /* Makes it a circle */
+        object-fit: cover; /* Ensures the image doesn't stretch */
+        }
+
+        .job-details {
+        display: flex;
+        flex-direction: column; /* Stack the content vertically */
+      
+        }
+
+        .job-detailss {
+        background: #bff2f7;
+        border-radius: 30px;
+        padding: 20px;
+        border: 10px solid #F8FAFC;
+          box-shadow: 0 8px 4px rgba(187, 205, 255, 0.24);
+        color: #15173D;
+        }
+
+        .job-detailss-bg{
+          background: white;
+          border-radius: 30px;
+          padding: 20px;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .job-detailss h2 {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #15173D;
+        margin-bottom: 0.5rem;
+        }
+
+        .job-detailss h3 {
+        font-size: 1.2rem;
+        color: #15173D;
+        margin-bottom: 1rem;
+        }
+
+        .match-detailss h4 {
+        font-size: 1.4rem;
+        color: #34495e;
+        margin-bottom: 1rem;
+        }
+
+        .match-detailss{
+          margin-top: 10px;
+          background: white;
+          border-radius: 30px;
+          padding: 20px;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-sectionss {
+        margin-bottom: 2rem;
+        }
+
+        .progress-itemss {
+        margin-bottom: 1rem;
+        }
+
+        .progress-itemss span {
+        font-size: 0.9rem;
+        color: #15173D;
+        }
+
+        .progress-barss {
+        display: flex;
+        align-items: center;
+        background: #ecf0f1;
+        border-radius: 20px;
+        overflow: hidden;
+        height: 7px;
+        margin: 5px 0;
+        position: relative;
+        }
+
+        .progressss {
+        background: linear-gradient(90deg, #15173D, #15173D);
+        height: 100%;
+        border-radius: 20px;
+        transition: width 0.5s ease-in-out;
+        }
+
+        .progress-valuess {
+        font-size: 0.6rem;
+        color: #15173D;
+        margin-left: 10px;
+        }
+
+        .required-skillsss h4 {
+        font-size: 1.4rem;
+        margin-bottom: 0.5rem;
+        color: #15173D;
+        }
+
+        .skills-gridss {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        }
+
+        .skill-tagss {
+        background: #bff2f7;
+        color: #15173D;
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        }
+
+        .apply-buttonss {
+        background-color: #15173D;
+        width: 100%;
+        padding: 1rem;
+        color: white;
+        margin-top: 30px;
+          border: none;
+          border-radius: 40px;
+          font-size: 1rem;
+          font-weight: 500;
+          cursor: pointer;
+          transition: background-color 0.2s ease;
+        }
+
+        .apply-buttonss:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3);
+        }
+
+
+        .job-details h3 {
+        margin: 0;
+        font-size: 1.2rem;
+        color: #333;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        }
+
+        .job-details .company {
+        margin: 0.25rem 0 0;
+        font-size: 0.9rem;
+        color: #666;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        }
+
+
+        .progress-section {
+          margin: 1.5rem 0;
+        }
+
+        .progress-item {
+          margin-bottom: 1rem;
+        }
+
+        .progress-bar {
+          height: 8px;
+          background-color: #f0f0f0;
+          border-radius: 999px;
+          overflow: hidden;
+          position: relative;
+          margin-top: 0.5rem;
+        }
+
+        .progress {
+          height: 100%;
+          background-color: #2196f3;
+          transition: width 0.3s ease;
+        }
+
+        .progress-bar span {
+          position: absolute;
+          right: 0;
+          top: -1.5rem;
+          font-size: 0.875rem;
+          color: #666;
+        }
+
+        .required-skills {
+          margin: 1.5rem 0;
+        }
+
+        .skills-grid {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+          margin-top: 0.5rem;
+        }
+
+        .apply-button {
+          width: 100%;
+          padding: 1rem;
+          background-color: #2196f3;
+          color: white;
+          border: none;
+          border-radius: 8px;
+          font-size: 1rem;
+          font-weight: 500;
+          cursor: pointer;
+          transition: background-color 0.2s ease;
+        }
+
+        .apply-button:hover {
+          background-color: #1976d2;
+        }
+
+        .profile-section {
+          background: #bff2f7;
+          padding: 2rem;
+          border-radius: 40px;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+          margin-bottom: -30px;
+                    border: 10px solid #F8FAFC;
+          box-shadow: 0 8px 4px rgba(187, 205, 255, 0.24);
+        }
+
+         .profile-sections {
+           background: #f5f7f8;
+          padding: 2rem;
+          border-radius: 40px;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+          margin-bottom: -30px;
+                    border: 10px solid #F8FAFC;
+          box-shadow: 0 8px 4px rgba(187, 205, 255, 0.24);
+          margin-top:50px;
+        }
+
+        textarea::-webkit-scrollbar {
+          width: 4px;  /* Width of the scrollbar */
+        }
+        textarea::-webkit-scrollbar-thumb {
+          background-color: #15173D;  /* Color of the scrollbar thumb */
+          border-radius: 4px;  /* Round corners for the scrollbar thumb */
+        }
+        textarea::-webkit-scrollbar-track {
+          background-color: #f0f0f0;  /* Background color of the scrollbar track */
+          border-radius: 4px;  /* Round corners for the track */
+        }
+          
+        .score-grid {
+          display: grid;
+          gap: 1.5rem;
+          margin-top: 1rem;
+        }
+
+        .profile-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 2rem;
+        }
+
+        .edit-button {
+          padding: 0.3rem 1.2rem;
+          border-radius: 40px;
+          border: none;
+          background-color: #15173D;
+          border: 0.6px solid;
+          border-style: dotted;
+          border-color: #15173D;
+          color: white;
+          font-weight: 500;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          font-size: 14px;
+          box-shadow: 0 2px 4px rgba(184, 203, 255, 0.2);
+        }
+
+        .logout-buttons {
+          padding: 0.3rem 1.2rem;
+          border-radius: 40px;
+          border: none;
+          background-color: transparent;
+          border: 0.6px solid;
+          border-style: dotted;
+          border-color: #15173D;
+          color: #15173D;
+          font-weight: 500;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          font-size: 14px;
+          box-shadow: 0 2px 4px rgba(184, 203, 255, 0.2);
+        }
+
+        .edit-button:hover {
+          background-color: #FFF7F7;
+          color: #15173D;
+        }
+
+        .logout-buttons:hover {
+          background-color: #FFF7F7;
+          color: #15173D;
+        }
+
+        .edit-button.save {
+          background-color: white;
+          color: #15173D;
+        }
+
+        .edit-buttons {
+          padding: 0.75rem 1.5rem;
+          border-radius: 40px;
+          border: none;
+          background-color: #15173D !important;
+          color: white;
+          font-weight: 500;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .edit-buttons:hover {
+          background-color: #FFF7F7;
+          color: #15173D;
+        }
+
+        .edit-buttons.save {
+          background-color: white;
+        }
+      `}</style>
+      </div>
+    );
+  }
+ 
+  // Owner — full controls
+  return (
+    <div
+      className={`job-card ${selectedJob?.id === job.id ? 'selected' : ''}`}
+      onClick={() => setSelectedJob(job)}
+    >
+      <div style={{borderRadius: 20}} className="job-item">
+        <div style={{marginTop: -10}} className="job-details">
+          <div className="job-header">
+            <h3>
+              <img
+                src={job.company_logo_url}
+                alt="Company Logo"
+                className="profile-picture"
+              />
+              {job.title}
+            </h3>
+          </div>
+          <p style={{color: '#15173D', fontSize: 12}}>About: {job.company_description}</p>
+          <p style={{marginTop: -10, color: '#15173D'}} className="company">
+            <Building size={16} /> {job.company_name} |
+            <MapPin size={16} /> {job.location} |
+            <Timer size={16} /> {job.experience_required}+ yrs
+          </p>
+          <div style={{marginTop: 15}} className="company-links">
+            {job.linkedin_url && (
+              <a style={{color: '#15173D'}} href={job.linkedin_url} target="_blank" rel="noopener noreferrer">
+                <Linkedin style={{marginTop: -5}} size={16} />
+              </a>
+            )} &nbsp;
+            {job.website_url && (
+              <a style={{color: '#15173D'}} href={job.website_url} target="_blank" rel="noopener noreferrer">
+                <Globe2 style={{marginTop: -5}} size={16} />
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+      <br />
+      <div className="skills">
+        {job.required_skills.slice(0, 4).map((skill, i) => (
+          <span key={i} className="skill-tag">
+            <Star size={14} /> {skill}
+          </span>
+        ))}
+      </div>
+      <br />
+    <div className="button-group">
+      <button
+        className="edit-button"
+        onClick={(e) => {
+          e.stopPropagation();
+          const url = `${window.location.origin}/job-search/${job.id}`;
+          navigator.clipboard.writeText(url);
+          toast.success('Job link copied to clipboard!');
+        }}
+      >
+        <Share2 size={14} style={{ marginTop: -3 }} /> Share
+      </button>
+      &nbsp;
+      <span onClick={(e) => e.stopPropagation()}>
+        <CollaborateModal job={job} ownerEmail={userEmail} />
+      </span>
+      &nbsp;
+      <button
+        className="edit-button"
+        onClick={(e) => { e.stopPropagation(); editJob(job); }}
+      >
+        <Edit2 size={14} style={{ marginTop: -3 }} /> &nbsp;Edit
+      </button>
+      &nbsp;
+      <button
+        className="logout-buttons"
+        onClick={(e) => { e.stopPropagation(); deleteJob(job.id); }}
+      >
+        <Trash2 size={14} style={{ marginTop: -3 }} /> Delete
+      </button>
+      </div>
+      <style jsx>{`
+        .job-items{
+          border: 14px solid #F8FAFC;
+          box-shadow: 0 8px 4px rgba(187, 205, 255, 0.44);
+          borderRadius: 30px !important; 
+          padding: 30px !important;
+          marginTop: 0px; 
+          backgroundColor: '#bff2f7';
+        }
+
+        /* Optional: For Firefox, use the scrollbar-color and scrollbar-width properties */
+        .matches-list {
+        scrollbar-color: #15173D #fff; /* thumb color track color */
+        scrollbar-width: thin; /* Sets the scrollbar width to thin */
+        }
+
+        .job-card {
+          padding: 1rem;
+          border-radius: 20px;
+          margin-bottom: 1rem;
+          box-shadow: 0 8px 4px rgba(187, 205, 255, 0.24);
+          border: 10px solid #F8FAFC;
+          background-color: #bff2f7 !important;
+        }
+
+
+        .company, .location {
+          margin: 0.25rem 0;
+          font-size: 0.875rem;
+          color: #666;
+        }
+
+        .job-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center; /* Align items vertically in the center */
+        gap: 1rem; /* Optional: Adds space between the elements */
+        padding: 0.5rem 0; /* Adds spacing above and below */
+        }
+
+        .job-header h3 {
+        display: flex;
+        align-items: center;
+        margin: 0; /* Reset margin for alignment */
+        font-size: 1.1rem; /* Adjust font size */
+        color: #15173D;
+        }
+
+        .profile-picture {
+        width: 32px; /* Set size for the profile picture */
+        height: 32px;
+        border-radius: 50%; /* Make the image circular */
+        margin-right: 0.5rem; /* Adds space between the image and text */
+        }
+
+        .match-score {
+        display: flex;
+        align-items: center;
+        }
+
+        .match-score span {
+        background: linear-gradient(90deg, #ECF8F9, #DDE6ED);
+        border-radius: 30px;
+        padding: 10px;
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem; /* Adds space between the icon and text */
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+
+        .skills {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+        }
+
+        .skill-tag {
+          background-color: white;
+          padding: 0.2rem 0.6rem;
+          border-radius: 999px;
+          font-size: 0.75rem;
+          color: #15173D;
+          border: 5px solid #F8FAFC;
+          box-shadow: 0 8px 4px rgba(187, 205, 255, 0.24);
+        }
+
+        .job-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem; /* Space between the image and content */
+        padding: 1rem;
+        background: #fff;
+        border: 1px solid #eee;
+        border-radius: 8px;
+        transition: box-shadow 0.3s ease;
+        border: 5px solid #F8FAFC;
+          box-shadow: 0 8px 4px rgba(187, 205, 255, 0.24);
+        }
+
+        .job-item:hover {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-picture {
+        width: 50px; /* Set the width of the profile picture */
+        height: 50px; /* Set the height of the profile picture */
+        border-radius: 50%; /* Makes it a circle */
+        object-fit: cover; /* Ensures the image doesn't stretch */
+        }
+
+        .job-details {
+        display: flex;
+        flex-direction: column; /* Stack the content vertically */
+      
+        }
+
+        .job-detailss {
+        background: #bff2f7;
+        border-radius: 30px;
+        padding: 20px;
+        border: 10px solid #F8FAFC;
+          box-shadow: 0 8px 4px rgba(187, 205, 255, 0.24);
+        color: #15173D;
+        }
+
+        .job-detailss-bg{
+          background: white;
+          border-radius: 30px;
+          padding: 20px;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .job-detailss h2 {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #15173D;
+        margin-bottom: 0.5rem;
+        }
+
+        .job-detailss h3 {
+        font-size: 1.2rem;
+        color: #15173D;
+        margin-bottom: 1rem;
+        }
+
+        .match-detailss h4 {
+        font-size: 1.4rem;
+        color: #34495e;
+        margin-bottom: 1rem;
+        }
+
+        .match-detailss{
+          margin-top: 10px;
+          background: white;
+          border-radius: 30px;
+          padding: 20px;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-sectionss {
+        margin-bottom: 2rem;
+        }
+
+        .progress-itemss {
+        margin-bottom: 1rem;
+        }
+
+        .progress-itemss span {
+        font-size: 0.9rem;
+        color: #15173D;
+        }
+
+        .progress-barss {
+        display: flex;
+        align-items: center;
+        background: #ecf0f1;
+        border-radius: 20px;
+        overflow: hidden;
+        height: 7px;
+        margin: 5px 0;
+        position: relative;
+        }
+
+        .progressss {
+        background: linear-gradient(90deg, #15173D, #15173D);
+        height: 100%;
+        border-radius: 20px;
+        transition: width 0.5s ease-in-out;
+        }
+
+        .progress-valuess {
+        font-size: 0.6rem;
+        color: #15173D;
+        margin-left: 10px;
+        }
+
+        .required-skillsss h4 {
+        font-size: 1.4rem;
+        margin-bottom: 0.5rem;
+        color: #15173D;
+        }
+
+        .skills-gridss {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        }
+
+        .skill-tagss {
+        background: #bff2f7;
+        color: #15173D;
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        }
+
+        .apply-buttonss {
+        background-color: #15173D;
+        width: 100%;
+        padding: 1rem;
+        color: white;
+        margin-top: 30px;
+          border: none;
+          border-radius: 40px;
+          font-size: 1rem;
+          font-weight: 500;
+          cursor: pointer;
+          transition: background-color 0.2s ease;
+        }
+
+        .apply-buttonss:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3);
+        }
+
+
+        .job-details h3 {
+        margin: 0;
+        font-size: 1.2rem;
+        color: #333;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        }
+
+        .job-details .company {
+        margin: 0.25rem 0 0;
+        font-size: 0.9rem;
+        color: #666;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        }
+
+
+        .progress-section {
+          margin: 1.5rem 0;
+        }
+
+        .progress-item {
+          margin-bottom: 1rem;
+        }
+
+        .progress-bar {
+          height: 8px;
+          background-color: #f0f0f0;
+          border-radius: 999px;
+          overflow: hidden;
+          position: relative;
+          margin-top: 0.5rem;
+        }
+
+        .progress {
+          height: 100%;
+          background-color: #2196f3;
+          transition: width 0.3s ease;
+        }
+
+        .progress-bar span {
+          position: absolute;
+          right: 0;
+          top: -1.5rem;
+          font-size: 0.875rem;
+          color: #666;
+        }
+
+        .required-skills {
+          margin: 1.5rem 0;
+        }
+
+        .skills-grid {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+          margin-top: 0.5rem;
+        }
+
+        .apply-button {
+          width: 100%;
+          padding: 1rem;
+          background-color: #2196f3;
+          color: white;
+          border: none;
+          border-radius: 8px;
+          font-size: 1rem;
+          font-weight: 500;
+          cursor: pointer;
+          transition: background-color 0.2s ease;
+        }
+
+        .apply-button:hover {
+          background-color: #1976d2;
+        }
+
+        .profile-section {
+          background: #bff2f7;
+          padding: 2rem;
+          border-radius: 40px;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+          margin-bottom: -30px;
+                    border: 10px solid #F8FAFC;
+          box-shadow: 0 8px 4px rgba(187, 205, 255, 0.24);
+        }
+
+         .profile-sections {
+           background: #f5f7f8;
+          padding: 2rem;
+          border-radius: 40px;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+          margin-bottom: -30px;
+                    border: 10px solid #F8FAFC;
+          box-shadow: 0 8px 4px rgba(187, 205, 255, 0.24);
+          margin-top:50px;
+        }
+
+        textarea::-webkit-scrollbar {
+          width: 4px;  /* Width of the scrollbar */
+        }
+        textarea::-webkit-scrollbar-thumb {
+          background-color: #15173D;  /* Color of the scrollbar thumb */
+          border-radius: 4px;  /* Round corners for the scrollbar thumb */
+        }
+        textarea::-webkit-scrollbar-track {
+          background-color: #f0f0f0;  /* Background color of the scrollbar track */
+          border-radius: 4px;  /* Round corners for the track */
+        }
+          
+        .score-grid {
+          display: grid;
+          gap: 1.5rem;
+          margin-top: 1rem;
+        }
+
+        .profile-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 2rem;
+        }
+
+        .edit-button {
+          padding: 0.3rem 1.2rem;
+          border-radius: 40px;
+          border: none;
+          background-color: #15173D;
+          border: 0.6px solid;
+          border-style: dotted;
+          border-color: #15173D;
+          color: white;
+          font-weight: 500;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          font-size: 14px;
+          box-shadow: 0 2px 4px rgba(184, 203, 255, 0.2);
+        }
+
+        .logout-buttons {
+          padding: 0.3rem 1.2rem;
+          border-radius: 40px;
+          border: none;
+          background-color: transparent;
+          border: 0.6px solid;
+          border-style: dotted;
+          border-color: #15173D;
+          color: #15173D;
+          font-weight: 500;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          font-size: 14px;
+          box-shadow: 0 2px 4px rgba(184, 203, 255, 0.2);
+        }
+
+        .edit-button:hover {
+          background-color: #FFF7F7;
+          color: #15173D;
+        }
+
+        .logout-buttons:hover {
+          background-color: #FFF7F7;
+          color: #15173D;
+        }
+
+        .edit-button.save {
+          background-color: white;
+          color: #15173D;
+        }
+
+        .edit-buttons {
+          padding: 0.75rem 1.5rem;
+          border-radius: 40px;
+          border: none;
+          background-color: #15173D !important;
+          color: white;
+          font-weight: 500;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .edit-buttons:hover {
+          background-color: #FFF7F7;
+          color: #15173D;
+        }
+
+        .edit-buttons.save {
+          background-color: white;
+        }
+      `}</style>
+    </div>
+  );
+};
 
 const CompanyDashboard = () => {  
   const [activeTab, setActiveTab] = useState('posts');
@@ -48,10 +1572,30 @@ const CompanyDashboard = () => {
   const [selectedJob, setSelectedJob] = useState(null);
   const [userEmail, setUserEmail] = useState('');
   const [userId, setUserId] = useState(null);
+  const { collabJobs, loadingCollab, refetchCollabJobs } = useCollabJobs(userEmail);
+  const [selectedJobApplicantCount, setSelectedJobApplicantCount] = useState(null);
+
+  const mergedJobs = [
+  ...jobss,
+    ...collabJobs.filter(cj => !jobss.find(j => j.id === cj.id)),
+  ];
 
   const [subscription, setSubscription] = useState('free');
   const JOB_LIMIT = subscription === 'premium' ? 7 : 1;
   const APPLICANT_LIMIT = subscription === 'premium' ? 20 : 1;
+
+  useEffect(() => {
+    if (!selectedJob?.id) return;
+    const isOwnerOfSelected = selectedJob?.creator === userEmail;
+    const collabMeta = collabJobs.find(cj => cj.id === selectedJob.id);
+    const collabVerified = collabMeta?.collab_verified ?? false;
+    if (!isOwnerOfSelected && !collabVerified) return;
+
+    fetch(`http://localhost:8003/applications/count/${selectedJob.id}`)
+      .then(r => r.json())
+      .then(d => setSelectedJobApplicantCount(d.count ?? d.total ?? null))
+      .catch(() => setSelectedJobApplicantCount(null));
+  }, [selectedJob?.id, collabJobs, userEmail]);
 
   const allTraits = [
     { trait: "Problem Solving", score: 4.0 },
@@ -166,14 +1710,16 @@ const CompanyDashboard = () => {
     }
   };
 
-  const fetchApplications = async (jobId) => {
-    try {
-      const response = await axios.get(`http://localhost:8000/job-applications/${jobId}`, {
-        params: { creator_email: userEmail }
-      });
-      setApplications(response.data);
-    } catch (error) {
-      console.error('Error fetching applications:', error);
+  const fetchApplications = async (jobId, ownerEmail = userEmail) => {
+  try {
+    const res = await fetch(
+      `http://localhost:8003/applications/${jobId}?owner_email=${encodeURIComponent(ownerEmail)}`
+      // 👆 adjust to match your actual endpoint signature
+    );
+    const data = await res.json();
+    setApplications(data.applications || data || []);
+    } catch (err) {
+      toast.error("Failed to load applicants.");
     }
   };
 
@@ -748,66 +2294,20 @@ const CompanyDashboard = () => {
 
             <div>
                   {activeTab === 'posts' ? (
-                    <div className="matches-container">
+                  <div className="matches-container">
                     <div className="matches-list">
-                      {jobss.slice(0, JOB_LIMIT).map((job, index) => (
-                        <div key={index}
-                        className={`job-card ${selectedJob === job ? 'selected' : ''}`}
-                        onClick={() => setSelectedJob(job)}
-                        >
-                          <div style={{borderRadius: 20}} className="job-item">
-                            <div style={{marginTop: -10}} className="job-details">
-                              <div className="job-header">
-                                <h3>
-                                  <img 
-                                    src={job.company_logo_url}
-                                    alt="Company Logo" 
-                                    className="profile-picture" 
-                                  /> 
-                                  {job.title}
-                                </h3>
-                              </div>
-                              <p style={{color: '#15173D', fontSize: 12}}>About: {job.company_description}</p>
-                              <p style={{marginTop: -10, color: '#15173D'}} className="company">
-                                <Building size={16} /> {job.company_name} | 
-                                <MapPin size={16} /> {job.location} | 
-                                <Timer size={16} /> {job.experience_required}+ yrs
-                              </p>                          
-                              <div style={{marginTop: 15}} className="company-links">
-                                {job.linkedin_url && (
-                                  <a style={{color: '#15173D'}} href={job.linkedin_url} target="_blank" rel="noopener noreferrer">
-                                    <Linkedin style={{marginTop: -5}} size={16} />
-                                  </a>
-                                )} &nbsp;
-                                {job.website_url && (
-                                  <a style={{color: '#15173D'}} href={job.website_url} target="_blank" rel="noopener noreferrer">
-                                    <Globe2 style={{marginTop: -5}} size={16} />
-                                  </a>
-                                )}
-                              </div>
-                            </div>
-                          </div>
-                          <br />
-                          <div className="skills">
-                            {job.required_skills.slice(0, 4).map((skill, i) => (
-                              <span key={i} className="skill-tag">
-                                <Star size={14} /> {skill}
-                              </span>
-                            ))}
-                          </div>
-                          <br />
-                          <div className="button-group">
-                            <button className="edit-button" onClick={() => editJob(job)}>
-                              <Edit2 size={14} style={{marginTop: -3}} /> &nbsp;Edit
-                            </button> &nbsp;
-                            <button className="logout-buttons" onClick={() => deleteJob(job.id)}>
-                              <Trash2 size={14} style={{marginTop: -3}} /> Delete
-                            </button>
-                            {/* <button className="apply-buttonss" onClick={() => fetchApplications(job.id)}>
-                              <FileText size={16} /> View Applications
-                            </button> */}
-                          </div>
-                        </div>
+                      {mergedJobs.map((job, index) => (
+                        <>
+                        <JobCardActions
+                          key={job.id || index}
+                          selectedJob={selectedJob}
+                          setSelectedJob={setSelectedJob}
+                          job={job}
+                          editJob={editJob}
+                          deleteJob={deleteJob}
+                          userEmail={userEmail}
+                        />
+                        </>
                       ))}
                     </div>
                     {selectedJob && (
@@ -861,18 +2361,76 @@ const CompanyDashboard = () => {
                            </div>
                          </div>
                  
-                         <button 
-                          onClick={() => {
-                            fetchApplications(selectedJob.id);
-                            toast.success("Navigate to Applications Tab above", {
-                              duration: 4000,
-                              position: 'top-right',
-                            });
-                          }} 
-                          className="apply-buttonss"
-                        >
-                          <Zap size={16} style={{marginTop: -3}} /> Enable View Applicants
-                        </button>
+                         {(() => {
+                          // Determine collab status for selectedJob
+                          const isOwnerOfSelected = selectedJob?.creator === userEmail;
+                          const collabMeta = collabJobs.find(cj => cj.id === selectedJob?.id);
+                          const collabVerified = collabMeta?.collab_verified ?? false;
+                          const collabRole = collabMeta?.collab_role ?? null;
+                          const canSeeApplicants = isOwnerOfSelected || (collabVerified && (collabRole === 'admin' || collabRole === 'viewer'));
+
+                          if (!isOwnerOfSelected && !collabVerified) {
+                            // Not yet verified — show prompt button
+                            return (
+                              <button
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  toast.error("Please verify your OTP access first to view applicants.", {
+                                    position: 'top-right',
+                                  });
+                                }}
+                                className="apply-buttonss"
+                                style={{ opacity: 0.6, cursor: 'not-allowed', background: '#64748b' }}
+                              >
+                                <Lock size={16} style={{ marginTop: -3 }} /> Verify OTP to View Applicants
+                              </button>
+                            );
+                          }
+
+                          if (!isOwnerOfSelected && collabVerified && !canSeeApplicants) {
+                            // Verified but role is editor — no applicant access
+                            return (
+                              <button
+                                disabled
+                                className="apply-buttonss"
+                                style={{ opacity: 0.5, cursor: 'not-allowed', background: '#94a3b8' }}
+                              >
+                                <Lock size={16} style={{ marginTop: -3 }} /> Applicant Access Not Granted
+                              </button>
+                            );
+                          }
+
+                          return (
+                            <button
+                              onClick={() => {
+                                // For collab jobs, fetch using the owner's email
+                                const collabMeta = collabJobs.find(cj => cj.id === selectedJob?.id);
+                                const fetchEmail = collabMeta?.collab_owner_email ?? userEmail;
+                                fetchApplications(selectedJob.id, fetchEmail);
+                                setActiveTab('applications'); // auto-switch to applications tab
+                                toast.success("Showing applicants below", {
+                                  duration: 4000,
+                                  position: 'top-right',
+                                });
+                              }}
+                              className="apply-buttonss"
+                            >
+                              <Zap size={16} style={{ marginTop: -3 }} /> View Applicants
+                              {selectedJobApplicantCount !== null && (
+                                <span style={{
+                                  marginLeft: 8,
+                                  background: 'rgba(255,255,255,0.2)',
+                                  borderRadius: 20,
+                                  padding: '2px 10px',
+                                  fontSize: 12,
+                                  fontWeight: 700,
+                                }}>
+                                  {selectedJobApplicantCount}
+                                </span>
+                              )}
+                            </button>
+                          );
+                        })()}
                        </div>
                      </div>
                     )}

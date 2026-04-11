@@ -5,7 +5,7 @@ import Head from 'next/head';
 import axios from 'axios';
 import styles from '../../public/CourseMod.module.css';
 import Script from 'next/script';
-import { Disc, Disc2, Focus, Layers, Lock, Send, X } from 'lucide-react';
+import { Disc, Disc2, Download, Eye, Focus, Layers, Layers2, Lock, NotebookTabs, Paperclip, Send, SendHorizonal, User2, Video, X } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
 import { useRouter } from 'next/navigation';
 
@@ -958,8 +958,8 @@ const closeArtifactPopup = () => {
           )}
           
           <div className={styles.videoInfo}>
-            <h1>{currentVideo.title}</h1>
-            <p className={styles.instructorName}>Instructor: {courseData.instructor}</p>
+            <h1 style={{fontSize: 20, fontWeight: 600}}><Layers2 color='#15173D' size={20} style={{marginTop: -5}} />&nbsp; {currentVideo.title}</h1>
+            <p className={styles.instructorName}><User2 color='#15173D' size={15} style={{marginTop: -5}} />&nbsp; Instructor: {courseData.instructor}</p>
             <div className={styles.videoActions}>
               <button className={styles.actionButton}>
                 <span className={styles.icon}><Lock size={16} style={{marginTop: -5}} /></span> Key Notes
@@ -1011,7 +1011,7 @@ const closeArtifactPopup = () => {
                   placeholder="Ask a question about this lesson..."
                 />
                 <button type="submit" className={styles.chatSubmitButton}>
-                  <Send size={14} style={{marginTop: -3}} /> Ask Away
+                  <SendHorizonal size={16} style={{marginTop: -3}} />
                 </button>
               </form>
             </div>
@@ -1160,8 +1160,8 @@ const closeArtifactPopup = () => {
                       {module.artifacts.map((artifact) => (
                         <div key={artifact.id} className={styles.artifactItem}>
                           <div className={styles.artifactIcon}>
-                            {artifact.type === 'PDF' && '📄'}
-                            {artifact.type === 'DOC' && '📝'}
+                            {artifact.type === 'PDF' && <Paperclip color='#15173D' size={15} style={{marginTop: -25}} />}
+                            {artifact.type === 'DOC' && <NotebookTabs color='#15173D' size={15} style={{marginTop: -25}} />}
                             {artifact.type === 'ZIP' && '📦'}
                             {artifact.type === 'LINK' && '🔗'}
                           </div>
@@ -1179,7 +1179,7 @@ const closeArtifactPopup = () => {
                               className={styles.downloadButton}
                               onClick={() => handleArtifactClick(artifact)}
                             >
-                              ⬇️
+                              <Eye size={16} color='#15173D' />
                             </button>
                           </div>
                         </div>
@@ -1199,7 +1199,7 @@ const closeArtifactPopup = () => {
                               ? <span className={styles.checkmark}>✓</span> 
                               : currentVideo.id === lesson.id 
                                 ? <span className={styles.playingIcon}>▶</span>
-                                : <span className={styles.videoIcon}>🎬</span>
+                                : <span className={styles.videoIcon}><Video color='#15173D' size={20} /></span>
                             }
                           </div>
                           <div className={styles.lessonInfo}>
@@ -1219,7 +1219,7 @@ const closeArtifactPopup = () => {
                         <div className={styles.artifactPopupHeader}>
                           <div className={styles.artifactPopupTitle}>
                             <span className={styles.artifactPopupIcon}>
-                              {selectedArtifact.type === 'PDF' && '📄'}
+                              {selectedArtifact.type === 'PDF' && <Paperclip color='#15173D' size={17} style={{marginTop: -5}} />}
                               {selectedArtifact.type === 'DOC' && '📝'}
                               {selectedArtifact.type === 'ZIP' && '📦'}
                               {selectedArtifact.type === 'LINK' && '🔗'}

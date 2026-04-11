@@ -45,6 +45,29 @@ const JobDashboard = () => {
       }
   }, []);
 
+  // Add this constant near the top of the component (outside or inside, before the return)
+  const PERSONAL_EMAIL_DOMAINS = new Set([
+    'gmail.com','yahoo.com','outlook.com','hotmail.com','live.com',
+    'icloud.com','me.com','mac.com','aol.com','protonmail.com',
+    'proton.me','yandex.com','mail.com','gmx.com',
+    'rediffmail.com','msn.com','inbox.com'
+  ]);
+
+  const [showBusinessOnlyModal, setShowBusinessOnlyModal] = useState(false);
+
+  const isPersonalEmail = (email) => {
+    const domain = email.split('@')[1]?.toLowerCase();
+    return PERSONAL_EMAIL_DOMAINS.has(domain);
+  };
+
+  const handleOrgNav = () => {
+    if (isPersonalEmail(userEmail)) {
+      setShowBusinessOnlyModal(true);
+    } else {
+      router.push("/job-search/org");
+    }
+  };
+
   const fetchUserData = async () => {
     try {
       const token = localStorage.getItem('authToken');
@@ -352,17 +375,58 @@ const handleProfileUpdate = async () => {
             </button>
             <button 
               className={`tab`}
-              onClick={() => router.push("/job-search/org")}
+              onClick={handleOrgNav}
             >
               <span><Rocket size={14} /> Create a Job Post</span>
             </button>
-            <button 
-              className={`tab ${activeTab === 'jobpost' ? 'active' : ''}`}
-              onClick={() => router.push("/job-search/org")}
-            >
+            <button className={`tab ${activeTab === 'jobpost' ? 'active' : ''}`} onClick={handleOrgNav}>
               <span><Edit size={14} /> Manage Jobs</span>
             </button>
           </div>
+
+        {showBusinessOnlyModal && (
+          <div
+            onClick={() => setShowBusinessOnlyModal(false)}
+            style={{
+              position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.45)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              zIndex: 9999,
+            }}
+          >
+            <div
+              onClick={e => e.stopPropagation()}
+              style={{
+                background: '#fff', borderRadius: 16, padding: 32,
+                maxWidth: 420, width: '90%', textAlign: 'center',
+                boxShadow: '0 20px 60px rgba(0,0,0,0.15)',
+              }}
+            >
+              <div style={{ fontSize: 36, marginBottom: 12 }}>🔒</div>
+              <h2 style={{ fontSize: 18, fontWeight: 700, color: '#15173D', marginBottom: 8 }}>
+                Business Account Required
+              </h2>
+              <p style={{ fontSize: 13, color: '#64748b', lineHeight: 1.6, marginBottom: 20 }}>
+                This feature is only available to users with a business account.
+                Please sign in with your business email (e.g. you@yourcompany.com) to create
+                and manage job posts.
+              </p>
+              <p style={{ fontSize: 12, color: '#94a3b8', marginBottom: 24 }}>
+                Currently signed in as: <strong style={{ color: '#15173D' }}>{userEmail}</strong>
+              </p>
+              <button
+                onClick={() => setShowBusinessOnlyModal(false)}
+                style={{
+                  padding: '10px 28px', background: '#15173D', color: '#fff',
+                  border: 'none', borderRadius: 40, fontSize: 13,
+                  fontWeight: 600, cursor: 'pointer',
+                }}
+              >
+                Got it
+              </button>
+            </div>
+          </div>
+        )}
+
         <div style={{marginTop: 35}}></div>
           <div className="tab-content">
             {activeTab === 'matches' ? (
@@ -414,7 +478,7 @@ const handleProfileUpdate = async () => {
                       <div>                       
                         <div className="skills">
                             {job.required_skills.slice(0, 4).map((skill, i) => (
-                            <span style={{backgroundColor: 'white', color: '#15173D'}}  key={i} className="skill-tag"><Star size={16} /> {skill}</span>
+                            <span style={{backgroundColor: 'white', color: '#15173D'}}  key={i} className="skill-tag"><Star style={{marginTop: -3}} size={12} /> {skill}</span>
                             ))}
                         </div>
                       </div>
@@ -799,7 +863,7 @@ const handleProfileUpdate = async () => {
                                 </div>
                             </div>
                             <p style={{marginLeft: 10, color: '#15173D'}} class="company">
-                                <Zap size={16} style={{marginTop: -3}} /> {job.company} | <MapPin style={{marginTop: -3}} size={16} /> {job.location} | <Timer style={{marginTop: -3}} size={16} /> Years: {job.experience_required}+ yrs
+                                <Zap size={14} style={{marginTop: -3}} /> {job.company_name} | <MapPin size={14} style={{marginTop: -3}} /> {job.location} | <Timer size={14} style={{marginTop: -3}} /> Years: {job.experience_required}+ yrs
                             </p>
                             {/* <p style={{marginLeft: 10, fontSize: 14, color: '#15173D'}}> {job.company_description}</p> */}
                         </div>
@@ -808,7 +872,7 @@ const handleProfileUpdate = async () => {
                        
                         <div className="skills">
                             {job.required_skills.slice(0, 4).map((skill, i) => (
-                            <span style={{backgroundColor: '#15173D', color: 'white'}}  key={i} className="skill-tag"><Star size={14} /> {skill}</span>
+                            <span style={{backgroundColor: '#15173D', color: 'white'}}  key={i} className="skill-tag"><Star size={12} style={{marginTop: -3}} /> {skill}</span>
                             ))}
                         </div>
                       </div>
@@ -824,7 +888,7 @@ const handleProfileUpdate = async () => {
                     <div className="job-detailss">
                       <div className='job-detailss-bg'>
                         <h2> <img src={selectedJob.company_logo_url} alt="Profile Picture"  className="profile-picture" />  {selectedJob.title} </h2>
-                        <h3 style={{marginLeft: 10, fontSize: 14, color: '#15173D'}}><Zap size={16} style={{marginTop: -3}} /> {selectedJob.company} | <MapPin size={16} style={{marginTop: -3}} />{selectedJob.location} | <Timer size={16} style={{marginTop: -3}} />  Experience Required: {selectedJob.experience_required}+ years </h3>
+                        <h3 style={{marginLeft: 10, fontSize: 14, color: '#15173D'}}><Zap size={14} style={{marginTop: -3}} /> {selectedJob.company_name} | <MapPin size={14} style={{marginTop: -3}} />{selectedJob.location} | <Timer size={14} style={{marginTop: -3}} />  Experience Required: {selectedJob.experience_required}+ years </h3>
                         <p style={{marginLeft: 10, fontSize: 14, color: '#15173D'}}> {selectedJob.company_description}</p>
                         <div style={{marginTop: -10, backgroundColor: '#EBF4F6', padding: 10, borderRadius: 20, width: 120}} className="company-links">
                                 {selectedJob.linkedin_url && (
