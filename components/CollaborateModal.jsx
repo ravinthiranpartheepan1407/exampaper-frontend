@@ -125,7 +125,7 @@ function OtpVerifyPopup({ jobId, userEmail, onSuccess, onClose }) {
     if (otp.length < 6) return;
     setLoading(true);
     try {
-      const res  = await fetch("http://localhost:8002/collaboration/verify", {
+      const res  = await fetch("https://edevalentum.com/collaboration/verify", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ job_id: jobId, email: userEmail, otp }),
@@ -274,7 +274,7 @@ export default function CollaborateModal({ job, ownerEmail }) {
   useEffect(() => {
     if (!open || !job?.id) return;
     setLoadingExisting(true);
-    fetch(`http://localhost:8002/collaboration/list/${job.id}`)
+    fetch(`https://edevalentum.com/collaboration/list/${job.id}`)
       .then(r => r.json())
       .then(d => setExisting(d.collaborators || []))
       .catch(() => {})
@@ -288,7 +288,7 @@ export default function CollaborateModal({ job, ownerEmail }) {
 
   const handleRevoke = async (collaboratorEmail) => {
     try {
-      const res = await fetch("http://localhost:8002/collaboration/revoke", {
+      const res = await fetch("https://edevalentum.com/collaboration/revoke", {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ job_id: job.id, owner_email: ownerEmail, collaborator_email: collaboratorEmail }),
@@ -304,7 +304,7 @@ export default function CollaborateModal({ job, ownerEmail }) {
     if (!valid.length) return toast.error("Add at least one email.");
     setLoading(true);
     try {
-      const res  = await fetch("http://localhost:8002/collaboration/invite", {
+      const res  = await fetch("https://edevalentum.com/collaboration/invite", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ job_id: job.id, job_title: job.title, owner_email: ownerEmail, invites: valid }),
@@ -319,7 +319,7 @@ export default function CollaborateModal({ job, ownerEmail }) {
       });
 
       setEmailInputs([{ email: "", role: "viewer" }]);
-      const listRes  = await fetch(`http://localhost:8002/collaboration/list/${job.id}`);
+      const listRes  = await fetch(`https://edevalentum.com/collaboration/list/${job.id}`);
       const listData = await listRes.json();
       setExisting(listData.collaborators || []);
     } catch (err) { toast.error(err.message); }
