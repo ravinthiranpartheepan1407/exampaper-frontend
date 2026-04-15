@@ -50,7 +50,7 @@ const JobCardActions = ({ job, selectedJob, setSelectedJob, userEmail, editJob, 
 
   useEffect(() => {
     if (!job?.id || (!isOwner && !verified)) return;
-    fetch(`http://localhost:8003/applications/count/${job.id}`)  // adjust endpoint to yours
+    fetch(`https://edevalentum.com/applications/count/${job.id}`)  // adjust endpoint to yours
       .then(r => r.json())
       .then(d => setApplicantCount(d.count ?? d.total ?? null))
       .catch(() => {});
@@ -1591,7 +1591,7 @@ const CompanyDashboard = () => {
     const collabVerified = collabMeta?.collab_verified ?? false;
     if (!isOwnerOfSelected && !collabVerified) return;
 
-    fetch(`http://localhost:8003/applications/count/${selectedJob.id}`)
+    fetch(`https://edevalentum.com/applications/count/${selectedJob.id}`)
       .then(r => r.json())
       .then(d => setSelectedJobApplicantCount(d.count ?? d.total ?? null))
       .catch(() => setSelectedJobApplicantCount(null));
@@ -1683,7 +1683,7 @@ const CompanyDashboard = () => {
 
   const fetchJobs = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/get-jobs');
+      const response = await axios.get('https://evalentumapi.com/get-jobs');
       setJobs(response.data);
     } catch (error) {
       console.error('Error fetching jobs:', error);
@@ -1692,7 +1692,7 @@ const CompanyDashboard = () => {
 
   // const fetchJobss = async (email) => {
   //   try {
-  //     const response = await axios.get(`http://localhost:8000/creator-jobs/${email}`);
+  //     const response = await axios.get(`https://evalentumapi.com/creator-jobs/${email}`);
   //     setJobss(response.data);
   //   } catch (error) {
   //     console.error('Error fetching jobs:', error);
@@ -1702,7 +1702,7 @@ const CompanyDashboard = () => {
   const fetchJobss = async (email) => {
     try {
       // Get only jobs created by this user's email
-      const response = await axios.get(`http://localhost:8000/matching-creator-jobs/${email}`);
+      const response = await axios.get(`https://evalentumapi.com/matching-creator-jobs/${email}`);
       setJobss(response.data || []);
     } catch (error) {
       console.error('Error fetching jobs:', error);
@@ -1713,7 +1713,7 @@ const CompanyDashboard = () => {
   const fetchApplications = async (jobId, ownerEmail = userEmail) => {
   try {
     const res = await fetch(
-      `http://localhost:8003/applications/${jobId}?owner_email=${encodeURIComponent(ownerEmail)}`
+      `https://edevalentum.com/applications/${jobId}?owner_email=${encodeURIComponent(ownerEmail)}`
       // 👆 adjust to match your actual endpoint signature
     );
     const data = await res.json();
@@ -1725,7 +1725,7 @@ const CompanyDashboard = () => {
 
   // const fetchApplications = async () => {
   //   try {
-  //     const response = await axios.get('http://localhost:8000/applications');
+  //     const response = await axios.get('https://evalentumapi.com/applications');
   //     setApplications(response.data || []);
   //   } catch (error) {
   //     console.error('Error fetching applications:', error);
@@ -1745,9 +1745,9 @@ const CompanyDashboard = () => {
       };
 
       if (selectedJob) {
-        await axios.put(`http://localhost:8000/jobs/${selectedJob.id}`, jobData);
+        await axios.put(`https://evalentumapi.com/jobs/${selectedJob.id}`, jobData);
       } else {
-        await axios.post('http://localhost:8000/create-job', jobData);
+        await axios.post('https://evalentumapi.com/create-job', jobData);
         toast.success('Job Posted successfully!', {
                 onClose: () => {
                   // Wait for the toast to be visible before refreshing
@@ -1797,7 +1797,7 @@ const CompanyDashboard = () => {
       const tokenData = JSON.parse(atob(token.split('.')[1]));
       const creatorEmail = tokenData.email;
 
-      const response = await fetch(`http://localhost:8000/applications/${applicationId}?creator_email=${creatorEmail}`, {
+      const response = await fetch(`https://evalentumapi.com/applications/${applicationId}?creator_email=${creatorEmail}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -1834,9 +1834,9 @@ const CompanyDashboard = () => {
   //     };
 
   //     if (selectedJob) {
-  //       await axios.put(`http://localhost:8000/jobs/${selectedJob.id}`, jobData);
+  //       await axios.put(`https://evalentumapi.com/jobs/${selectedJob.id}`, jobData);
   //     } else {
-  //       await axios.post('http://localhost:8000/create-job', jobData);
+  //       await axios.post('https://evalentumapi.com/create-job', jobData);
   //     }
       
   //     setShowJobForm(false);
@@ -1853,7 +1853,7 @@ const CompanyDashboard = () => {
     try {
       const token = localStorage.getItem('authToken');
       const tokenData = JSON.parse(atob(token.split('.')[1]));
-      await axios.delete(`http://localhost:8000/jobs/${jobId}`, {
+      await axios.delete(`https://evalentumapi.com/jobs/${jobId}`, {
         params: { creator_email: tokenData.email }
       });
       fetchJobs(tokenData.email);
@@ -1865,7 +1865,7 @@ const CompanyDashboard = () => {
 
   const deleteApplication = async (applicationId) => {
     try {
-      await axios.delete(`http://localhost:8000/applications/${applicationId}`, {
+      await axios.delete(`https://evalentumapi.com/applications/${applicationId}`, {
         params: { creator_email: userEmail }
       });
       if (selectedJob) {

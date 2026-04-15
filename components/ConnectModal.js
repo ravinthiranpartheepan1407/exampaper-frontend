@@ -10,7 +10,7 @@ const supabase = createClient(
   process.env.SUPABASE_KEY
 );
 
-const API_BASE = "http://localhost:8002";
+const API_BASE = "https://edevalentum.com";
 
 export default function ConnectModal({ application }) {
   const [open, setOpen] = useState(false);

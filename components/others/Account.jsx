@@ -41,7 +41,7 @@ export default function Account() {
     e.preventDefault();
     setLoginLoading(true);
     try {
-      const response = await axios.post('http://localhost:8001/login/', {
+      const response = await axios.post('https://appbilberry.com/login/', {
         email: loginEmail,
         password: loginPassword,
       });
@@ -88,7 +88,7 @@ export default function Account() {
 
     setRegistrationLoading(true);
     try {
-      const response = await axios.post('http://localhost:8001/register/', {
+      const response = await axios.post('https://appbilberry.com/register/', {
         username: username,
         email: registrationEmail,
         password: registrationPassword,

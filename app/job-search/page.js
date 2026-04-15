@@ -1,8 +1,11 @@
-'use client';
+"use client";
+
+import React from 'react'
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Layout from '@/layouts/layout';
 import JobMatch from '@/components/JobMatch';
+
 
 export default function Page() {
   const router = useRouter();

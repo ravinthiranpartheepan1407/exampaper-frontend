@@ -62,7 +62,8 @@ const JobDashboard = () => {
 
   const handleOrgNav = () => {
     if (isPersonalEmail(userEmail)) {
-      setShowBusinessOnlyModal(true);
+      // setShowBusinessOnlyModal(true);
+      router.push("/job-search/org");
     } else {
       router.push("/job-search/org");
     }
@@ -79,7 +80,7 @@ const JobDashboard = () => {
       const tokenData = JSON.parse(atob(token.split('.')[1]));
       
       // Get user profile
-      const response = await fetch(`http://localhost:8000/user-profile/${tokenData.email}`);
+      const response = await fetch(`https://evalentumapi.com/user-profile/${tokenData.email}`);
       const userData = await response.json();
 
       const appliedResponse = await supabase
@@ -91,7 +92,7 @@ const JobDashboard = () => {
 
       // If we have resume details and personality scores, get fresh matches
       if (userData.resume_details && userData.personality_scores) {
-        const matchesResponse = await fetch('http://localhost:8000/find-matches', {
+        const matchesResponse = await fetch('https://evalentumapi.com/find-matches', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -209,7 +210,7 @@ const JobDashboard = () => {
     try {
         const token = localStorage.getItem('authToken');
         const tokenData = JSON.parse(atob(token.split('.')[1]));
-        const response = await fetch(`http://localhost:8000/apply/${jobId}`, {
+        const response = await fetch(`https://evalentumapi.com/apply/${jobId}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

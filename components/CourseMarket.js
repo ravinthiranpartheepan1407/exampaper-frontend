@@ -30,15 +30,15 @@ const CourseMarket = () => {
       link: '/micro-courses/transformers-from-scratch-core-of-gpt-google-translate',
       courseId: 'transformers_from_scratch_002'  // Added course ID
     },
-    { 
-      id: 3, 
-      name: 'Vision Informed Transformer-Bilberrydb', 
-      image: 'https://fdryfwxmkllviwqmynme.supabase.co/storage/v1/object/public/exampaper/3_2.png', 
-      tags: ["Deep Learning", "Python", "JS"], 
-      price: 'Company Calculator', 
-      link: '/micro-courses/transformers-from-scratch-core-of-gpt-google-translate',
-      courseId: 'transformers_from_scratch_002'  // Added course ID
-    }
+    // { 
+    //   id: 3, 
+    //   name: 'Vision Informed Transformer-Bilberrydb', 
+    //   image: 'https://fdryfwxmkllviwqmynme.supabase.co/storage/v1/object/public/exampaper/3_2.png', 
+    //   tags: ["Deep Learning", "Python", "JS"], 
+    //   price: 'Company Calculator', 
+    //   link: '/micro-courses/transformers-from-scratch-core-of-gpt-google-translate',
+    //   courseId: 'transformers_from_scratch_002'  // Added course ID
+    // }
   ];
 
   const router = useRouter();

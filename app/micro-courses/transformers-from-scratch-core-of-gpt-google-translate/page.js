@@ -9,10 +9,10 @@ export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
 
 export const metadata = {
-    title:'Studypoints24 - Transformers From Scratch : Core of Chatgpt & Google Translate',
+    title:'Exam Paper Academy - Transformers From Scratch : Core of Chatgpt & Google Translate',
     content:'text/html',
     openGraph: {
-      title:'Studypoints24 - Transformers From Scratch : Core of Chatgpt & Google Translate',
+      title:'Exam Paper Academy - Transformers From Scratch : Core of Chatgpt & Google Translate',
       content:'text/html',
     },
   }

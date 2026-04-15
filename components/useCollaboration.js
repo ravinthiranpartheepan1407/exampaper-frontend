@@ -14,7 +14,7 @@ export function useCollaboration(jobId, userEmail, jobCreatorEmail) {
   useEffect(() => {
     if (!jobId || !userEmail || isOwner) { setLoading(false); return; }
 
-    fetch(`http://localhost:8003/collaboration/check?job_id=${encodeURIComponent(jobId)}&email=${encodeURIComponent(userEmail)}`)
+    fetch(`https://edevalentum.com/collaboration/check?job_id=${encodeURIComponent(jobId)}&email=${encodeURIComponent(userEmail)}`)
       .then(r => r.json())
       .then(d => {
         if (d.has_access) { setRole(d.role); setVerified(d.verified); }
@@ -50,7 +50,7 @@ export function useCollabJobs(userEmail) {
     if (!email) return;
     setLoadingCollab(true);
     try {
-      const res  = await fetch(`http://localhost:8003/collaboration/my-access/${encodeURIComponent(email)}`);
+      const res  = await fetch(`https://edevalentum.com/collaboration/my-access/${encodeURIComponent(email)}`);
       const data = await res.json();
       setCollabJobs(data.jobs || []);
     } catch { setCollabJobs([]); }

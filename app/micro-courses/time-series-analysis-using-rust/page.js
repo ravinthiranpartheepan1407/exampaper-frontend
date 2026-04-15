@@ -8,10 +8,10 @@ export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
 
 export const metadata = {
-    title:'Studypoints24 - Time Series Analysis using Rust',
+    title:'Exam Paper Academy - Time Series Analysis using Rust',
     content:'text/html',
     openGraph: {
-      title:'Studypoints24 - Time Series Analysis using Rust',
+      title:'Exam Paper Academy - Time Series Analysis using Rust',
       content:'text/html',
     },
   }

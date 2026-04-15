@@ -3272,7 +3272,7 @@ const fetchUserId = async (email) => {
                             // Generate and send access code
                             const generatedAccessCode = generateAccessCode();
                             
-                            const response = await axios.post('http://localhost:8000/save-access-code', {
+                            const response = await axios.post('https://evalentumapi.com/save-access-code', {
                                 email: userEmail,
                                 accessCode: generatedAccessCode,
                                 examType: 'JeeMainVol1'
@@ -3322,7 +3322,7 @@ const fetchUserId = async (email) => {
                 // If already subscribed, proceed with access code generation
                 const generatedAccessCode = generateAccessCode();
 
-                const response = await axios.post('http://localhost:8000/save-access-code', {
+                const response = await axios.post('https://evalentumapi.com/save-access-code', {
                     email: userEmail,
                     accessCode: generatedAccessCode,
                     examType: 'JeeMainVol1'
@@ -3348,7 +3348,7 @@ const fetchUserId = async (email) => {
 
     const handleAccessCodeSubmit = async () => {
         try {
-            const response = await axios.post('http://localhost:8000/validate-access-code', {
+            const response = await axios.post('https://evalentumapi.com/validate-access-code', {
                 email: userEmail,
                 accessCode: accessCode,
                 examType: 'JeeMainVol1'
@@ -3725,7 +3725,7 @@ const fetchUserId = async (email) => {
     const handleResearchAssistant = useCallback(async () => {
         setIsLoading(true);
         try {
-          const response = await fetch('http://localhost:8000/insurance-research-assistant', {
+          const response = await fetch('https://evalentumapi.com/insurance-research-assistant', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

@@ -125,7 +125,7 @@ function OtpVerifyPopup({ jobId, userEmail, onSuccess, onClose }) {
     if (otp.length < 6) return;
     setLoading(true);
     try {
-      const res  = await fetch("http://localhost:8003/collaboration/verify", {
+      const res  = await fetch("http://localhost:8002/collaboration/verify", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ job_id: jobId, email: userEmail, otp }),
@@ -274,7 +274,7 @@ export default function CollaborateModal({ job, ownerEmail }) {
   useEffect(() => {
     if (!open || !job?.id) return;
     setLoadingExisting(true);
-    fetch(`http://localhost:8003/collaboration/list/${job.id}`)
+    fetch(`http://localhost:8002/collaboration/list/${job.id}`)
       .then(r => r.json())
       .then(d => setExisting(d.collaborators || []))
       .catch(() => {})
@@ -288,7 +288,7 @@ export default function CollaborateModal({ job, ownerEmail }) {
 
   const handleRevoke = async (collaboratorEmail) => {
     try {
-      const res = await fetch("http://localhost:8003/collaboration/revoke", {
+      const res = await fetch("http://localhost:8002/collaboration/revoke", {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ job_id: job.id, owner_email: ownerEmail, collaborator_email: collaboratorEmail }),
@@ -304,7 +304,7 @@ export default function CollaborateModal({ job, ownerEmail }) {
     if (!valid.length) return toast.error("Add at least one email.");
     setLoading(true);
     try {
-      const res  = await fetch("http://localhost:8003/collaboration/invite", {
+      const res  = await fetch("http://localhost:8002/collaboration/invite", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ job_id: job.id, job_title: job.title, owner_email: ownerEmail, invites: valid }),
@@ -319,7 +319,7 @@ export default function CollaborateModal({ job, ownerEmail }) {
       });
 
       setEmailInputs([{ email: "", role: "viewer" }]);
-      const listRes  = await fetch(`http://localhost:8003/collaboration/list/${job.id}`);
+      const listRes  = await fetch(`http://localhost:8002/collaboration/list/${job.id}`);
       const listData = await listRes.json();
       setExisting(listData.collaborators || []);
     } catch (err) { toast.error(err.message); }
@@ -499,18 +499,18 @@ export default function CollaborateModal({ job, ownerEmail }) {
                               </div>
                               <div>
                                 <p style={{ margin: 0, fontSize: 13, fontWeight: 600, color: "#15173D" }}>{c.email}</p>
-                                <p style={{ margin: 0, fontSize: 11, color: role.color, fontWeight: 500 }}>
-                                  {role.label} · {c.verified ? "✓ Verified" : "⏳ Pending verification"}
+                                <p style={{ margin: 0, fontSize: 11, color: "#15173D", fontWeight: 500 }}>
+                                  {role.label} · {c.verified ? "✓ Verified" : "Pending verification"}
                                 </p>
                               </div>
                             </div>
                             <button onClick={() => handleRevoke(c.email)} style={{
-                              background: "#fee2e2", border: "none", borderRadius: 8,
+                              background: "#fee2e2", border: "none", borderRadius: 20,
                               padding: "5px 10px", cursor: "pointer", color: "#ef4444",
                               fontSize: 11, fontWeight: 600,
                               display: "flex", alignItems: "center", gap: 4,
                             }}>
-                              <Trash2 size={11} /> Revoke
+                              <Trash2 style={{marginTop: -2}} size={11} /> Revoke
                             </button>
                           </div>
                         );

@@ -148,7 +148,7 @@ export default function JobMatch() {
     formData.append('email', userEmail);
     
     try {
-      const response = await fetch('http://localhost:8000/analyze-resume', {
+      const response = await fetch('https://evalentumapi.com/analyze-resume', {
         method: 'POST',
         body: formData,
       });
@@ -167,7 +167,7 @@ export default function JobMatch() {
         .eq('email', userEmail);
 
       // Get job matches
-      const matchesResponse = await fetch('http://localhost:8000/find-matches', {
+      const matchesResponse = await fetch('https://evalentumapi.com/find-matches', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

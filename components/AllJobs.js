@@ -8,7 +8,8 @@ import {
   Rocket,
   ScanSearch,
   Send,
-  Lock
+  Lock,
+  Layers2
 } from 'lucide-react';
 
 export default function AllJobs() {
@@ -33,7 +34,7 @@ export default function AllJobs() {
     const fetchJobs = async () => {
       try {
         const params = userEmail ? { user_email: userEmail } : {};
-        const res = await axios.get('http://localhost:8000/get-jobs', { params });
+        const res = await axios.get('https://evalentumapi.com/get-jobs', { params });
         setJobs(res.data);
         if (res.data.length > 0) setSelectedJob(res.data[0]);
       } catch (err) {
@@ -74,7 +75,7 @@ export default function AllJobs() {
         {/* ── Left: job card list ── */}
         <div className={`jobs-list${showDetail ? ' jobs-list--hidden' : ''}`}>
           <div style={styles.listHeader}>
-            <p style={styles.listTitle}>Job openings: {jobs.length} result{jobs.length !== 1 ? 's' : ''}</p>
+            <p style={styles.listTitle}><Layers2 style={{color: '#15173D'}} size={16} />&nbsp;&nbsp;Job openings: {jobs.length} result{jobs.length !== 1 ? 's' : ''}</p>
             {/* <p style={styles.listCount}>{jobs.length} result{jobs.length !== 1 ? 's' : ''}</p> */}
           </div>
 
@@ -157,9 +158,14 @@ export default function AllJobs() {
                 <button style={styles.btnSecondary} onClick={() => handleShare(selectedJob)}>
                   <Share2 size={13} style={{ marginTop: -1 }} /> &nbsp;Share
                 </button>
-                <button style={styles.btnSecondary} onClick={() => router.push(`/job-search/${selectedJob.id}`)}>
+                {/* <button style={styles.btnSecondary} onClick={() => router.push(`/job-search/${selectedJob.id}`)}>
                   <Send size={13} style={{ marginTop: -1 }} /> &nbsp;Contact
-                </button>
+                </button> */}
+                {selectedJob.website_url && (
+                  <a href={selectedJob.website_url} target="_blank" rel="noopener noreferrer" style={styles.btnSecondary}>
+                    <Send size={13} style={{ marginTop: -1 }} /> &nbsp;Contact
+                  </a>
+                )}
               </div>
             </div>
 

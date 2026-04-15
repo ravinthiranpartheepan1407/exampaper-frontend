@@ -11,6 +11,15 @@ import {
 } from 'lucide-react';
 import Layout from '@/layouts/layout'
 
+export const metadata = {
+    title:'Exam Paper Academy',
+    content:'text/html',
+    openGraph: {
+      title:'Exam Paper Academy',
+      content:'text/html',
+    },
+  }
+
 export default function PublicJobPage() {
   const { id } = useParams();
   const [job, setJob] = useState(null);

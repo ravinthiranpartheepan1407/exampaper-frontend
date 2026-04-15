@@ -6,10 +6,10 @@ export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
 
 export const metadata = {
-    title:'Studypoints24 - Research Assistant',
+    title:'Exam Paper Academy',
     content:'text/html',
     openGraph: {
-      title:'Studypoints24 - Research Assistant',
+      title:'Exam Paper Academy',
       content:'text/html',
     },
   }
