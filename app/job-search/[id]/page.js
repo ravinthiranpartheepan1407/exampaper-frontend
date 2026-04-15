@@ -11,15 +11,6 @@ import {
 } from 'lucide-react';
 import Layout from '@/layouts/layout'
 
-export const metadata = {
-    title:'Exam Paper Academy',
-    content:'text/html',
-    openGraph: {
-      title:'Exam Paper Academy',
-      content:'text/html',
-    },
-  }
-
 export default function PublicJobPage() {
   const { id } = useParams();
   const [job, setJob] = useState(null);
@@ -29,7 +20,7 @@ export default function PublicJobPage() {
   useEffect(() => {
     const fetchJob = async () => {
       try {
-        const res = await axios.get(`http://localhost:8000/jobs/${id}`);
+        const res = await axios.get(`https://evalentumapi.com/jobs/${id}`);
         setJob(res.data);
       } catch (err) {
         console.error('Job not found:', err);
