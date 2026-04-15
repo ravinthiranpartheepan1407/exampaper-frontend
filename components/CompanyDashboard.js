@@ -1713,7 +1713,7 @@ const CompanyDashboard = () => {
   const fetchApplications = async (jobId, ownerEmail = userEmail) => {
     try {
       const res = await fetch(
-        `https://evalentumapi.com/applications/${jobId}?owner_email=${encodeURIComponent(ownerEmail)}`
+        `https://edevalentum.com/applications/${jobId}?owner_email=${encodeURIComponent(ownerEmail)}`
       );
       const data = await res.json();
       const apps = Array.isArray(data) 
@@ -2450,8 +2450,7 @@ const CompanyDashboard = () => {
                       marginTop: '70px',
                       borderRadius: '40px'
                     }} className="matches-lists">
-                        {(Array.isArray(applications) ? applications : []).slice(0, APPLICANT_LIMIT).map((application, index) => (                        <div key={index} className="job-cards" onClick={() => toggleExpand(index)}>
-                          <div className="job-items">
+                        {(Array.isArray(applications) ? applications : []).slice(0, APPLICANT_LIMIT).map((application, index) => (                          <div className="job-items">
                             <div style={{marginTop: -15}} className="job-details">
                               <div className="job-header">
                                 <h3 style={{fontSize: 16}}>
