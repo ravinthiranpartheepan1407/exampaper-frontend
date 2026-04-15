@@ -1711,15 +1711,20 @@ const CompanyDashboard = () => {
   };
 
   const fetchApplications = async (jobId, ownerEmail = userEmail) => {
-  try {
-    const res = await fetch(
-      `https://evalentumapi.com/applications/${jobId}?owner_email=${encodeURIComponent(ownerEmail)}`
-      // 👆 adjust to match your actual endpoint signature
-    );
-    const data = await res.json();
-    setApplications(data.applications || data || []);
+    try {
+      const res = await fetch(
+        `https://evalentumapi.com/applications/${jobId}?owner_email=${encodeURIComponent(ownerEmail)}`
+      );
+      const data = await res.json();
+      const apps = Array.isArray(data) 
+        ? data 
+        : Array.isArray(data.applications) 
+          ? data.applications 
+          : [];
+      setApplications(apps);
     } catch (err) {
       toast.error("Failed to load applicants.");
+      setApplications([]);
     }
   };
 
@@ -2445,8 +2450,7 @@ const CompanyDashboard = () => {
                       marginTop: '70px',
                       borderRadius: '40px'
                     }} className="matches-lists">
-                      {applications.slice(0, APPLICANT_LIMIT).map((application, index) => (
-                        <div key={index} className="job-cards" onClick={() => toggleExpand(index)}>
+                        {(Array.isArray(applications) ? applications : []).slice(0, APPLICANT_LIMIT).map((application, index) => (                        <div key={index} className="job-cards" onClick={() => toggleExpand(index)}>
                           <div className="job-items">
                             <div style={{marginTop: -15}} className="job-details">
                               <div className="job-header">
