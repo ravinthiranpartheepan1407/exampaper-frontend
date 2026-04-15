@@ -50,7 +50,7 @@ const JobCardActions = ({ job, selectedJob, setSelectedJob, userEmail, editJob, 
 
   useEffect(() => {
     if (!job?.id || (!isOwner && !verified)) return;
-    fetch(`https://edevalentum.com/applications/count/${job.id}`)  // adjust endpoint to yours
+    fetch(`https://evalentumapi.com/applications/count/${job.id}`)  // adjust endpoint to yours
       .then(r => r.json())
       .then(d => setApplicantCount(d.count ?? d.total ?? null))
       .catch(() => {});
@@ -1591,7 +1591,7 @@ const CompanyDashboard = () => {
     const collabVerified = collabMeta?.collab_verified ?? false;
     if (!isOwnerOfSelected && !collabVerified) return;
 
-    fetch(`https://edevalentum.com/applications/count/${selectedJob.id}`)
+    fetch(`https://evalentumapi.com/applications/count/${selectedJob.id}`)
       .then(r => r.json())
       .then(d => setSelectedJobApplicantCount(d.count ?? d.total ?? null))
       .catch(() => setSelectedJobApplicantCount(null));
@@ -1713,7 +1713,7 @@ const CompanyDashboard = () => {
   const fetchApplications = async (jobId, ownerEmail = userEmail) => {
   try {
     const res = await fetch(
-      `https://edevalentum.com/applications/${jobId}?owner_email=${encodeURIComponent(ownerEmail)}`
+      `https://evalentumapi.com/applications/${jobId}?owner_email=${encodeURIComponent(ownerEmail)}`
       // 👆 adjust to match your actual endpoint signature
     );
     const data = await res.json();
