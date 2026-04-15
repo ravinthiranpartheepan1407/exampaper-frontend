@@ -62,8 +62,8 @@ const JobDashboard = () => {
 
   const handleOrgNav = () => {
     if (isPersonalEmail(userEmail)) {
-      // setShowBusinessOnlyModal(true);
-      router.push("/job-search/org");
+      setShowBusinessOnlyModal(true);
+      // router.push("/job-search/org");
     } else {
       router.push("/job-search/org");
     }
