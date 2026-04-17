@@ -807,7 +807,7 @@ export default function Course2() {
     
     try {
       // Send message to FastAPI backend with subtitle content
-      const response = await axios.post('https://evalentumapi.com/api/phi3-chat', {
+      const response = await axios.post('https://evalentumapi.com/insurance-research-assistant', {
         query: chatInput,
         context: subtitleContent,
         videoTitle: currentVideo.title

@@ -1667,20 +1667,20 @@ export default function Az900() {
   
       const handleAccessCodeSubmit = async () => {
           try {
-              // const response = await axios.post('https://evalentumapi.com/validate-access-code', {
-              //     email: userEmail,
-              //     accessCode: accessCode,
-              //     examType: 'Az900'
-              // });
+              const response = await axios.post('https://evalentumapi.com/validate-access-code', {
+                  email: userEmail,
+                  accessCode: accessCode,
+                  examType: 'Az900'
+              });
   
-              // if (response.data.message != "Access code is valid") {
-              //     setIsAccessGranted(true);
-              //     setIsTimerActive(true);
-              //     setExamMetadata(prev => ({
-              //         ...prev,
-              //         startTime: new Date()
-              //     }));
-              // }
+              if (response.data.message != "Access code is valid") {
+                  setIsAccessGranted(true);
+                  setIsTimerActive(true);
+                  setExamMetadata(prev => ({
+                      ...prev,
+                      startTime: new Date()
+                  }));
+              }
             setIsAccessGranted(true);
                    setIsTimerActive(true);
                    setExamMetadata(prev => ({
