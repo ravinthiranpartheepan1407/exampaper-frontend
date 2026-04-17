@@ -16,7 +16,7 @@ export default function Course1() {
   const [chatMessages, setChatMessages] = useState([]);
   const [chatInput, setChatInput] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
-  const [subtitleContent, setSubtitleContent] = useState(null);
+  const [subtitleContent, setSubtitleContent] = useState('');
   const [currentLessonHasSubtitles, setCurrentLessonHasSubtitles] = useState(false);
   const chatContainerRef = useRef(null);
 
@@ -109,6 +109,24 @@ export default function Course1() {
       }
     };
   }, []);
+
+  // Fetch subtitle whenever video changes
+  useEffect(() => {
+    if (!currentVideo?.subtitleFile) return;
+
+    const fetchSubtitle = async () => {
+      try {
+        const res = await fetch(currentVideo.subtitleFile);
+        const text = await res.text();
+        setSubtitleContent(text);
+      } catch (err) {
+        console.error("Failed to fetch subtitle:", err);
+        setSubtitleContent('');
+      }
+    };
+
+    fetchSubtitle();
+  }, [currentVideo]);
 
   // Initialize Supabase client
   const supabaseUrl = process.env.SUPABASE_URL;
@@ -775,11 +793,14 @@ export default function Course1() {
     
     try {
       // Send message to FastAPI backend with subtitle content
-      const response = await axios.post('https://evalentumapi.com/insurance-research-assistant', {
-        query: chatInput,
-        context: subtitleContent,
-        videoTitle: currentVideo.title
-      });
+      const response = await axios.post(
+        'https://evalentumapi.com/insurance-research-assistant',
+        {
+          query: chatInput,
+          context: subtitleContent,       // ← fetched subtitle text
+          videoTitle: currentVideo?.title ?? '',
+        }
+      );
       
       // Add bot response
       setChatMessages(prev => [...prev, {

@@ -16,9 +16,27 @@ export default function Course2() {
   const [chatMessages, setChatMessages] = useState([]);
   const [chatInput, setChatInput] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
-  const [subtitleContent, setSubtitleContent] = useState(null);
+  const [subtitleContent, setSubtitleContent] = useState('');
   const [currentLessonHasSubtitles, setCurrentLessonHasSubtitles] = useState(false);
   const chatContainerRef = useRef(null);
+
+  // Fetch subtitle whenever video changes
+  useEffect(() => {
+    if (!currentVideo?.subtitleFile) return;
+
+    const fetchSubtitle = async () => {
+      try {
+        const res = await fetch(currentVideo.subtitleFile);
+        const text = await res.text();
+        setSubtitleContent(text);
+      } catch (err) {
+        console.error("Failed to fetch subtitle:", err);
+        setSubtitleContent('');
+      }
+    };
+
+    fetchSubtitle();
+  }, [currentVideo]);
 
   useEffect(() => {
     // Function to completely disable right-click
@@ -807,11 +825,14 @@ export default function Course2() {
     
     try {
       // Send message to FastAPI backend with subtitle content
-      const response = await axios.post('https://evalentumapi.com/insurance-research-assistant', {
-        query: chatInput,
-        context: subtitleContent,
-        videoTitle: currentVideo.title
-      });
+      const response = await axios.post(
+        'https://evalentumapi.com/insurance-research-assistant',
+        {
+          query: chatInput,
+          context: subtitleContent,       // ← fetched subtitle text
+          videoTitle: currentVideo?.title ?? '',
+        }
+      );
       
       // Add bot response
       setChatMessages(prev => [...prev, {
