@@ -758,39 +758,45 @@ export default function Course1() {
     changeVideo(initialLesson);
   }, []);
 
+
+  const handleLessonSelect = async (lesson) => {
+    setCurrentVideo(lesson);
+    if (lesson.subtitleFile) {
+      const res = await axios.get(lesson.subtitleFile);
+      setSubtitleContent(res.data);   // plain text from the .txt file
+    } else {
+      setSubtitleContent('');
+    }
+  };
+
   // Function to handle chat submission
   const handleChatSubmit = async (e) => {
     e.preventDefault();
     if (!chatInput.trim() || !subtitleContent || isProcessing) return;
-    
-    // Add user message
+
     const userMessage = {
       type: 'user',
       content: chatInput,
       timestamp: new Date().toLocaleTimeString()
     };
-    
+
     setChatMessages(prev => [...prev, userMessage]);
     setIsProcessing(true);
-    
+
     try {
-      // Send message to FastAPI backend with subtitle content
-      const response = await axios.post('https://evalentumapi.com/insurance-research-assistant', {
+      const response = await axios.post('https://evalentumapi.com/chat-with-subtitle', {
         query: chatInput,
-        context: subtitleContent,
+        context: subtitleContent,        // subtitle text already loaded
         videoTitle: currentVideo.title
       });
-      
-      // Add bot response
+
       setChatMessages(prev => [...prev, {
         type: 'bot',
-        content: response.data.answer,
+        content: response.data.answer,   // matches ChatResponse field
         timestamp: new Date().toLocaleTimeString()
       }]);
     } catch (error) {
       console.error("Error getting response:", error);
-      
-      // Add error message
       setChatMessages(prev => [...prev, {
         type: 'error',
         content: "Sorry, I encountered an error processing your request.",

@@ -12,7 +12,7 @@ export default function Footer() {
                     </div>
                     <div className="menu_items">
                         <ul>
-                            <li><Mail size={20} />: instructor@exampaper.academy </li> 
+                            <li><Mail size={20} />: account@exampaper.academy </li> 
                             <li><Link href="https://www.linkedin.com/company/exam-paper-academy/"><Linkedin style={{marginTop: -8}} size={20}/> LinkedIn</Link></li>
                             <li><Link href="/privacy"><GlobeLock size={20} style={{marginTop: -5}} />: Privacy Policy</Link></li>
                         </ul>

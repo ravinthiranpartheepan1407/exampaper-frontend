@@ -113,8 +113,10 @@ const ExamMarket = () => {
               <div className="upload-sections">
                   <div className="file-upload">
                       <label className="upload-btn">
-                          <StepForward style={{width: 15, color: '#15173D'}} />
-                          <span>Apply for</span>
+                          <div className="hide-mobile">
+                            <StepForward style={{width: 15, color: '#15173D'}} />
+                            <span>Apply for</span>
+                          </div>
                           <button 
                               onClick={() => router.push("https://forms.office.com/r/8DFMQGJypx")} 
                               className="evaluate-btn"
@@ -270,6 +272,12 @@ const ExamMarket = () => {
             box-shadow: 0 10px 30px rgba(227, 207, 250, 0.5),
               inset 0 1px 0 rgba(255, 255, 255, 0.5);
             backdrop-filter: blur(1px);   
+        }
+
+        @media (max-width: 768px) {
+          .hide-mobile {
+            display: none;
+          }
         }
 
         .hero-section::before {

@@ -1889,6 +1889,7 @@ const handleProfileUpdate = async () => {
 
         .nav-brand {
           font-size: 1.25rem;
+          margin-top: 2rem;
         }
 
         .dashboard-main {
@@ -1982,6 +1983,14 @@ const handleProfileUpdate = async () => {
         .apply-buttonss {
           padding: 0.75rem;
           margin-top: 20px;
+        }
+
+        .profile-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-top: 2rem;
+          margin-bottom: 2rem;
         }
       }
 

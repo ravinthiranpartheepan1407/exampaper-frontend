@@ -119,7 +119,7 @@ export default function ResetPassword() {
                     <div className="form contact-form">
                       <div className="text-center mb-40">
                         <h5 style={{color: 'white'}}>
-                          {email && `Check for an email from instructor@exampaper.academy sent to your ${email} account`}
+                          {email && `Check for an email from account@exampaper.academy sent to your ${email} account`}
                         </h5>
                       </div>
                       

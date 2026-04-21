@@ -506,7 +506,7 @@
   }
   
   input:checked + .toggleSlider {
-    background-color: #15173D;
+    background-color: #2196F3;
   }
   
   input:focus + .toggleSlider {

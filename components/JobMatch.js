@@ -648,6 +648,30 @@ export default function JobMatch() {
     ]
 };
 
+// Add this constant near the top of the component (outside or inside, before the return)
+  const PERSONAL_EMAIL_DOMAINS = new Set([
+    'gmail.com','yahoo.com','outlook.com','hotmail.com','live.com',
+    'icloud.com','me.com','mac.com','aol.com','protonmail.com',
+    'proton.me','yandex.com','mail.com','gmx.com',
+    'rediffmail.com','msn.com','inbox.com'
+  ]);
+
+  const [showBusinessOnlyModal, setShowBusinessOnlyModal] = useState(false);
+
+  const isPersonalEmail = (email) => {
+    const domain = email.split('@')[1]?.toLowerCase();
+    return PERSONAL_EMAIL_DOMAINS.has(domain);
+  };
+
+  const handleOrgNav = () => {
+    if (isPersonalEmail(userEmail)) {
+      setShowBusinessOnlyModal(true);
+      // router.push("/job-search/org");
+    } else {
+      router.push("/job-search/org");
+    }
+  };
+
 
   return (
     <div style={{backgroundColor: 'white'}}>
@@ -659,10 +683,12 @@ export default function JobMatch() {
                     <div className="upload-sections">
                     <div className="file-upload">
                     <label className="upload-btn">
-                        <StepForward style={{width: 15, color: '#15173D'}} />
-                        <span>Post a Job Now!</span>
+                        <div className="hide-mobile">
+                          <StepForward style={{width: 15, color: '#15173D'}} />
+                          <span>Post a Job Now!</span>
+                        </div>
                         <button 
-                        onClick={() => router.push("/job-search/org")} 
+                        onClick={handleOrgNav}
                         className="evaluate-btn"
                         >
                             <Rocket size={16} style={{marginTop: -3}} /> Create a Job Post
@@ -672,17 +698,59 @@ export default function JobMatch() {
                 </div>
           </div>
       </div>
+              {showBusinessOnlyModal && (
+          <div
+            onClick={() => setShowBusinessOnlyModal(false)}
+            style={{
+              position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.45)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              zIndex: 9999,
+            }}
+          >
+            <div
+              onClick={e => e.stopPropagation()}
+              style={{
+                background: '#fff', borderRadius: 16, padding: 32,
+                maxWidth: 420, width: '90%', textAlign: 'center',
+                boxShadow: '0 20px 60px rgba(0,0,0,0.15)',
+              }}
+            >
+              <div style={{ fontSize: 36, marginBottom: 12 }}>🔒</div>
+              <h2 style={{ fontSize: 18, fontWeight: 700, color: '#15173D', marginBottom: 8 }}>
+                Business Account Required
+              </h2>
+              <p style={{ fontSize: 13, color: '#64748b', lineHeight: 1.6, marginBottom: 20 }}>
+                This feature is only available to users with a business account.
+                Please sign in with your business email (e.g. you@yourcompany.com) to create
+                and manage job posts.
+              </p>
+              <p style={{ fontSize: 12, color: '#94a3b8', marginBottom: 24 }}>
+                Currently signed in as: <strong style={{ color: '#15173D' }}>{userEmail}</strong>
+              </p>
+              <button
+                onClick={() => setShowBusinessOnlyModal(false)}
+                style={{
+                  padding: '10px 28px', background: '#15173D', color: '#fff',
+                  border: 'none', borderRadius: 40, fontSize: 13,
+                  fontWeight: 600, cursor: 'pointer',
+                }}
+              >
+                Got it
+              </button>
+            </div>
+          </div>
+        )}
       {step === 1 ? (
         <div className="test-section">
           <form onSubmit={handleTestSubmit}>
             {Object.entries(questions).map(([section, sectionQuestions]) => (
               <div key={section} className="section">
-                <h2 className='hs-title-11' style={{color: '#15173D'}}><Scale3D size={20} style={{marginTop: -5}} /> {section.replace('_', ' ').toUpperCase()}</h2>
+                <h2 className='hs-title-11' style={{color: '#15173D'}}> {section.replace('_', ' ').toUpperCase()}</h2>
                 <p>Everyone is great at something, so be honest it will help us match your personality and skills with the best cultural fit for you. This test helps us understand how you approach workplace situations, align with our company culture, and manage tasks. Your responses will give us insights into your problem-solving skills, teamwork, and working style to match a good fit for both you and the team.</p>
                 <p>If any trait scores lower, don't worry! You have unique strengths that others may not, and everyone is different. Remember, you are amazing and talented in your own way.</p>
                 {sectionQuestions.map(q => (
                   <div key={q.id} className="question">
-                    <p style={{color: '#15173D', fontWeight: 600, fontSize: 17}}><Dot style={{marginTop: -3}} size={15} /> {q.text}</p>
+                    <p style={{color: '#15173D', fontWeight: 600, fontSize: 15}}><Dot style={{marginTop: -3}} size={15} /> {q.text}</p>
                     {q.type === "multiple" ? (
                       <div className="options">
                         {q.options.map((opt, idx) => (
@@ -730,8 +798,8 @@ export default function JobMatch() {
       ) : (
         <div className="section">
           <div className="section">
-                <h2 style={{color: '#15173D'}}><Zap size={20} style={{marginTop: -2}} /> Upload Resume</h2>
-                <p>Upload your resume to show your skills and experience. This helps employers understand what you are good at and find the right job for you. A clear and complete resume makes it easier to get noticed and land a great job.</p>
+              <h2 style={{color: '#15173D'}}><Zap size={20} style={{marginTop: -2}} /> Upload Resume</h2>
+              <p>Upload your resume to show your skills and experience. This helps employers understand what you are good at and find the right job for you. A clear and complete resume makes it easier to get noticed and land a great job.</p>
           </div>
           <form onSubmit={handleResumeSubmit}>
             <div className="file-input-container">
@@ -772,6 +840,12 @@ export default function JobMatch() {
           min-height: 100vh;
         }
 
+        @media (max-width: 768px) {
+          .hide-mobile {
+            display: none;
+          }
+        }
+
         h1 {
           font-size: 2.5rem;
           text-align: center;
@@ -806,7 +880,7 @@ export default function JobMatch() {
         .question {
           margin-bottom: 2rem;
           padding: 1.5rem;
-          background: #bff2f772;
+          background: #bff2f784;
           border-radius: 40px;
           border: 1px solid rgb(191, 242, 247);
         }
@@ -868,15 +942,15 @@ export default function JobMatch() {
 
         .radio-label {
           color: #15173D;
-          font-size: 1rem;
+          font-size: 15px;
           flex: 1;
         }
 
         .rating-number {
           font-weight: 600;
           color: #2d3748;
-          width: 2rem;
-          height: 2rem;
+          width: 1rem;
+          height: 1rem;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -1151,17 +1225,18 @@ export default function JobMatch() {
         }
 
         .section {
-          padding: 0.75rem;
+          padding: 1rem;
           border-radius: 0.75rem;
         }
 
         .question {
-          padding: 0.75rem;
+          padding: 1rem;
           margin-bottom: 1.5rem;
         }
 
         .hero-section {
-          height: 240px;
+          margin-top: 20px;
+          height: 290px;
         }
 
         .hero-section h1 {
@@ -1176,7 +1251,7 @@ export default function JobMatch() {
         .evaluate-btn {
           margin-left: 0;
           width: 100%;
-          margin-top: 0.5rem;
+          margin-top: 0rem;
         }
 
         .upload-btn {
