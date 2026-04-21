@@ -25,6 +25,7 @@ import axios from 'axios';
 import { createClient } from '@supabase/supabase-js';
 import { toast } from 'react-toastify';
 import ExamTimer from '../ExamTimer';
+import ReactMarkdown from 'react-markdown';
 
 // Register ChartJS components
 ChartJS.register(
@@ -4629,12 +4630,14 @@ const renderSavedAnswersView = () => {
             </motion.div>
 
             <div>
-            {researchResponse && (
-                    <div className={styles.researchResponse}>
-                        <h4 style={{fontSize: 18, fontWeight: 500, marginTop: 15}}><Disc size={16} style={{marginTop: -3}} /> Research Response:</h4>
-                        <p>{researchResponse}</p>
-                    </div>
-                )}
+              {researchResponse && (
+                <div className={styles.researchResponse}>
+                  <h4 style={{ fontSize: 18, fontWeight: 500, marginTop: 15 }}>
+                    <Disc size={16} style={{ marginTop: -3 }} /> Research Response:
+                  </h4>
+                  <ReactMarkdown>{researchResponse}</ReactMarkdown>
+                </div>
+              )}
             </div>
 
             <div className={styles.examStatistics}>

@@ -8,6 +8,7 @@ import Script from 'next/script';
 import { Disc, Disc2, Focus, Layers, Lock, Send, X } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
 import { useRouter } from 'next/navigation';
+import ReactMarkdown from 'react-markdown';
 
 export default function Course2() {
 
@@ -1033,7 +1034,7 @@ const closeArtifactPopup = () => {
                       key={index} 
                       className={`${styles.chatMessage} ${msg.type === 'user' ? styles.userMessage : styles.botMessage}`}
                     >
-                      <div className={styles.messageContent}>{msg.content}</div>
+                      <ReactMarkdown>{msg.content}</ReactMarkdown>
                       <div className={styles.messageTime}>{msg.timestamp}</div>
                     </div>
                   ))
