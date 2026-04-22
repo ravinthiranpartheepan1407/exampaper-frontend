@@ -3261,7 +3261,7 @@ export default function PracticeOfGeneralInsurance() {
                   key: process.env.RAZOR_TEST,
                   amount: "29900", // 49 INR
                   currency: "INR",
-                  name: "Arkhamm AI Private Limited",
+                  name: "Exam Paper Academy",
                   description: "IC-11 Practice of General Insurance Exam Access",
                   handler: async function(response) {
                       if (response.razorpay_payment_id) {

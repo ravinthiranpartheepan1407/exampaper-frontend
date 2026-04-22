@@ -3822,7 +3822,7 @@ const fetchUserId = async (email) => {
                 key: process.env.RAZOR_TEST,
                 amount: "14900", // 149 INR
                 currency: "INR",
-                name: "Arkhamm AI Private Limited",
+                name: "Exam Paper Academy",
                 description: "NEET Vol.1 Mock Engine",
                 handler: async function(response) {
                     if (response.razorpay_payment_id) {

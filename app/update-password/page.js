@@ -7,10 +7,10 @@ export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
 
 export const metadata = {
-    title:'Studypoints24 - Update Password',
+    title:'Exam Paper Academy - Update Password',
     content:'text/html',
     openGraph: {
-      title:'Studypoints24 - Update Password',
+      title:'Exam Paper Academy - Update Password',
       content:'text/html',
     },
   }

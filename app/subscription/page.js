@@ -8,10 +8,10 @@ export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
 
 export const metadata = {
-  title:'Studypoints24 - Pricing',
+  title:'Exam Paper Academy - Pricing',
   content:'text/html',
   openGraph: {
-    title:'Studypoints24 - Pricing',
+    title:'Exam Paper Academy - Pricing',
     content:'text/html',
   },
 }

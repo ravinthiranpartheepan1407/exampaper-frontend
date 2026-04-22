@@ -8,10 +8,10 @@ export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
 
 export const metadata = {
-    title:'Studypoints24 - Upsc Preliminary Vol.1 Mock Engine',
+    title:'Exam Paper Academy - Upsc Preliminary Vol.1 Mock Engine',
     content:'text/html',
     openGraph: {
-      title:'Studypoints24 - Upsc Preliminary Vol.1 Mock Engine',
+      title:'Exam Paper Academy - Upsc Preliminary Vol.1 Mock Engine',
       content:'text/html',
     },
   }

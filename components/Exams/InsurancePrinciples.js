@@ -3276,7 +3276,7 @@ const fetchUserId = async (email) => {
                 key: process.env.RAZOR_TEST,
                 amount: "29900", // 49 INR
                 currency: "INR",
-                name: "Arkhamm AI Private Limited",
+                name: "Exam Paper Academy",
                 description: "IC-01 Insurance Principles Exam Access",
                 handler: async function(response) {
                     if (response.razorpay_payment_id) {

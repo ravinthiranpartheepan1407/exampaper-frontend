@@ -113,7 +113,7 @@ export default function ResetPassword() {
               </ParallaxContainer>
             </section>
             <section style={{backgroundColor: '#fbfbfb'}} className="page-section light-content pt-0">
-              <div className="container wow fadeInUp">
+              <div className="container">
                 <div className="row">
                   <div className="col-md-6 offset-md-3">
                     <div className="form contact-form">

@@ -40,6 +40,16 @@ export default function RootLayout({ children }) {
       window.removeEventListener("scroll", headerChangeOnScroll);
     };
   }, [path]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      init_wow();       // re-scan DOM for .wow elements
+      parallaxScroll(); // re-init parallax
+    }, 300); // 300ms gives dynamic imports time to resolve
+
+    return () => clearTimeout(timer);
+  }, [path]); // also runs on path change
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       // Import the script only on the client side

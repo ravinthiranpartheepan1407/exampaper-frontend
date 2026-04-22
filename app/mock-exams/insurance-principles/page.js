@@ -6,10 +6,10 @@ export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
 
 export const metadata = {
-    title:'Studypoints24 - IC 01 - Principles of Insurance',
+    title:'Exam Paper Academy - IC 01 - Principles of Insurance',
     content:'text/html',
     openGraph: {
-      title:'Studypoints24 - IC 01 - Principles of Insurance',
+      title:'Exam Paper Academy - IC 01 - Principles of Insurance',
       content:'text/html',
     },
   }
