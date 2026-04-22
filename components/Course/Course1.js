@@ -184,7 +184,7 @@ export default function Course1() {
             id: "vid1", 
             title: "Getting Started with Codebase", 
             duration: "8:25", 
-            dyntubeId: "a4wp0iM3p0eXsh88FBhMFA", 
+            dyntubeId: "Hyb97wcYkOWn9as3hHkxA", 
             search: true,
             subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/Time-Rust/1.txt" 
           },
