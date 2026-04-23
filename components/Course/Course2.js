@@ -184,7 +184,7 @@ export default function Course2() {
             id: "vid1", 
             title: "Getting Started with Codebase", 
             duration: "8:25", 
-            dyntubeId: "bf8FzfWIiUGJ8MnI4zRcCw", 
+            dyntubeId: "ureqHijjlkKpkIFfdi1g", 
             search: true,
             subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/1.txt" 
           },
@@ -192,7 +192,7 @@ export default function Course2() {
             id: "vid2", 
             title: "Introduction to Transformers", 
             duration: "8:25", 
-            dyntubeId: "nBtpNDbi4Uy2EUtJOGBZQ", 
+            dyntubeId: "6jIGPYbPCUOAXBwShbfZiA", 
             search: true,
             subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/2.txt" 
           },
@@ -200,7 +200,7 @@ export default function Course2() {
             id: "vid3", 
             title: "Transformer Explained - Analogy Point of View - Part 1", 
             duration: "8:25", 
-            dyntubeId: "G4Lhnu2CkOshUfG9DQskQ", 
+            dyntubeId: "pS2F2aZPGUuE6DI0qY2NIg", 
             search: true,
             subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/3.txt" 
           },
@@ -208,7 +208,7 @@ export default function Course2() {
             id: "vid4", 
             title: "Transformer Explained - Analogy Point of View - Part 2", 
             duration: "8:25", 
-            dyntubeId: "CEEIG3rTfUKTfWZij5ewkQ", 
+            dyntubeId: "6aPGcpfGEumLO6orZ6QsA", 
             search: true,
             subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/4.txt" 
           },
@@ -216,7 +216,7 @@ export default function Course2() {
             id: "vid5", 
             title: "Transformer Explained - Core Point of View", 
             duration: "8:25", 
-            dyntubeId: "3Nz3upFIm0Sa21nhIL7AAw", 
+            dyntubeId: "r3P58BeZb0O72MKNAuSksA", 
             search: true,
             subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/5.txt" 
           },
@@ -224,7 +224,7 @@ export default function Course2() {
             id: "vid6", 
             title: "Transformer - Repeated Layers Explanation", 
             duration: "8:25", 
-            dyntubeId: "Roo7f2xPEiDITvVOIC4g", 
+            dyntubeId: "5eJEVLkW6UyUtqcGZgnjsQ", 
             search: true,
             subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/6.txt" 
           },
@@ -232,7 +232,7 @@ export default function Course2() {
             id: "vid7", 
             title: "Self attention Mechanism Explained", 
             duration: "8:25", 
-            dyntubeId: "GnHArbPyikOFL3g4XxaOtw", 
+            dyntubeId: "ozSl8XrXlEqf53vncvhGQg", 
             search: true,
             subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/7.txt" 
           },
@@ -255,7 +255,7 @@ export default function Course2() {
             id: "vid8", 
             title: "Tokenization and Word Embedding", 
             duration: "12:41", 
-            dyntubeId: "IvJNKzw8kmf5214V1f2zw", 
+            dyntubeId: "HdtXL2as0eTq1tBesPPJw", 
             search: true,
             subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/8.txt" 
           },
@@ -263,7 +263,7 @@ export default function Course2() {
             id: "vid9", 
             title: "Positional Encoding", 
             duration: "12:41", 
-            dyntubeId: "TnVdSVLUPvRQR3zXkw", 
+            dyntubeId: "nBGfBgKQbkeskZNCHDsyw", 
             search: true,
             subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/9.txt" 
           },
@@ -271,7 +271,7 @@ export default function Course2() {
             id: "vid10", 
             title: "Multi Head Self Attention Mechanism", 
             duration: "12:41", 
-            dyntubeId: "FmYsEKJ7PkiXDwbMGD56Q", 
+            dyntubeId: "KeA5TOyRb0yrcjoWmBkiKA", 
             search: true,
             subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/10.txt" 
           },
@@ -279,7 +279,7 @@ export default function Course2() {
             id: "vid11", 
             title: "Feed Forward Neural Network", 
             duration: "12:41", 
-            dyntubeId: "wwyVrDGwhU2ETChU2eQpg", 
+            dyntubeId: "Vu03tgHer0uKJxXZvwNhA", 
             search: true,
             subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/11.txt" 
           },
@@ -287,7 +287,7 @@ export default function Course2() {
             id: "vid12", 
             title: "Layer Normalization", 
             duration: "12:41", 
-            dyntubeId: "CBEJgXXCGkKRguuS0FRLQQ", 
+            dyntubeId: "18h2Anpw6k20sCLhKDC4A", 
             search: true,
             subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/12.txt" 
           },
@@ -295,7 +295,7 @@ export default function Course2() {
             id: "vid13", 
             title: "Final Linear Projection to Vocabulary", 
             duration: "12:41", 
-            dyntubeId: "Z8OMLHOeQEiyK0oI1Nohg", 
+            dyntubeId: "IghZCV3QG0yz16JQV1XJw", 
             search: true,
             subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/13.txt" 
           },
@@ -311,7 +311,7 @@ export default function Course2() {
             id: "vid14", 
             title: "Project Environment Setup", 
             duration: "12:41", 
-            dyntubeId: "jeZcYIIdNUWJNsUg4ZbIrw", 
+            dyntubeId: "ZQ2Ovcn8U61zJUJ4mgq3w", 
             search: true,
             subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/14.txt" 
           },
@@ -319,7 +319,7 @@ export default function Course2() {
             id: "vid15", 
             title: "Constructor and Hyperparameter Initialization", 
             duration: "12:41", 
-            dyntubeId: "i0L1MhYGI0WWBYF0XJdDSg", 
+            dyntubeId: "FipLhzABS06dFhjWgullyw", 
             search: true,
             subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/15.txt" 
           },
@@ -327,7 +327,7 @@ export default function Course2() {
             id: "vid16", 
             title: "Feed Forward Pass Layer", 
             duration: "12:41", 
-            dyntubeId: "1CeGEzaoMk2Aj9UEiGkGbA", 
+            dyntubeId: "2iaxeIkJREuevZon2rrNA", 
             search: true,
             subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/16.txt" 
           },
@@ -335,7 +335,7 @@ export default function Course2() {
             id: "vid17", 
             title: "Positional Encoding", 
             duration: "12:41", 
-            dyntubeId: "hCTCEPJ0zU6y7LpTN7FpA", 
+            dyntubeId: "bK7ok0QKNEqh7GbUhpz7w", 
             search: true,
             subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/17.txt" 
           },
@@ -343,7 +343,7 @@ export default function Course2() {
             id: "vid18", 
             title: "Attention Layer Visualization", 
             duration: "12:41", 
-            dyntubeId: "kHH2ppKxh0GidaoQn9G9gw", 
+            dyntubeId: "T89xTbQIYU6w87FnmF0w", 
             search: true,
             subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/18.txt" 
           },
@@ -351,7 +351,7 @@ export default function Course2() {
             id: "vid19", 
             title: "Text Generator Function", 
             duration: "12:41", 
-            dyntubeId: "nrTECNWbb0aTEq74J4JOqA", 
+            dyntubeId: "kponzLa80ut3FAUsjVDow", 
             search: true,
             subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/19.txt" 
           },
@@ -359,7 +359,7 @@ export default function Course2() {
             id: "vid20", 
             title: "Softmax Activation", 
             duration: "12:41", 
-            dyntubeId: "uq4sF2JOhkyuFdtHfdQ2Jg", 
+            dyntubeId: "ebOCRQIw0qZXpnxDw1xOA", 
             search: true,
             subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/20.txt" 
           },
@@ -367,7 +367,7 @@ export default function Course2() {
             id: "vid21", 
             title: "Dropout Layer", 
             duration: "12:41", 
-            dyntubeId: "5u08TFU06b9OCiaWfdWg", 
+            dyntubeId: "bRYhfQLOfEmITwKG3uEgxg", 
             search: true,
             subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/21.txt" 
           },
@@ -375,7 +375,7 @@ export default function Course2() {
             id: "vid22", 
             title: "Model Training Step", 
             duration: "12:41", 
-            dyntubeId: "nym0aLtnmEawd2soEPyIwg", 
+            dyntubeId: "TIu86TZSEWIsdNxYguyrA", 
             search: true,
             subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/22.txt" 
           },
@@ -392,7 +392,7 @@ export default function Course2() {
                 id: "vid23", 
                 title: "2-Layer MLP or Feed Forward Neural Network", 
                 duration: "12:41", 
-                dyntubeId: "HTQDosiHEW11KgqlWHZpw", 
+                dyntubeId: "NNtM8toVNUqzx1uIKbxYPg", 
                 search: true,
                 subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/23.txt" 
             },
@@ -409,7 +409,7 @@ export default function Course2() {
                 id: "vid24", 
                 title: "Forward Passand Dropout Layer", 
                 duration: "12:41", 
-                dyntubeId: "21NG5ewnkqkfJxmD9pxTQ", 
+                dyntubeId: "E6ZjjMUJMUK3T0wyxs9SNg", 
                 search: true,
                 subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/24.txt" 
             },
@@ -426,7 +426,7 @@ export default function Course2() {
                 id: "vid25", 
                 title: "Code: Multihead Self Attention - Forward Pass and Softmax", 
                 duration: "12:41", 
-                dyntubeId: "ZKdEUePGk0GUvxc0O3Tl8Q", 
+                dyntubeId: "ureqHijjlkKpkIFfdi1g", 
                 search: true,
                 subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/25.txt" 
             },
@@ -443,7 +443,7 @@ export default function Course2() {
                 id: "vid26", 
                 title: "Code: 2-Layer MLP or Feed Forward Neural Network Layer", 
                 duration: "12:41", 
-                dyntubeId: "QdaUZFB2EECUWrXjzOQ", 
+                dyntubeId: "yOUPr5iT9Um9ec5kSjdCw", 
                 search: true,
                 subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/26.txt" 
             },
@@ -459,7 +459,7 @@ export default function Course2() {
                 id: "vid27", 
                 title: "Code: Layer Normalization and Residual Connections", 
                 duration: "12:41", 
-                dyntubeId: "X4z2Dx4Uh0OmycXnUueqBA", 
+                dyntubeId: "OzZzxoQsa0uSGZuCxmwgg", 
                 search: true,
                 subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/27.txt" 
             },
@@ -475,7 +475,7 @@ export default function Course2() {
                 id: "vid28", 
                 title: "Code: Stacking Transformer Layers and Running the Model", 
                 duration: "12:41", 
-                dyntubeId: "9z77ZFfQQUCnB07hg8cWwA", 
+                dyntubeId: "PHIY3MmI0ivUGS107R3pg", 
                 search: true,
                 subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/28.txt" 
             },
@@ -483,7 +483,7 @@ export default function Course2() {
                 id: "vid29", 
                 title: "Pre - Code Review", 
                 duration: "12:41", 
-                dyntubeId: "glPe8e6hUuIVG6tVOkRFw", 
+                dyntubeId: "koIOnSLcxUaVKiMH3EGZg", 
                 search: false,
                 subtitleFile: "" 
             },
@@ -491,7 +491,7 @@ export default function Course2() {
                 id: "vid30", 
                 title: "Token Prediction Analysis", 
                 duration: "12:41", 
-                dyntubeId: "fY7QNvbqWUWQcg0IyLXlzQ", 
+                dyntubeId: "RBjbjgOp4UicmsdTQ8NAqA", 
                 search: true,
                 subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/30.txt" 
             },
