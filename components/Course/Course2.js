@@ -184,7 +184,7 @@ export default function Course2() {
             id: "vid1", 
             title: "Getting Started with Codebase", 
             duration: "8:25", 
-            dyntubeId: "ureqHijjlkKpkIFfdi1g", 
+            dyntubeId: "k71hLWJAc0muMA2bxJ4Sg", 
             search: true,
             subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/1.txt" 
           },
