@@ -849,7 +849,7 @@ useEffect(() => {
                 </button>
               ) : (
                 <button 
-                  onClick={() => router.push('/')}
+                  onClick={() => router.push('/get-started')}
                   className="modal-confirm"
                 >
                   Login / Register
