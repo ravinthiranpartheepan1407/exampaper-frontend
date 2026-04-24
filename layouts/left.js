@@ -403,7 +403,7 @@ export default function Left({ activeTrueFalse, activeMobileMenu }) {
                         boxShadow: '0 20px 60px rgba(0,0,0,0.15)',
                     }}
                     >
-                    <div style={{ fontSize: 36, marginBottom: 12 }}>🔒</div>
+                    <div style={{ fontSize: 36, marginBottom: 12 }}><Lock /></div>
                     <h2 style={{ fontSize: 18, fontWeight: 700, color: '#15173D', marginBottom: 8 }}>
                         Business Account Required
                     </h2>

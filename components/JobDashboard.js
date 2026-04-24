@@ -2,7 +2,7 @@
 "use client";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Briefcase, Building, Building2, ChartNoAxesColumn, ChartNoAxesGantt, Edit, Edit2, Edit3, Folder, Github, Globe2, Linkedin, LogOut, LucideLogOut, Mail, MapPin, PlusCircle, Rocket, Save, ScanSearch, Settings2, Star, Target, Timer, ToggleLeft, Trash2, Trophy, User2, UserCircle2, Users, Zap } from 'lucide-react';
+import { Briefcase, Building, Building2, ChartNoAxesColumn, ChartNoAxesGantt, Edit, Edit2, Edit3, Folder, Github, Globe2, Linkedin, Lock, LogOut, LucideLogOut, Mail, MapPin, PlusCircle, Rocket, Save, ScanSearch, Settings2, Star, Target, Timer, ToggleLeft, Trash2, Trophy, User2, UserCircle2, Users, Zap } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
@@ -402,7 +402,7 @@ const handleProfileUpdate = async () => {
                 boxShadow: '0 20px 60px rgba(0,0,0,0.15)',
               }}
             >
-              <div style={{ fontSize: 36, marginBottom: 12 }}>🔒</div>
+              <div style={{ fontSize: 36, marginBottom: 12 }}><Lock /></div>
               <h2 style={{ fontSize: 18, fontWeight: 700, color: '#15173D', marginBottom: 8 }}>
                 Business Account Required
               </h2>
@@ -857,11 +857,6 @@ const handleProfileUpdate = async () => {
                                     /> 
                                     {job.title}
                                 </h3>
-                                <div style={{color: '#15173D'}} className="match-score">
-                                    <span>
-                                    <Rocket size={16} color="white" /> {formatPercentage(job.overall_match)} Match
-                                    </span>
-                                </div>
                             </div>
                             <p style={{marginLeft: 10, color: '#15173D'}} class="company">
                                 <Zap size={14} style={{marginTop: -3}} /> {job.company_name} | <MapPin size={14} style={{marginTop: -3}} /> {job.location} | <Timer size={14} style={{marginTop: -3}} /> Years: {job.experience_required}+ yrs
@@ -873,11 +868,17 @@ const handleProfileUpdate = async () => {
                        
                         <div className="skills">
                             {job.required_skills.slice(0, 4).map((skill, i) => (
-                            <span style={{backgroundColor: '#15173D', color: 'white'}}  key={i} className="skill-tag"><Star size={12} style={{marginTop: -3}} /> {skill}</span>
+                            <span style={{backgroundColor: 'white', color: '#15173D'}}  key={i} className="skill-tag"><Star size={12} style={{marginTop: -3}} /> {skill}</span>
                             ))}
                         </div>
                       </div>
-                      <div style={{marginTop: 15}}></div>
+                      <div style={{marginTop: 25}}></div>
+                      <div style={{color: '#15173D'}} className="match-score">
+                          <span>
+                            <Rocket size={16} color="white" /> {formatPercentage(job.overall_match)} Match
+                          </span>
+                      </div>                      
+
                       {/* <button className="logout-buttonz">
                             <span style={{fontSize: 13}}>View Job</span>
                       </button> */}
@@ -1118,7 +1119,7 @@ const handleProfileUpdate = async () => {
           padding: 2rem;
           border-radius: 40px;
           box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-          margin-bottom: 15.75rem;
+          margin-bottom: 1.75rem;
           border: 10px solid #F8FAFC;
           box-shadow: 0 8px 4px rgba(187, 205, 255, 0.24);
         }
@@ -1204,15 +1205,13 @@ const handleProfileUpdate = async () => {
         }
 
         .match-score span {
-        background: #15173D;
-        color: white;
-        border-radius: 30px;
-        padding: 10px;
-        font-size: 13px;
-        display: flex;
-        align-items: center;
-        gap: 0.2rem; /* Adds space between the icon and text */
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+          padding: 0.5rem 1rem;
+          color: white;
+          border-radius: 40px;
+          background: #15173D;
+          border: 8px solid #F8FAFC;
+          box-shadow: 0 8px 4px rgba(187, 205, 255, 0.44);
+          font-size: 13px;
         }
 
 

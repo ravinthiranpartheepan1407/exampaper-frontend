@@ -1572,7 +1572,7 @@ export default function AwsCloudPractitioner() {
       // Razorpay Payment Handler
       const handlePayment = () => {
           const script = document.createElement('script');
-          script.src = 'http://checkout.razorpay.com/v1/checkout.js';
+          script.src = 'https://checkout.razorpay.com/v1/checkout.js';
           script.async = true;
           document.body.appendChild(script);
   
