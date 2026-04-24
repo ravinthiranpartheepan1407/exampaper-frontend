@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import styles from '../public/InsuranceMarket.module.css';
-import { Airplay, Disc, Dot, Filter, Focus, Layers, Notebook, NotebookText, Rocket, Search, Send, StepForward, X, Zap } from 'lucide-react';
+import { Airplay, Box, Disc, Dot, Filter, Focus, Layers, Notebook, NotebookText, Rocket, Search, Send, StepForward, X, Zap } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 const ExamMarket = () => {
@@ -132,15 +132,15 @@ const ExamMarket = () => {
       {showModal && (
         <div className="modal-overlay">
           <div className="modal-content">
-            <div style={{backgroundColor: '#bff2f7', padding: 15, borderRadius: 16}}>
-            <h2 style={{fontSize: 18, fontWeight: 600, marginTop: 12}}><Airplay size={20} style={{marginTop: -2}} /> Instructor Information</h2>
+            <div style={{padding: 0, borderRadius: 16}}>
+            <h2 style={{fontSize: 18, fontWeight: 900, marginTop: 12, color: '#15173d'}}><Box size={18} style={{marginTop: -2}} /> Instructor Information</h2>
             </div>
             <div style={{textAlign: 'left', marginTop: 15}}>
               {/* <p><Disc size={15} style={{marginTop: -4}} /> The access code to the test is valid only for 72 hours.</p>
               <p><Disc size={15} style={{marginTop: -4}} /> Keep the access code safely. If you lose it, you'll have to buy a new one.</p>
               <p><Disc size={15} style={{marginTop: -4}} /> Make sure to save progress of test. There is no auto-save feature.</p> */}
               {/* <p><Disc size={15} style={{marginTop: -4}} /> You can view saved answers to questions in the dashboard by clicking the "View Saved Answers" button.</p> */}
-              <p><Disc size={15} style={{marginTop: -4}} /> You can use our AI Research assistant built for this exam module unlimited times.</p>
+              <p><Disc size={15} style={{marginTop: -4}} /> You can use our Research assistant built for this exam module unlimited times.</p>
               <p><Disc size={15} style={{marginTop: -4}} /> Mock test engine to help you learn. Questions may vary.</p>
 
             </div>
@@ -362,7 +362,7 @@ const ExamMarket = () => {
           left: 0;
           width: 100%;
           height: 100%;
-          background: rgba(0, 0, 0, 0.5);
+          background: rgba(0, 0, 0, 0.79);
           display: flex;
           justify-content: center;
           align-items: center;
@@ -437,13 +437,13 @@ const ExamMarket = () => {
         .modal-cancel {
           background-color: white;
           border: 1px solid #ddd;
-          color: #333;
+          color: #15173d;
           border-radius: 40px;
           font-size: 13px;
         }
 
         .modal-confirm {
-          background-color: blue;
+          background-color: #15173d;
           color: white;
           border: none;
            border-radius: 40px;
@@ -486,14 +486,14 @@ const ExamMarket = () => {
           width: 22px;
           height: 22px;
           margin-right: 10px;
-          border: 2px solid blue;
-          border-radius: 7px;
+          border: 2px solid #15173d;
+          border-radius: 40px;
           transition: all 0.2s ease;
         }
 
         .custom-checkbox-input:checked + .custom-checkbox-label .custom-checkbox-box {
-          background-color: blue;
-          border-color: blue;
+          background-color: #15173d;
+          border-color: #15173d;
         }
 
         .custom-checkbox-box::after {
@@ -519,7 +519,41 @@ const ExamMarket = () => {
         }
 
         .custom-checkbox-input:checked + .custom-checkbox-label .custom-checkbox-text {
-          color: blue;
+          color: #15173d;
+        }
+
+        /* ── Mobile ── */
+        @media (max-width: 480px) {
+          .modal-content {
+            padding: 1.25rem;
+            border-radius: 20px;
+            width: 95%;
+          }
+
+          .modal-content h2 {
+            font-size: 1.1rem;
+          }
+
+          .modal-content li {
+            font-size: 0.9rem;
+          }
+
+          .modal-actions {
+            flex-direction: column-reverse;
+            gap: 0.5rem;
+          }
+
+          .modal-cancel,
+          .modal-confirm {
+            width: 100%;
+            padding: 0.65rem 1rem;
+            font-size: 14px;
+            text-align: center;
+          }
+
+          .custom-checkbox-text {
+            font-size: 0.875rem;
+          }
         }
 
 
@@ -540,7 +574,7 @@ const ExamMarket = () => {
 
         .search-container:focus-within {
           box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-          border-color: blue;
+          border-color: #15173d;
         }
 
         .search-icon-wrapper {
@@ -600,9 +634,9 @@ const ExamMarket = () => {
         }
 
         .active-tag {
-          background: blue;
+          background: #15173d;
           color: white;
-          border: 1px solid blue;
+          border: 1px solid #15173d;
         }
 
         .clear-filter {
@@ -691,7 +725,7 @@ const ExamMarket = () => {
         }
 
         .active-card-tag {
-          background-color: blue !important;
+          background-color: #15173d !important;
           color: white !important;
         }
 

@@ -2,7 +2,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import styles from '../public/InsuranceMarket.module.css';
-import { Airplay, ArrowRight, Book, Disc, Disc2, Dot, Eye, Filter, Focus, Languages, Layers, Notebook, NotebookText, Plus, Rocket, Search, Send, ShoppingCart, Star, StepForward, User, X, Zap } from 'lucide-react';
+import { Airplay, ArrowRight, Book, Box, Disc, Disc2, Dot, Eye, Filter, Focus, Languages, Layers, Notebook, NotebookText, Plus, Rocket, Search, Send, ShoppingCart, Star, StepForward, User, X, Zap } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Script from 'next/script';
 import { createClient } from '@supabase/supabase-js';
@@ -116,7 +116,7 @@ const CourseMarket = () => {
             id: "vid1", 
             title: "Getting Started with Codebase", 
             duration: "8:25", 
-            dyntubeId: "jRM7NIwjEWLeVwZwrSnGQ", 
+            dyntubeId: "Hyb97wcYkOWn9as3hHkxA", 
             search: true,
             subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/Time-Rust/1.txt" 
           },
@@ -142,7 +142,7 @@ const CourseMarket = () => {
             id: "vid2", 
             title: "Autocorrelation: Math and Code", 
             duration: "12:41", 
-            dyntubeId: "pNRlrhl1EGoKZ7QkKGbrA", 
+            dyntubeId: "zRJpDwafYkuC0HNnM2Suw", 
             search: true,
             subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/Time-Rust/2.txt" 
           },
@@ -157,260 +157,14 @@ const CourseMarket = () => {
             id: "vid3", 
             title: "Stationarity: Math and Code", 
             duration: "15:30", 
-            dyntubeId: "qUVyzWS30up1D8RWQ4GIw",
+            dyntubeId: "v1I0WVvDtk2NsPnrZCEDIQ",
             subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/Time-Rust/3.txt",
             search: true,
           }
         ],
         artifacts: [
         ]
-      },
-      {
-        title: "Module: Linear regression - Trend Detection",
-        lessons: [
-          { 
-            id: "vid4", 
-            title: "Math behind Linear Regression for Identifying Trend Patterns", 
-            duration: "15:30", 
-            dyntubeId: "ekShe44OfEe9sd0UDSgKA",
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/Time-Rust/4.txt",
-            search: true,
-          },
-          { 
-            id: "vid5", 
-            title: "Conversion of Linear Regression Math to Code", 
-            duration: "15:30", 
-            dyntubeId: "i9gyD8zYOkW0BFp6qemAuw",
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/Time-Rust/5.txt",
-            search: true,
-          }
-        ],
-        artifacts: [
-        ]
-      },
-      {
-        title: "Module: Seasonality - Differencing Method",
-        lessons: [
-          { 
-            id: "vid6", 
-            title: "Seasonality Detection using Differencing Technique", 
-            duration: "15:30", 
-            dyntubeId: "bpCt4yiIdEGnu0oumLYE5g",
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/Time-Rust/6.txt",
-            search: true,
-          }
-        ],
-        artifacts: [
-        ]
-      },
-      {
-        title: "Module: White Noise",
-        lessons: [
-          { 
-            id: "vid7", 
-            title: "Mathematical Intuition and Code Implementation", 
-            duration: "15:30", 
-            dyntubeId: "N3ytoryeYUq0h7Natay3Ng",
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/Time-Rust/7.txt",
-            search: true,
-          }
-        ],
-        artifacts: [
-        ]
-      },
-      {
-        title: "Module: Autoregressive Model",
-        lessons: [
-          { 
-            id: "vid8", 
-            title: "Math behind Autoregressive Model", 
-            duration: "15:30", 
-            dyntubeId: "3n83YbAsUkXxtUX6wGfZw",
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/Time-Rust/8.txt",
-            search: true,
-          },
-          { 
-            id: "vid9", 
-            title: "Building Autoregressive Model from Scratch", 
-            duration: "15:30", 
-            dyntubeId: "QlWNZPThq0GMV2dMlacXUQ",
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/Time-Rust/9.txt",
-            search: true,
-          }
-        ],
-        artifacts: [
-        ]
-      },
-      {
-        title: "Module: Moving Average",
-        lessons: [
-          { 
-            id: "vid10", 
-            title: "Math behind Moving Average", 
-            duration: "15:30", 
-            dyntubeId: "Tfvz30GVUa2bzTAXfyrg",
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/Time-Rust/10.txt",
-            search: true,
-          },
-          { 
-            id: "vid11", 
-            title: "Code: Moving Average Module", 
-            duration: "15:30", 
-            dyntubeId: "LJ863aD90WGEp5OEVCDhA",
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/Time-Rust/11.txt",
-            search: true,
-          },
-          { 
-            id: "vid12", 
-            title: "Math behind Weighted Moving Average", 
-            duration: "15:30", 
-            dyntubeId: "8BjMP2vP6UqNmrILzJgLZw",
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/Time-Rust/12.txt",
-            search: true,
-          },
-          { 
-            id: "vid13", 
-            title: "Code: Weighted Moving Average", 
-            duration: "15:30", 
-            dyntubeId: "XInl9rplA0GFmixiqcyzVg",
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/Time-Rust/13.txt",
-            search: true,
-          }
-        ],
-        artifacts: [
-        ]
-      },
-      {
-        title: "ARMA Model - Autoregressive Moving Average",
-        lessons: [
-          { 
-            id: "vid14", 
-            title: "Math behind ARMA Model", 
-            duration: "15:30", 
-            dyntubeId: "2CPyUWh8k6GJwrr78Iog",
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/Time-Rust/14.txt",
-            search: true,
-          },
-          { 
-            id: "vid15", 
-            title: "Build ARMA Model from Scratch", 
-            duration: "15:30", 
-            dyntubeId: "BzSQUFxWEORI9dTRc3h9w",
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/Time-Rust/15.txt",
-            search: true,
-          }
-        ],
-        artifacts: [
-        ]
-      },
-      {
-        title: "ARIMA Model - Autoregressive Integrated Moving Average",
-        lessons: [
-          { 
-            id: "vid16", 
-            title: "Math behind Autoregressive Integrated Moving Average Model", 
-            duration: "15:30", 
-            dyntubeId: "mz1XeeKFE6ts1ExYnqaAQ",
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/Time-Rust/16.txt",
-            search: true,
-          },
-          { 
-            id: "vid17", 
-            title: "Build ARIMA Model from Scratch", 
-            duration: "15:30", 
-            dyntubeId: "530zlrBRJESDvnS0hEj9Q",
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/Time-Rust/17.txt",
-            search: true,
-          }
-        ],
-        artifacts: [
-        ]
-      },
-      {
-        title: "SARIMA Model - Seasonal AutoregressiveIntegrated Moving Average",
-        lessons: [
-          { 
-            id: "vid18", 
-            title: "Math behind SARIMA Model", 
-            duration: "15:30", 
-            dyntubeId: "VmmA6Rn6vk6ZFVM8L3cPXA",
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/Time-Rust/18.txt",
-            search: true,
-          },
-          { 
-            id: "vid19", 
-            title: "Build SARIMA Model from Scratch", 
-            duration: "15:30", 
-            dyntubeId: "FwnqcQBksUmcbaqOSKF7ug",
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/Time-Rust/19.txt",
-            search: true,
-          }
-        ],
-        artifacts: [
-        ]
-      },
-      {
-        title: "Module: Exponential Smoothing",
-        lessons: [
-          { 
-            id: "vid20", 
-            title: "Math behind Exponential Smoothing", 
-            duration: "15:30", 
-            dyntubeId: "qbkAkx3dqkuGnlLo5saijA",
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/Time-Rust/20.txt",
-            search: true,
-          },
-          { 
-            id: "vid21", 
-            title: "Build Single Exponential Smoothing from Scratch", 
-            duration: "15:30", 
-            dyntubeId: "Ps9bkILEaImc6AKljOw",
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/Time-Rust/21.txt",
-            search: true,
-          },
-          { 
-            id: "vid22", 
-            title: "Math behind Holt's Linear Trend Model", 
-            duration: "15:30", 
-            dyntubeId: "6BtSpRLe0yl36iEEti3Jw",
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/Time-Rust/22.txt",
-            search: true,
-          },
-          { 
-            id: "vid23", 
-            title: "Build Holt's Linear Trend Model from Scratch", 
-            duration: "15:30", 
-            dyntubeId: "yfzzpzuENU6wm4orf5ZSxQ",
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/Time-Rust/23.txt",
-            search: true,
-          }
-        ],
-        artifacts: [
-        ]
-      },
-      {
-        title: "Publish as a Library to Crate Registry",
-        lessons: [
-          { 
-            id: "vid24", 
-            title: "Publish to Github Repo and Export the Cargo Project", 
-            duration: "15:30", 
-            dyntubeId: "8VbYLnyb8kSy75eT4HPIA",
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/Time-Rust/24.txt",
-            search: true,
-          },
-          { 
-            id: "vid25", 
-            title: "Cargo Package testing", 
-            duration: "15:30", 
-            dyntubeId: "5ZX1zdGfOEaDpB8hJUN7Yw",
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/Time-Rust/25.txt",
-            search: true,
-          }
-        ],
-        artifacts: [
-        ]
-      },
+      }
     ]
   }, {
     title: "Deep Learning: Build Transformers From Scratch",
@@ -425,7 +179,7 @@ const CourseMarket = () => {
             id: "vid1", 
             title: "Getting Started with Codebase", 
             duration: "8:25", 
-            dyntubeId: "bf8FzfWIiUGJ8MnI4zRcCw", 
+            dyntubeId: "k71hLWJAc0muMA2bxJ4Sg", 
             search: true,
             subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/1.txt" 
           },
@@ -433,7 +187,7 @@ const CourseMarket = () => {
             id: "vid2", 
             title: "Introduction to Transformers", 
             duration: "8:25", 
-            dyntubeId: "nBtpNDbi4Uy2EUtJOGBZQ", 
+            dyntubeId: "6jIGPYbPCUOAXBwShbfZiA", 
             search: true,
             subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/2.txt" 
           },
@@ -441,7 +195,7 @@ const CourseMarket = () => {
             id: "vid3", 
             title: "Transformer Explained - Analogy Point of View - Part 1", 
             duration: "8:25", 
-            dyntubeId: "G4Lhnu2CkOshUfG9DQskQ", 
+            dyntubeId: "pS2F2aZPGUuE6DI0qY2NIg", 
             search: true,
             subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/3.txt" 
           },
@@ -449,33 +203,9 @@ const CourseMarket = () => {
             id: "vid4", 
             title: "Transformer Explained - Analogy Point of View - Part 2", 
             duration: "8:25", 
-            dyntubeId: "CEEIG3rTfUKTfWZij5ewkQ", 
+            dyntubeId: "6aPGcpfGEumLO6orZ6QsA", 
             search: true,
             subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/4.txt" 
-          },
-            { 
-            id: "vid5", 
-            title: "Transformer Explained - Core Point of View", 
-            duration: "8:25", 
-            dyntubeId: "3Nz3upFIm0Sa21nhIL7AAw", 
-            search: true,
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/5.txt" 
-          },
-            { 
-            id: "vid6", 
-            title: "Transformer - Repeated Layers Explanation", 
-            duration: "8:25", 
-            dyntubeId: "Roo7f2xPEiDITvVOIC4g", 
-            search: true,
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/6.txt" 
-          },
-        { 
-            id: "vid7", 
-            title: "Self attention Mechanism Explained", 
-            duration: "8:25", 
-            dyntubeId: "GnHArbPyikOFL3g4XxaOtw", 
-            search: true,
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/7.txt" 
           },
         ],
         artifacts: [
@@ -485,271 +215,6 @@ const CourseMarket = () => {
             type: "PDF", 
             content: "## Welcome to the course! I am Ravinthiran, and I will be your instructor, at your service throughout this learning process. I am really happy you are here! You are about to learn how to build Transformers from scratch – the technology behind tools like ChatGPT and Google Translate. Don’t worry, we will go through everything slowly and step by step. Just take your time, and remember, 45 minutes a day is enough. Stay focused for that short time, and you’ll see great progress. The key is consistency! If you study for just 45 minutes each day, you will get closer to your goal without feeling overwhelmed. So, stay hydrated, take it easy, and keep your focus. You can do it! Before we get started, you will need to set up your environment: Download and Install Anaconda IDE: Anaconda Download, Download and Install Python: Python Download, Read the Attention is All You Need Paper: Attention Paper. Reference: [1] Transformer architecture: Transformer Architecture Image. Let’s get started!"
           },
-        ]
-      },
-
-
-      {
-        title: "Math Behind Transformer Stacks and Sub-Layers",
-        lessons: [
-          { 
-            id: "vid8", 
-            title: "Tokenization and Word Embedding", 
-            duration: "12:41", 
-            dyntubeId: "IvJNKzw8kmf5214V1f2zw", 
-            search: true,
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/8.txt" 
-          },
-            { 
-            id: "vid9", 
-            title: "Positional Encoding", 
-            duration: "12:41", 
-            dyntubeId: "TnVdSVLUPvRQR3zXkw", 
-            search: true,
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/9.txt" 
-          },
-            { 
-            id: "vid10", 
-            title: "Multi Head Self Attention Mechanism", 
-            duration: "12:41", 
-            dyntubeId: "FmYsEKJ7PkiXDwbMGD56Q", 
-            search: true,
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/10.txt" 
-          },
-            { 
-            id: "vid11", 
-            title: "Feed Forward Neural Network", 
-            duration: "12:41", 
-            dyntubeId: "wwyVrDGwhU2ETChU2eQpg", 
-            search: true,
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/11.txt" 
-          },
-            { 
-            id: "vid12", 
-            title: "Layer Normalization", 
-            duration: "12:41", 
-            dyntubeId: "CBEJgXXCGkKRguuS0FRLQQ", 
-            search: true,
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/12.txt" 
-          },
-           { 
-            id: "vid13", 
-            title: "Final Linear Projection to Vocabulary", 
-            duration: "12:41", 
-            dyntubeId: "Z8OMLHOeQEiyK0oI1Nohg", 
-            search: true,
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/13.txt" 
-          },
-        ],
-        artifacts: [
-        ]
-      },
-
-      {
-        title: "Transformer Stacks and Sub-Layers from Scratch",
-        lessons: [
-          { 
-            id: "vid14", 
-            title: "Project Environment Setup", 
-            duration: "12:41", 
-            dyntubeId: "jeZcYIIdNUWJNsUg4ZbIrw", 
-            search: true,
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/14.txt" 
-          },
-          { 
-            id: "vid15", 
-            title: "Constructor and Hyperparameter Initialization", 
-            duration: "12:41", 
-            dyntubeId: "i0L1MhYGI0WWBYF0XJdDSg", 
-            search: true,
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/15.txt" 
-          },
-          { 
-            id: "vid16", 
-            title: "Feed Forward Pass Layer", 
-            duration: "12:41", 
-            dyntubeId: "1CeGEzaoMk2Aj9UEiGkGbA", 
-            search: true,
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/16.txt" 
-          },
-          { 
-            id: "vid17", 
-            title: "Positional Encoding", 
-            duration: "12:41", 
-            dyntubeId: "hCTCEPJ0zU6y7LpTN7FpA", 
-            search: true,
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/17.txt" 
-          },
-          { 
-            id: "vid18", 
-            title: "Attention Layer Visualization", 
-            duration: "12:41", 
-            dyntubeId: "kHH2ppKxh0GidaoQn9G9gw", 
-            search: true,
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/18.txt" 
-          },
-          { 
-            id: "vid19", 
-            title: "Text Generator Function", 
-            duration: "12:41", 
-            dyntubeId: "nrTECNWbb0aTEq74J4JOqA", 
-            search: true,
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/19.txt" 
-          },
-          { 
-            id: "vid20", 
-            title: "Softmax Activation", 
-            duration: "12:41", 
-            dyntubeId: "uq4sF2JOhkyuFdtHfdQ2Jg", 
-            search: true,
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/20.txt" 
-          },
-          { 
-            id: "vid21", 
-            title: "Dropout Layer", 
-            duration: "12:41", 
-            dyntubeId: "5u08TFU06b9OCiaWfdWg", 
-            search: true,
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/21.txt" 
-          },
-          { 
-            id: "vid22", 
-            title: "Model Training Step", 
-            duration: "12:41", 
-            dyntubeId: "nym0aLtnmEawd2soEPyIwg", 
-            search: true,
-            subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/22.txt" 
-          },
-        ],
-        artifacts: [
-        ]
-      },
-
-
-      {
-        title: "Encoder Stack and Sub-Layers from Scratch",
-        lessons: [
-            { 
-                id: "vid23", 
-                title: "2-Layer MLP or Feed Forward Neural Network", 
-                duration: "12:41", 
-                dyntubeId: "HTQDosiHEW11KgqlWHZpw", 
-                search: true,
-                subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/23.txt" 
-            },
-        ],
-        artifacts: [
-        ]
-      },
-
-
-      {
-        title: "Decoder Stack and Sub-Layers from Scratch",
-        lessons: [
-            { 
-                id: "vid24", 
-                title: "Forward Passand Dropout Layer", 
-                duration: "12:41", 
-                dyntubeId: "21NG5ewnkqkfJxmD9pxTQ", 
-                search: true,
-                subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/24.txt" 
-            },
-        ],
-        artifacts: [
-        ]
-      },
-
-
-      {
-        title: "Multihead Self Attention - Forward Pass and Softmax",
-        lessons: [
-            { 
-                id: "vid25", 
-                title: "Code: Multihead Self Attention - Forward Pass and Softmax", 
-                duration: "12:41", 
-                dyntubeId: "ZKdEUePGk0GUvxc0O3Tl8Q", 
-                search: true,
-                subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/25.txt" 
-            },
-        ],
-        artifacts: [
-        ]
-      },
-
-
-      {
-        title: "Feed Forward Neural Network Layer",
-        lessons: [
-            { 
-                id: "vid26", 
-                title: "Code: 2-Layer MLP or Feed Forward Neural Network Layer", 
-                duration: "12:41", 
-                dyntubeId: "QdaUZFB2EECUWrXjzOQ", 
-                search: true,
-                subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/26.txt" 
-            },
-        ],
-        artifacts: [
-        ]
-      },
-
-      {
-        title: "Layer Normalization and Residual Connections",
-        lessons: [
-            { 
-                id: "vid27", 
-                title: "Code: Layer Normalization and Residual Connections", 
-                duration: "12:41", 
-                dyntubeId: "X4z2Dx4Uh0OmycXnUueqBA", 
-                search: true,
-                subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/27.txt" 
-            },
-        ],
-        artifacts: [
-        ]
-      },
-
-      {
-        title: "Stacking Transformer Layers and Running the Model",
-        lessons: [
-            { 
-                id: "vid28", 
-                title: "Code: Stacking Transformer Layers and Running the Model", 
-                duration: "12:41", 
-                dyntubeId: "9z77ZFfQQUCnB07hg8cWwA", 
-                search: true,
-                subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/28.txt" 
-            },
-            { 
-                id: "vid29", 
-                title: "Pre - Code Review", 
-                duration: "12:41", 
-                dyntubeId: "glPe8e6hUuIVG6tVOkRFw", 
-                search: false,
-                subtitleFile: "" 
-            },
-            { 
-                id: "vid30", 
-                title: "Token Prediction Analysis", 
-                duration: "12:41", 
-                dyntubeId: "fY7QNvbqWUWQcg0IyLXlzQ", 
-                search: true,
-                subtitleFile: "https://fiqghoqztrzyahzlvmhb.supabase.co/storage/v1/object/public/course/transformer-scratch/30.txt" 
-            },
-        ],
-        artifacts: [
-            { 
-                id: "art2", 
-                title: "Vocabulary Layer", 
-                type: "PDF", 
-                content: "Copy and paste this Vocab for Model training: vocab = {\"<pad>\": 0, \"<eos>\": 1, \"I\": 2, \"like\": 3, \"to\": 4, \"learn\": 5, \"about\": 6, \"machine\": 7, \"learning\": 8, \"and\": 9, \"artificial\": 10, \"intelligence\": 11, \"because\": 12, \"they\": 13, \"are\": 14, \"fascinating\": 15, \"technologies\": 16, \"of\": 17, \"the\": 18, \"future\": 19, \"transformers\": 20, \"have\": 21, \"revolutionized\": 22, \"natural\": 23, \"language\": 24, \"processing\": 25, \"with\": 26, \"their\": 27, \"attention\": 28, \"mechanism\": 29, \"which\": 30, \"allows\": 31, \"models\": 32, \"understand\": 33, \"context\": 34, \"better\": 35 }"
-            },
-            { 
-                id: "art3", 
-                title: "Final Code review", 
-                type: "PDF", 
-                content: "## Code Repository Link: https://github.com/ravinthiranpartheepan1407/transformers-from-scratch-course"
-            },
         ]
       },
     ]
@@ -1157,7 +622,7 @@ useEffect(() => {
         <div className="modal-overlay">
           <div className="modal-content">
             <div className="modal-header">
-              <h2><Airplay size={18} style={{marginTop: -3}} /> Course Details: {findCourseByLink(selectedProductLink).title}</h2>            
+              <h2 style={{fontWeight: 600}}><Box size={18} style={{marginTop: -3}} /> Course Details: {findCourseByLink(selectedProductLink).title}</h2>            
             </div>
             
             {/* Preview Video Section */}
@@ -1593,7 +1058,7 @@ useEffect(() => {
           left: 0;
           right: 0;
           bottom: 0;
-          background-color: rgba(0, 0, 0, 0.7);
+          background-color: rgba(0, 0, 0, 0.8);
           display: flex;
           justify-content: center;
           align-items: center;
@@ -1604,7 +1069,7 @@ useEffect(() => {
 
         .modal-content {
           background-color: white;
-          border-radius: 0px !important;
+          border-radius: 10px !important;
           overflow: hidden;
           max-height: 90vh;
           overflow-y: auto;
