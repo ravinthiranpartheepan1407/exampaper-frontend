@@ -21,6 +21,8 @@ export default function Course2() {
   const [currentLessonHasSubtitles, setCurrentLessonHasSubtitles] = useState(false);
   const chatContainerRef = useRef(null);
 
+  const [isLoadings, setIsLoadings] = useState(false);
+
   useEffect(() => {
     // Function to completely disable right-click
     const disableRightClick = (e) => {
@@ -158,10 +160,10 @@ export default function Course2() {
           if (courseAccess) {
             setIsAuthorized(true);
           } else {
-            router.push('/s24-courses');
+            router.push('/');
           }
         } else {
-          router.push('/s24-courses');
+          router.push('/');
         }
       } catch (err) {
         router.push('/');
@@ -805,6 +807,7 @@ export default function Course2() {
   const handleChatSubmit = async (e) => {
     e.preventDefault();
     if (!chatInput.trim() || !subtitleContent || isProcessing) return;
+    setIsLoadings(true);
 
     const userMessage = {
       type: 'user',
@@ -835,6 +838,7 @@ export default function Course2() {
         timestamp: new Date().toLocaleTimeString()
       }]);
     } finally {
+      setIsLoadings(false);
       setIsProcessing(false);
       setChatInput('');
     }
@@ -971,7 +975,7 @@ const closeArtifactPopup = () => {
                 userSelect: 'none'
               }}
             >
-              Studypoints24
+              Exam Paper Academy
             </div>
           </div>
           
@@ -1039,7 +1043,16 @@ const closeArtifactPopup = () => {
                     </div>
                   ))
                 )}
+
+                {isLoadings && (
+                  <div className={`${styles.chatMessage} ${styles.botMessage}`}>
+                    <span className={styles.loadingDots}>
+                      Looking through the catalog, please wait
+                    </span>
+                  </div>
+                )}
               </div>
+
               <form className={styles.chatInputForm} onSubmit={handleChatSubmit}>
                 <input
                   type="text"
@@ -1047,9 +1060,10 @@ const closeArtifactPopup = () => {
                   value={chatInput}
                   onChange={(e) => setChatInput(e.target.value)}
                   placeholder="Ask a question about this lesson..."
+                  disabled={isLoading}
                 />
-                <button type="submit" className={styles.chatSubmitButton}>
-                  <Send size={14} style={{marginTop: -3}} /> Ask Away
+                <button type="submit" className={styles.chatSubmitButton} disabled={isLoading}>
+                  <Send size={14} style={{marginTop: -3}} /> {isLoading ? 'Searching...' : 'Ask Away'}
                 </button>
               </form>
             </div>
@@ -1060,45 +1074,41 @@ const closeArtifactPopup = () => {
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
 
                 <div style={{ flex: '1 1 300px', borderRadius: '8px', padding: '16px', border: '0.5px dotted lightBlue'}}>
-                <h3 style={{ fontSize: 16, marginBottom: '8px', fontWeight: 600 }}> <Disc2 size={16} style={{marginTop: -3}} /> Why Take This Course?</h3>
+                  <h3 style={{ fontSize: 16, marginBottom: '8px', fontWeight: 600 }}> <Disc2 size={16} style={{marginTop: -3}} /> Why Take This Course?</h3>
                   <ul style={{ paddingLeft: '20px', margin: 0, fontSize: 14 }}>
-                    <li>Hands-on project: build models without external libraries</li>
-                    <li>Beginner-friendly: no Rust experience needed</li>
-                    <li>Boost your skills in Rust and time-series analysis</li>
-                    <li>Create and share your own open-source library</li>
+                    <li>Hands-on project: build a Transformer model from scratch</li>
+                    <li>Understand the architecture powering ChatGPT and Google Translate</li>
+                    <li>Deepen your expertise in deep learning and NLP</li>
                   </ul>
                 </div>
 
                 <div style={{ flex: '1 1 300px', borderRadius: '8px', padding: '16px', border: '0.5px dotted lightBlue' }}>
                   <h3 style={{ fontSize: 16, marginBottom: '8px', fontWeight: 600 }}><Disc2 size={16} style={{marginTop: -3}} /> Who This Course Is For</h3>
                   <ul style={{ paddingLeft: '20px', margin: 0, fontSize: 14 }}>
-                    <li>Developers new to Rust</li>
-                    <li>Engineers building high-performance data tools</li>
-                    <li>Data scientists and analysts exploring Rust</li>
-                    <li>Anyone interested in open-source contributions</li>
+                    <li>Developers curious about how LLMs actually work</li>
+                    <li>ML engineers wanting to go beyond using pre-built models</li>
+                    <li>Data scientists exploring advanced NLP architectures</li>
+                    <li>Anyone interested in building AI from the ground up</li>
                   </ul>
                 </div>
 
-                {/* <div style={{ flex: '1 1 300px', borderRadius: '8px', padding: '16px', border: '0.5px dotted lightBlue'  }}>
+                <div style={{ flex: '1 1 300px', borderRadius: '8px', padding: '16px', border: '0.5px dotted lightBlue'  }}>
                   <h3 style={{ fontSize: 16, marginBottom: '8px', fontWeight: 600 }}><Disc2 size={16} style={{marginTop: -3}} /> What You Will Learn</h3>
                   <ul style={{ paddingLeft: '20px', margin: 0, fontSize: 14 }}>
-                    <li>Time-series data and its applications</li>
-                    <li>Rust basics for data processing</li>
-                    <li>Building Moving Averages, ARIMA, SARIMA models from scratch</li>
-                    <li>Mathematical concepts behind time-series models</li>
-                    <li>Performance optimization using Rust</li>
-                    <li>Publishing an open-source Cargo library</li>
+                    <li>The Transformer architecture: attention, encoders, and decoders</li>
+                    <li>Multi-head self-attention and positional encoding</li>
+                    <li>Building a seq2seq Transformer for translation tasks from scratch</li>
                   </ul>
-                </div> */}
-
+                </div>
 
                 <div style={{ flex: '1 1 300px', borderRadius: '8px', padding: '16px', border: '0.5px dotted lightBlue' }}>
                   <h3 style={{ fontSize: 16, marginBottom: '8px', fontWeight: 600 }}><Disc2 size={16} style={{marginTop: -3}} /> Prerequisites</h3>
                   <ul style={{ paddingLeft: '20px', margin: 0, fontSize: 14 }}>
-                    <li>Basic knowledge of statistics recommended</li>
-                    <li>No prior Rust knowledge required</li>
+                    <li>Basic understanding of Python and neural networks</li>
+                    <li>Familiarity with linear algebra and calculus recommended</li>
                   </ul>
                 </div>
+
               </div>
           </div>
 

@@ -21,6 +21,8 @@ export default function Course1() {
   const [currentLessonHasSubtitles, setCurrentLessonHasSubtitles] = useState(false);
   const chatContainerRef = useRef(null);
 
+  const [isLoadings, setIsLoadings] = useState(false);
+
   useEffect(() => {
     // Function to completely disable right-click
     const disableRightClick = (e) => {
@@ -158,10 +160,10 @@ export default function Course1() {
           if (courseAccess) {
             setIsAuthorized(true);
           } else {
-            router.push('/s24-courses');
+            router.push('/');
           }
         } else {
-          router.push('/s24-courses');
+          router.push('/');
         }
       } catch (err) {
         router.push('/');
@@ -774,6 +776,7 @@ export default function Course1() {
   const handleChatSubmit = async (e) => {
     e.preventDefault();
     if (!chatInput.trim() || !subtitleContent || isProcessing) return;
+    setIsLoadings(true);
 
     const userMessage = {
       type: 'user',
@@ -804,6 +807,7 @@ export default function Course1() {
         timestamp: new Date().toLocaleTimeString()
       }]);
     } finally {
+      setIsLoadings(false);
       setIsProcessing(false);
       setChatInput('');
     }
@@ -1008,7 +1012,16 @@ const closeArtifactPopup = () => {
                     </div>
                   ))
                 )}
+
+                {isLoadings && (
+                  <div className={`${styles.chatMessage} ${styles.botMessage}`}>
+                    <span className={styles.loadingDots}>
+                      Looking through the catalog, please wait
+                    </span>
+                  </div>
+                )}
               </div>
+
               <form className={styles.chatInputForm} onSubmit={handleChatSubmit}>
                 <input
                   type="text"
@@ -1016,9 +1029,10 @@ const closeArtifactPopup = () => {
                   value={chatInput}
                   onChange={(e) => setChatInput(e.target.value)}
                   placeholder="Ask a question about this lesson..."
+                  disabled={isLoading}
                 />
-                <button type="submit" className={styles.chatSubmitButton}>
-                  <SendHorizonal size={16} style={{marginTop: -3}} />
+                <button type="submit" className={styles.chatSubmitButton} disabled={isLoading}>
+                  <Send size={14} style={{marginTop: -3}} /> {isLoading ? 'Searching...' : 'Ask Away'}
                 </button>
               </form>
             </div>
