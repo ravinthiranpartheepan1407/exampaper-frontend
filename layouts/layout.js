@@ -5,6 +5,7 @@ import Footer from './footer'
 import Header from './header'
 import Left from './left'
 import Search from './search'
+import { Analytics } from "@vercel/analytics/next"
 
 export default function Layout({ children, leftMenu }) {
     const [leftmenu, setLeftmenu] = useState(false)
@@ -44,6 +45,7 @@ export default function Layout({ children, leftMenu }) {
 
     return (
         <>
+            <Analytics />
             <div className="techwave_fn_fixedsub">
                 <ul />
             </div>
