@@ -113,15 +113,15 @@ const ExamMarket = () => {
               <div className="upload-sections">
                   <div className="file-upload">
                       <label className="upload-btn">
-                          <div className="hide-mobile">
-                            <StepForward style={{width: 15, color: '#15173D'}} />
-                            <span>Apply for</span>
-                          </div>
+                          {/* <div className="hide-mobile"> */}
+                            <StepForward style={{width: 10, color: '#15173D'}} />
+                            <span>Join</span>
+                          {/* </div> */}
                           <button 
                               onClick={() => router.push("https://forms.office.com/r/8DFMQGJypx")} 
                               className="evaluate-btn"
                           >
-                              Business English Programme
+                              Business English
                           </button>
                       </label>
                   </div>
@@ -269,8 +269,8 @@ const ExamMarket = () => {
             padding: 40px;
             border-radius: 40px;
             position: relative;
-            box-shadow: 0 10px 30px rgba(227, 207, 250, 0.5),
-              inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 30px rgba(227, 207, 250, 0.1),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(1px);   
         }
 
@@ -289,7 +289,7 @@ const ExamMarket = () => {
             height: 100%;
             border-radius: 40px;
             border: 1px solid rgba(255, 255, 255, 0.05);     
-            box-shadow: 0 10px 30px rgba(208, 172, 255, 0.3),
+            box-shadow: 0 10px 30px rgba(208, 172, 255, 0.2),
               inset 0 1px 0 rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(2px);       
             z-index: 1;
@@ -565,7 +565,7 @@ const ExamMarket = () => {
           max-width: 600px;
           margin: 0 auto;
           border-radius: 50px;
-          border: 1px solid #e0e0e0;
+          border: 1px solid #15173d;
           background-color: white;
           box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
           overflow: hidden;
